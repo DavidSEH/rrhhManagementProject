@@ -1,0 +1,55 @@
+@import url(estiloindex.css);
+/*Bienvenido al hotel*/
+.info-us {
+    width: 50%;
+    margin: 50px auto;
+}
+.info-us h1 span{
+    color:#EEAD33;
+}
+.info-us h1{
+    text-align: center;
+}
+.info-us .aside-us {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+.info-us .aside-us div .about-img{
+    width: 100%;
+    height: 100%;
+
+}
+.info-us .info-us-p {
+    text-align: center;
+    margin: 20px;
+}
+hr{
+    height:10px;
+    background-color: #6F6C6C;
+}
+/*Nuestro hotel*/
+.article-grid-mv , .article-us{
+    width: 60%;
+    margin: 25px auto;
+}
+
+.article-grid-mv{
+    display: grid;
+	grid-template-columns: repeat(2,1fr);
+}
+.article-grid-mv .sec-grid{
+    margin: 15px;
+}
+.article-us{
+    text-align: center;
+}
+.article-grid-mv .sec-grid .color{
+    text-align: center;
+    color:#EEAD33;
+}
+.article-grid-mv .sec-grid p{
+    margin: auto;
+    width: 200px;
+    text-align: center;
+}

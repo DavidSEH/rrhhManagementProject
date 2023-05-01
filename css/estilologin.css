@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Kavivanar&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Kavivanar', cursive;
+}
+body{
+    background: url(../Imagenes/img2.jpg) no-repeat;
+    background-size: cover;
+    
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    min-height: 100vh;
+    min-width: 100%;
+    /*background-image: linear-gradient(76.9deg, rgba(255,90,90,1)27.2%, rgba(130,5,255,1)79.9%);*/
+    background-size: 400% 400%;
+    animation: animate 10s ease infinite;
+    
+}
+@keyframes animate{
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+.login-box{
+    position: relative;
+}
+.login-box .square{
+    position: absolute;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+    animation: square 10s linear infinite;
+    animation-delay: 1s;
+}
+@keyframes square{
+    0%, 100%{
+        transform: translateY(-20px);
+    }
+    50%{
+        transform: translateY(20px);
+    }
+} 
+.login-box .square:nth-child(1){
+    width: 100px;
+    height: 100px;
+    top: -15px;
+    right: -45px;
+}
+.login-box .square:nth-child(2){
+    width: 120px;
+    height: 120px;
+    top: 105px;
+    left: -125px;
+    right: -45px;
+    z-index: 2;
+}
+.login-box .square:nth-child(3){
+    width: 60px;
+    height: 60px;
+    bottom:  85px;
+    right: -45px;
+    z-index: 2;
+}
+.login-box .square:nth-child(4){
+    width: 50px;
+    height: 50px;
+    bottom:  35px;
+    left:  -95px;
+}
+.login-box .square:nth-child(5){
+    width: 50px;
+    height: 50px;
+    top: -15px;
+    left:  -25px;
+}
+.login-box .square:nth-child(6){
+    width: 100px;
+    height: 100px;
+    top: 250px;
+    right: -110px;
+    z-index: 2;
+}
+.login-box .form .login-img{
+    display: flex;
+    justify-content: center;
+}
+.login-box .container{
+    position: relative;
+    padding: 30px 70px 50px 70px;
+    width: 320px;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter:  blur(15px);
+    border-radius: 10px;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+    
+}
+.login-box .container:after{
+    content: "";
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    bottom: 5px;
+    left: 5px;
+    border-radius: 5px;
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.1))
+}
+.login-box .form{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.login-box .form .login-img img{
+    width: 85px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0 25px 45px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.3);
+}
+.login-box .form h2{
+    color: #fff;
+    text-align: center;
+    letter-spacing: 2px;
+    margin: 17px 0;
+}
+
+.login-box .inputbx{
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.login-box .inputbx input{
+    width: 80%;
+    outline: none;
+    border:  1px solid rgba(255,255,255,0.2);
+    background-color: rgba(255,255,255,0.2);
+    padding: 8px 10px;
+    padding-left: 40px;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.login-box .inputbx i{
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    transform: scale(0.6);
+    filter: invert(1);
+}
+.login-box .inputbx input::placeholder{
+    color: #fff;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+}
+.login-box .remember{
+    position: relative;
+    display: inline-block;
+    color: #fff;
+    margin-bottom: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+
+.login-box .inputbx input[type=submit]{
+    background-color: #fff;
+    color: #111;
+    width: 150px;
+    margin-left: 28%;
+    padding: 8px 10px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 1.5s;
+    box-shadow: none;
+}
+.login-box .inputbx input[type=submit]:hover{
+    background: linear-gradient(115deg, rgba(0,0,0,0.1), rgba(255,255,255,0.25));
+    color: #fff;
+    transition: 0.5s;
+}
+.login-box .singup{
+    display: flex;
+    justify-content: space-between;
+    transition: 0.5s;
+    
+}
+
+.login-box  .singup p{
+    color: #fff;
+    margin-top: 5px;
+    letter-spacing: 1px;
+}
+
+.enlace{
+    color: #fff;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+.enlace:hover{
+    font-weight: 700;
+}
+.login-box h4{
+    position: relative;
+    font-size: 15px;
+    color: #fff;
+    margin-top: 25px;
+    letter-spacing: 1px;
+}
+.login-box h4:after{
+    position: absolute;
+    content: "";
+    top: 50%;
+    right: 30px;
+    width: 150px;
+    height: 2px;
+    background-color: rgba(255,255,255,0.4);
+}
+.social-icon {
+    margin-top: 30px;
+    display: ruby;
+    justify-content: space-between;
+}
+.social-icon a{
+    border: 1px solid rgba(255,255,255,0.4);
+    text-decoration: none;
+    color: #fff;
+    border-radius: 15px;
+    margin: 10px 10px; 
+    letter-spacing: 1px;
+    padding: 10px 20px;
+    transition: 1.5s;
+}
+.social-icon a i{
+    font-size: 20px;
+    margin-right: px;
+}
+.social-icon a:hover{
+    background-color: rgba(255,255,255,0.10);
+    color: #fff;
+    transition: 0.5s;
+}
+
+
+
+
+
+
