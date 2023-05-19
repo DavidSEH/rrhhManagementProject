@@ -40,8 +40,8 @@ body,input{
 .signun-signup{
     position: absolute;
     top: 50%;
-    transform: translate(-50%, -50%);
-    left: 75%;
+    transform: translate(-90%, -40%);
+    left: 95%;
     width: 50%;
     transition: 1s 0.7s ease-in-out;
     display: grid;
@@ -49,7 +49,7 @@ body,input{
     z-index: 5;
  }
 form{
-     display: flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -63,10 +63,7 @@ form{
 form.sign-in-form{
     z-index: 2;
 }
-form.sign-up-form{
-    z-index: 1;
-    opacity: 0;
-}
+
 .title{
     font-size: 2.2rem;
     color: #444;
@@ -120,36 +117,8 @@ form.sign-up-form{
 }
 .btn:hover{
     background: linear-gradient(to right,#001024,#096679,#00ceff);
-    
 }
-.social-text{
-    padding: .7rem 0;
-    font-size: 1rem;
-}
-.social-media{
-    display: flex;
-    justify-content: center;
-}
-.social-icon i{
-    height: 46px;
-    width: 46px;
-    border: 1px solid #333;
-    margin: 0 0.45rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-    font-size: 1.1rem;
-    border-radius: 50%;
-    transition: 0.3s;
-    
-}
-.social-icon i:hover{
-    border-radius: 200px;
-    color: #fff;
-    background: #49706f;
-}
+
 .panels-container{
     position: absolute;
     height: 100%;
@@ -216,37 +185,7 @@ form.sign-up-form{
   transform: translateX(800px);
 }
 /*Animacion*/
-.container.sign-up-mode:before {
-  transform: translate(100%, -50%);
-  right: 52%;
-}
-.container.sign-up-mode .left-panel .image,
-.container.sign-up-mode .left-panel .content {
-  transform: translateX(-800px);
-}
-.container.sign-up-mode .right-panel .image,
-.container.sign-up-mode .right-panel .content {
-  transform: translateX(0%);
-}
-.container.sign-up-mode .left-panel {
-  pointer-events: none;
-}
 
-.container.sign-up-mode .right-panel {
-  pointer-events: all;
-}
-.container.sign-up-mode .signun-signup {
-  left: 25%;
-}
-.container.sign-up-mode form.sign-up-form {
-  opacity: 1;
-  z-index: 2;
-}
-
-.container.sign-up-mode form.sign-in-form {
-  opacity: 0;
-  z-index: 1;
-}
 .alertLoginSave{
   background: #0DA851;
   position: fixed;
