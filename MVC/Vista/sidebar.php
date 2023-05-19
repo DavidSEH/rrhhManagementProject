@@ -50,12 +50,12 @@
                     </div>
                     <div class="content">
                         <a href="Gestion_asistencias.php"><i class="far fa-circle"></i>Agregar</a>
-                        <a href="Gestion_asistencias.php"><i class="far fa-circle"></i>Listar</a>
+                        <a href="Listar_asistencias.php"><i class="far fa-circle"></i>Listar</a>
                     </div>
                 </div>
                 <div class="contentBx">
                     <div class="label">
-                        <i class="fas fa-users-cog"></i> Gestion
+                        <i class="fas fa-users-cog"></i> Gestión
                     </div>
                     <div class="content">
                         <a href="Gestion_Clientes.php"><i class="far fa-circle"></i>Empleados</a>
@@ -63,7 +63,7 @@
                         if ($_SESSION['rol'] == 1) {
 
                         ?>
-                            <a href="Gestion_Usuario.php"><i class="far fa-circle"></i>Usuarios</a>
+                            <a href="Gestion_Usuario.php"><i class="far fa-circle"></i>Administrador</a>
                             <a href="Gestion_Promocion.php"><i class="far fa-circle"></i>Licencias</a>
                         <?php
                         }

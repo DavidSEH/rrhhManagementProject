@@ -212,13 +212,13 @@ form.sign-in-form{
 
  @keyframes mover-izquierda {
    0%{
-      transform: translateX(1500px);
+      transform: translateX(2px);
    }
    20%,30%,40%,50%{
-    transform: translateX(950px);
+    transform: translateX(2px);
    }
    70%,80%,90%,100%{
-    transform: translateX(1500px);
+    transform: translateX(1px);
    }
    
  } 
