@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/estiloLC.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 <body >
@@ -28,10 +29,10 @@
                             <i class="fas fa-lock"></i>
                             <input type="password" name="clave" placeholder="Password">
                         </div>
+                        <div class="g-recaptcha" data-sitekey="6Lf1jwsdAAAAAB7aKmco5N7ivABQF-HdhYm6zRuA"></div>
                         <div>
                             <input type="submit" name="Acceso" value="Iniciar Sesion" class="btn solid">
-                        </div>
-                        
+                        </div>  
                     </form>
                      
                     
