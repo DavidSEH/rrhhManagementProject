@@ -1,8 +1,9 @@
 <?php
 include "../Modelo/conexion.php";
+
 if (!empty($_POST)) {
     $alert = '';
-    if (empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['usuario']) || empty($_POST['clave'])) {
+    if (empty($_POST['nombre']) || empty($_POST['correo'])|| empty($_POST['dni']) /*|| empty($_POST['usuario']) || empty($_POST['clave'])*/) {
         $alert = '<p class="msg_error">Todos los campos son obligatorios.</p>';
     } else {
 
@@ -13,29 +14,39 @@ if (!empty($_POST)) {
         $telefono = $_POST['telefono'];
         $domicilio = $_POST['domicilio'];
         $fecha_ingreso = $_POST['fecha_ingreso'];
-        //$puesto_trabajo = $_POST['puesto_trabajo'];
-        $user   = $_POST['usuario'];
-        $clave  = md5($_POST['clave']);
+        $puesto_trabajo = $_POST['puesto_trabajo'];
+        //$user   = $_POST['usuario'];
+        //$clave  = md5($_POST['clave']);
         $idusuario  = $_POST['idusuario'];
 
-        $query = mysqli_query($conection, "SELECT * FROM cliente WHERE usuario_cli = '$user' OR correo = '$correo' ");
-        $result = mysqli_fetch_array($query);
+        // Verificar si ya existe un cliente con el mismo DNI
+        $query_dni = mysqli_query($conection, "SELECT * FROM cliente WHERE dni = '$dni'");
+        $result_dni = mysqli_fetch_array($query_dni);
 
-        if ($result > 0) {
-            $alert = '<p class="msg_error">El correo o el usuario ya existe.</p>';
-        } else {
+        if ($result_dni) {
+            $alert = '<p class="msg_error">Ya existe un usuario con el mismo DNI.</p>';
+        }/* else {
+            // Verificar si el correo o el usuario ya existen
+            $query = mysqli_query($conection, "SELECT * FROM cliente WHERE usuario_cli = '$user' OR correo = '$correo'");
+            $result = mysqli_fetch_array($query);
 
-            $query_insert = mysqli_query(
-                $conection,
-                "INSERT INTO cliente(dni,nombre,edad,correo,telefono,domicilio,fecha_ingreso,/* puesto_trabajo,*/usuario_cli,clave_cli,idusuario)
-                                         VALUES('$dni','$nombre','$edad','$correo','$telefono',
-                                         '$domicilio','$fecha_ingreso',/*'$puesto_trabajo',*/'$user','$clave','$idusuario')"
-            );
-            if ($query_insert) {
-                $alert = '<p class="msg_save">Usuario creado correctamente.</p>';
-            } else {
-                $alert = '<p class="msg_error">$alert</p>';
+            if ($result) {
+                $alert = '<p class="msg_error">El correo o el usuario ya existe.</p>';
+            } */
+            else {
+
+                $query_insert = mysqli_query(
+                    $conection,
+                    "INSERT INTO cliente(dni,nombre,edad,correo,telefono,domicilio,fecha_ingreso,/* puesto_trabajo,*/usuario_cli,clave_cli,idusuario)
+                             VALUES('$dni','$nombre','$edad','$correo','$telefono',
+                             '$domicilio','$fecha_ingreso','$puesto_trabajo',/*'$user','$clave',*/'$idusuario')"
+                );
+                if ($query_insert) {
+                    $alert = '<p class="msg_save">Usuario creado correctamente.</p>';
+                } else {
+                    $alert = '<p class="msg_error">Error al crear el usuario.</p>';
+                }
             }
         }
-    }
+    //}
 }

@@ -114,7 +114,7 @@ include "../Controlador/RegistroClienteControlador.php";
                                 </div>
                                 
                             </div>
-                            <div class="conten-p-new">
+                            <!--div class="conten-p-new">
                                 <div class="contenido-new">
                                     <label for="usuario">Usuario:</label>
                                     <input type="text" name="usuario" id="usuario" placeholder="Usuario" value="">
@@ -124,7 +124,7 @@ include "../Controlador/RegistroClienteControlador.php";
                                     <input type="password" name="clave" id="clave" placeholder="Clave de acceso">
                                 </div>
                             </div>
-                        </div>
+                        </div-->
                         <div class="btn-new-user">
                             <a href="Gestion_Clientes.php"><i class="fas fa-undo"></i> Regresar</a>
                             <button type="submit"><i class="fas fa-edit"></i> Registrar</button>

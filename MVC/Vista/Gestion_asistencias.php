@@ -97,13 +97,13 @@ include '../Controlador/Crear_asistencia.php';
                         <div class="seccion-datos-cli">
                             <p>Datos del la asistencia</p>
                             <div class="datos-cli">
-                            
+
                                 <div class="seccion-datos-aloj">
                                     <div class="div-ext">
                                         <label for="">Nro de documento:</label>
                                         <div class="div-int">
                                             <i class="fas fa-address-card"></i>
-                                            <input type="number" name="busqueda" value="<?php echo isset($dni) ? $dni : ''; ?>" maxlength="7" >
+                                            <input type="number" name="busqueda" value="<?php echo isset($dni) ? $dni : ''; ?>" maxlength="7">
                                             <button type="submit" name="btnBuscar"> Buscar</button>
                                         </div>
                                     </div>
@@ -136,7 +136,7 @@ include '../Controlador/Crear_asistencia.php';
                                         <div class="datos-aloj">
                                             <div class="div-div-int" style="display: none;">
                                                 <label for="">Fecha Salida:</label>
-                                                <div class="div-input-aloj" >
+                                                <div class="div-input-aloj">
                                                     <i class="fas fa-calendar-alt"></i>
                                                     <input type="date" name="fechasal" value="2037-12-31" id="userdate" onchange="TDate()">
                                                 </div>
@@ -145,7 +145,7 @@ include '../Controlador/Crear_asistencia.php';
                                                 <label for="">Hora Salida:</label>
                                                 <div class="div-input-aloj">
                                                     <i class="fas fa-clock"></i>
-                                                    <input type="time" name="horasal" value="" id="userdate" onchange="TDate()" >
+                                                    <input type="time" name="horasal" value="" id="userdate" onchange="TDate()">
                                                 </div>
                                             </div>
                                         </div>
