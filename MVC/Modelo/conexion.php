@@ -1,6 +1,6 @@
 <?php 
 
-	$host = 'localhost:33065';
+	$host = 'localhost:3306';
 	$user = 'root';
 	$password = '';
 	$db = 'HotelDlux';
