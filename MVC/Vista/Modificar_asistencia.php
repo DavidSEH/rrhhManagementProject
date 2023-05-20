@@ -15,11 +15,11 @@ include "../Controlador/Modificar_Asistencia_Controlador.php";
 <body>
     <script>
         function TDate() {
-            var UserDate = document.getElementById("userdate").value;
+            var UserDate = document.getElementById("fecha_ingreso").value;
             var ToDate = new Date();
             console.log(ToDate.toISOString());
-            if (new Date(UserDate).toISOString() <= ToDate.toISOString()) {
-                alert("La fecha debe ser mayor a (actual): " + ToDate);
+            if (new Date(UserDate).toISOString() >= ToDate.toISOString()) {
+                alert("La fecha debe ser menor o igual a (actual): " + ToDate);
                 return false;
             }
             return true;
@@ -28,7 +28,7 @@ include "../Controlador/Modificar_Asistencia_Controlador.php";
         function validarFechas() {
             const fechaIngreso = new Date(document.getElementsByName("fecha_ingreso")[0].value + "T" + document.getElementsByName("hora_ingreso")[0].value);
             const fechaSalida = new Date(document.getElementsByName("fecha_salida")[0].value + "T" + document.getElementsByName("hora_salida")[0].value);
-
+            alert(fechaIngreso);
             // Obtener la fecha y hora actual
             const fechaActual = new Date();
 
@@ -59,7 +59,7 @@ include "../Controlador/Modificar_Asistencia_Controlador.php";
             return true;
         }
     </script>
-    <input type="checkbox" id="menu-toggle" onsubmit="validarFechas();">
+    <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
     <?php include "sidebar.php" ?>
     <!--Sidebar Fin-->
@@ -84,12 +84,11 @@ include "../Controlador/Modificar_Asistencia_Controlador.php";
             <div class="container-actualizar-user">
                 <div class="section-actualizar-user">
                     <p>Actualizar Asistencia</p>
-                    <form action="" method="post" onsubmit="validarFechas();">
+                    <form action="" method="post" onsubmit="return validarFechas();">
                         <input type="hidden" name="idusuario" value="<?php echo $_SESSION['idUser'] ?>">
                         <div class="formulario-actualizar-user">
-                            <input type="hidden" name="idasistencia" value="">
+                            <input type="hidden" name="idasistencia" id="idasistencia" value="<?php echo $idasistencia; ?>">
                             <div class="conten-p-upd">
-                                <input type="hidden" name="idasistencia" id="idasistencia" value="<?php echo $idasistencia; ?>">
                                 <div class="contenido-upd">
                                     <label for="nombre">Nombre del empelado:</label>
                                     <input type="text" name="nombre" id="nombre" value="<?php echo $nombre; ?>" disabled>
@@ -98,23 +97,23 @@ include "../Controlador/Modificar_Asistencia_Controlador.php";
                             <div class="conten-p-upd">
                                 <div class="contenido-upd">
                                     <label for="fecha_ingreso">Dia Entrada:</label>
-                                    <input type="date" name="fecha_ingreso" id="fecha_ingreso" value="<?php echo $fecha_ingreso; ?>" onchange="TDate()" id="userdate">
+                                    <input type="date" name="fecha_ingreso" id="fecha_ingreso" value="<?php echo $fecha_ingreso; ?>" onchange="TDate()">
                                 </div>
                             </div>
                             <div class="conten-p-upd">
                                 <div class="contenido-upd">
                                     <label for="hora_ingreso">Hora Entrada:</label>
-                                    <input type="time" name="hora_ingreso" id="hora_ingreso" value="<?php echo $hora_ingreso; ?>" onchange="TDate()" id="userdate">
+                                    <input type="time" name="hora_ingreso" id="hora_ingreso" value="<?php echo $hora_ingreso; ?>" onchange="TDate()">
                                 </div>
                                 <div class="contenido-upd">
                                     <label for="hora salida">Hora Salida:</label>
-                                    <input type="time" name="hora_salida" id="hora_salida" value="<?php echo $hora_salida; ?>" onchange="TDate()" id="userdate">
+                                    <input type="time" name="hora_salida" id="hora_salida" value="<?php echo $hora_salida; ?>" onchange="TDate()">
                                 </div>
                             </div>
                         </div>
                         <div class="btn-actualizar-user">
                             <a href="Listar_asistencias.php"><i class="fas fa-undo"></i>Regresar</a>
-                            <button type="submit" value="Actualizar usuario"><i class="fas fa-edit"></i>Actualizar</button>
+                            <button type="submit" value="Actualizar"><i class="fas fa-edit"></i>Actualizar</button>
                         </div>
                         <div class="alert">
                             <?php echo isset($alert) ? $alert : ''; ?>
@@ -126,7 +125,6 @@ include "../Controlador/Modificar_Asistencia_Controlador.php";
 
     </div>
     <?php include "../Modelo/Footer.php" ?>
-    </input>
 </body>
 
 </html>

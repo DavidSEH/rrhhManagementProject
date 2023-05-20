@@ -112,19 +112,9 @@ include "../Controlador/RegistroClienteControlador.php";
                                     <label for="sueldo">Sueldo:</label>
                                     <input type="number" name="sueldo" id="sueldo" placeholder="Monto a ganar" value="">
                                 </div>
-                                
+
                             </div>
-                            <!--div class="conten-p-new">
-                                <div class="contenido-new">
-                                    <label for="usuario">Usuario:</label>
-                                    <input type="text" name="usuario" id="usuario" placeholder="Usuario" value="">
-                                </div>
-                                <div class="contenido-new">
-                                    <label for="clave">Clave:</label>
-                                    <input type="password" name="clave" id="clave" placeholder="Clave de acceso">
-                                </div>
-                            </div>
-                        </div-->
+                        </div>
                         <div class="btn-new-user">
                             <a href="Gestion_Clientes.php"><i class="fas fa-undo"></i> Regresar</a>
                             <button type="submit"><i class="fas fa-edit"></i> Registrar</button>
