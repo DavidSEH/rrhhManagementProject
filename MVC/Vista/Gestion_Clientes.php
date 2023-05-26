@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -9,11 +10,11 @@ session_start();
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Empleados</title>
     <?php include "../Modelo/scripts.php" ?>
-    
+
 </head>
 
 <body>
-<script>
+    <script>
         function buscarCliente(nombre) {
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onreadystatechange = function() {
@@ -51,25 +52,41 @@ session_start();
         <section>
             <div class="cab-user">
                 <h2>Gestion Empleado</h2>
-                <a href="NuevoCliente.php">Nuevo Empleado</a>
+                <a href="NuevoCliente.php">Nuevo empleado</a>
             </div>
             <div class="seccion-user ">
+
                 <div class="search-p">
                     <div class="">
-                        <p>Buscar Empleado</p>
+                        <p>Buscar empleado</p>
                         <div class="search-med">
                             <input type="search" placeholder="Ingresar Empleado" onkeyup="buscarCliente(this.value)">
                             <span class="las la-search"></span>
                         </div>
                     </div>
                 </div>
+                <form action="" method="GET" id="estatus-form">
+                    <div class="cab-user">
+                        <div class="ckbx-style-8">
+
+                            <h2>Mostrar empleados cesados</h2>
+                            <input type="checkbox" id="estatus-checkbox" name="estatus" onchange="document.getElementById('estatus-form').submit()" <?php if (isset($_GET['estatus']) && $_GET['estatus'] == 'on') echo 'checked'; ?>>
+                            <label for="estatus-checkbox"></label>
+
+                            <?php if (isset($_GET['estatus']) && $_GET['estatus'] == 'on') : ?>
+                                <input type="submit" value="Actualizar" class="btnPassword">
+                            <?php endif; ?>
+
+                        </div>
+                    </div>
+                </form>
                 <div class="lista-user">
                     <?php
                     include "../Modelo/conexion.php";
-
-                    $query = mysqli_query($conection, "SELECT idcliente,dni,nombre,telefono,domicilio,correo,usuario_cli,clave_cli
+                    $estatus = isset($_GET['estatus']) && $_GET['estatus'] == 'on' ? 0 : 1;
+                    $query = mysqli_query($conection, "SELECT idcliente,dni,nombre,telefono,fecha_ingreso,fecha_cese,motivo_cese,sueldo,correo,usuario_cli,clave_cli
                                                     from cliente c 
-                                                    WHERE estatus = 1 ORDER BY idcliente");
+                                                    WHERE estatus = $estatus ORDER BY idcliente");
                     mysqli_close($conection);
                     $result = mysqli_num_rows($query);
                     if ($result > 0) {
@@ -90,22 +107,32 @@ session_start();
                                                     <span class="fas fa-at"></span>
                                                     <span>Correo:<?php echo $data["correo"]; ?></span>
                                                 </li>
-                                                <li>
-                                                    <span class="fas fa-birthday-cake"></span>
-                                                    <span>Edad:22</span>
-                                                </li>
-                                                <li>
-                                                    <span class="fas fa-user-secret"></span>
-                                                    <span>Usuario:<?php echo $data["usuario_cli"]; ?></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fas fa-user-secret"></span>
-                                                    <span>Telefono:<?php echo $data["telefono"]; ?></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fas fa-smile-beam"></span>
-                                                    <span>Dirección:<?php echo $data["domicilio"]; ?></span>
-                                                </li>
+                                                <?php
+                                                if ($estatus == 0) {
+                                                    echo '<li>';
+                                                    echo '<span class="fas fa-calendar-alt"></span>';
+                                                    echo '<span>Fecha Cese:' . $data["fecha_cese"] . '</span>';
+                                                    echo '</li>';
+                                                    echo '<li>';
+                                                    echo '<span class="fas fa-info-circle"></span>';
+                                                    echo '<span>Motivo Cese:' . $data["motivo_cese"] . '</span>';
+                                                    echo '</li>';
+                                                } else {
+                                                    echo '<li>';
+                                                    echo '<span class="fas fa-calendar-alt"></span>';
+                                                    echo '<span>Fecha Ingreso:' . $data["fecha_ingreso"] . '</span>';
+                                                    echo '</li>';
+                                                    echo '<li>';
+                                                    echo '<span class="fas fa-calendar-alt"></span>';
+                                                    echo '<span>Salario:' . $data["sueldo"] . '</span>';
+                                                    echo '</li>';
+                                                    echo '<li>';
+                                                    echo '<span class="fas fa-smile-beam"></span>';
+                                                    echo '<span>Usuario:' . $data["usuario_cli"] . '</span>';
+                                                    echo '</li>';
+                                                }
+                                                ?>
+
                                             </div>
                                         </div>
                                     </div>
@@ -114,8 +141,16 @@ session_start();
                                     </div>
                                 </div>
                                 <div class="lista-btn">
-                                    
-                                    <a href="ModificarCliente.php?id=<?php echo $data["idcliente"]; ?> " class="btn-update"><i class="fas fa-edit"></i>Modificar</a>
+                                    <?php
+                                    if ($estatus == 0) {
+                                        echo '<a href="AscenderEmpleado.php?id=' . $data["idcliente"] . '" class="btn-restore"><i class="fas fa-level-up-alt"></i>Ascender</a>';
+                                    } else {
+                                        if ($data["idcliente"] != 1) {
+                                            echo '<a href="EliminarCliente.php?id=' . $data["idcliente"] . '" class="btn-delete"><i class="fas fa-level-down-alt"></i>Cese</a>';
+                                        }
+                                        echo '<a href="ModificarCliente.php?id=' . $data["idcliente"] . '" class="btn-update"><i class="fas fa-edit"></i>Modificar</a>';
+                                    }
+                                    ?>
                                 </div>
                             </div>
                     <?php
@@ -125,7 +160,6 @@ session_start();
                 </div>
             </div>
         </section>
-
     </div>
     <?php include "../Modelo/Footer.php" ?>
 </body>

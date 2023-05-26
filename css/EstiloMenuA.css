@@ -530,7 +530,7 @@ section h2 i {
     
 }
 .lista-btn{
-    background: #D2D1D6;
+    background: #3c469e;
     justify-content: flex-end;
     width: 100%;
     align-items: center;
@@ -567,7 +567,9 @@ section h2 i {
 .btn-update{
     background: #E2AF0E;
 }
-
+.btn-restore{
+    background: #248534;  
+}
 
 
 /*Estilos Eliminar Usuario*/
@@ -2638,8 +2640,7 @@ section h2 i {
    transform: translateX(1200px);
   }
   
-} 
-
+}
 /*Estilo Reporte Diario*/
 .total_impdiario td p{
     font-size: 1.1rem;

@@ -55,12 +55,13 @@ if ($result > 0) {
             </div>
             <div class="lista-btn">
                 <a href="ModificarCliente.php?id=<?php echo $data["idcliente"]; ?>" class="btn-update"><i class="fas fa-edit"></i>Modificar</a>
+                <a href="EliminarCliente.php?id=<?php echo $data["idcliente"]; ?>"  class="btn-delete"><i class="fas fa-level-down-alt"></i>Descender</a>
             </div>
         </div>
         <?php
     }
 } else {
-    echo "No se encontraron clientes.";
+    echo "No se encontraron clientes con los criterios de la busqueda.";
 }
 ?>
 
