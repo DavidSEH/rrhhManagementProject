@@ -17,8 +17,7 @@ if (!empty($_POST)) {
 	$fecha_cese = date('Y-m-d');
 	$motivo_cese = $_POST['motivo_cese'];
 
-
-	$query_delete = mysqli_query($conection, "UPDATE cliente SET estatus = 0, fecha_cese = '$fecha_cese', motivo_cese = '1'
+	$query_delete = mysqli_query($conection, "UPDATE cliente SET estatus = 0, fecha_cese = '$fecha_cese', motivo_cese = '$motivo_cese'
 										WHERE idcliente = $idcliente ");
 	mysqli_close($conection);
 	if ($query_delete) {

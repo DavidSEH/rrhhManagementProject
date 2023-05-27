@@ -69,13 +69,13 @@ include '../Controlador/Generar_Reserva_Controlador.php';
                 <div class="principal-genera-r">
                     <div class="cab-datosh">
 
-                        <p class="title-datosh">Datos de la Licencia</p>
+                        <p class="title-datosh">Datos de la solicitud de licencia</p>
                         <p id="num-habitacion" style="display: none;">Nombre:</p>
                         <div class="sec-datosh">
 
                             <div class="dh1">
                                 <div class="dh1-sec">
-                                    <p>Tipo:</p>
+                                    <p>Nombre:</p>
                                     <p>Detalles:</p>
                                 </div>
                                 <div>
@@ -102,7 +102,7 @@ include '../Controlador/Generar_Reserva_Controlador.php';
                                     </div>
                                 </div>
                                 <div class="div-ext">
-                                    <label for="">Nombres:</label>
+                                    <label for="">Nombres y apellidos:</label>
                                     <div class="div-int">
                                         <i class="fas fa-user-secret"></i>
                                         <input type="text" value="<?php echo isset($nombre) ? $nombre : ''; ?> " required disable>
