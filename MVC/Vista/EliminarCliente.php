@@ -65,9 +65,16 @@ include "../Controlador/EliminarClienteControlador.php"
                             <div class="segundary-eliminar-datos">
                                 <p> </p>
                                 <p><?php echo fechaC(); ?></p>
-                                <p>Colocar el selector de motivos </p>
-
-                                    
+                                <div class="content-select">
+                                    <select name="motivo_cese" id="motivo">
+                                        <option value="1">Despido</option>
+                                        <option value="2">Termino de contrato</option>
+                                        <option value="3">Incumplimiento de normas</option>
+                                        <option value="4">Renuncia</option>
+                                        <option value="5">Otros notivos</option>
+                                        <i></i>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
