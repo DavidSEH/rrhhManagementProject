@@ -33,7 +33,7 @@ session_start();
                     <div>
                     </div>
                     <div>
-                        <a href="../../Reportes/Reporte_asistencias.php?idUser=<?php echo $_SESSION['idUser']; ?>" target="_blank" class="bg_primary">
+                        <a href="../../Reportes/Reporte_Asistencias.php?idUser=<?php echo $_SESSION['idUser']; ?>" target="_blank" class="bg_primary">
                             Imprimir</a>
                     </div>
 
@@ -77,7 +77,7 @@ session_start();
                             die("Error en la consulta: " . mysqli_error($conection));
                         }
                         $msg = '';
-                        mysqli_close($conection);
+                        
                         $result = mysqli_num_rows($query);
                         if ($result > 0) {
                             while ($data = mysqli_fetch_array($query)) {
@@ -87,7 +87,14 @@ session_start();
                                         <td><?php echo $data['idasistencia']; ?></td>
                                         <td><?php echo $data['cliente']; ?></td>
                                         <td><?php echo $data['usuario']; ?></td>
-                                        <td><?php echo $data['id_usu_mod']; ?></td>
+                                        <?php
+                $id_usu_mod = $data['id_usu_mod'];
+                $query_usuario_mod = mysqli_query($conection, "SELECT nombre FROM usuario WHERE idusuario = '$id_usu_mod'");
+                $usuario_mod = mysqli_fetch_array($query_usuario_mod);
+                $nombre_modificador = ($usuario_mod !== null) ? $usuario_mod['nombre'] : "Ninguno";
+                ?>
+
+                <td><?php echo $nombre_modificador; ?></td>
                                         <td><?php echo $data['fecha_ingreso']; ?></td>
                                         <td><?php echo $data['hora_ingreso']; ?></td>
                                         <td><?php echo $data['hora_salida']; ?></td>
@@ -101,7 +108,7 @@ session_start();
                         <?php
                             }
                         }
-                        ?>
+                        mysqli_close($conection);?>
                         <tfoot class="paginacion">
                             <tr>
                                 <td colspan="9">

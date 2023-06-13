@@ -65,7 +65,7 @@ include "../Controlador/EliminarClienteControlador.php"
                             <div class="segundary-eliminar-datos">
                                 <p> </p>
                                 <p><?php echo fechaC(); ?></p>
-                                <div class="content-select">
+                                
                                     <select name="motivo_cese" id="motivo">
                                         <option value="1">Despido</option>
                                         <option value="2">Termino de contrato</option>
@@ -74,7 +74,7 @@ include "../Controlador/EliminarClienteControlador.php"
                                         <option value="5">Otros notivos</option>
                                         <i></i>
                                     </select>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -83,7 +83,7 @@ include "../Controlador/EliminarClienteControlador.php"
                     <div class="footer-eliminar">
                         <input type="hidden" name="idcliente" value="<?php echo $idcliente; ?>">
                         <a href="Gestion_Clientes.php"><i class="fas fa-ban"></i> Cancelar</a>
-                        <button type="submit" value="Aceptar"><i class="fas fa-check"></i> Aceptar</button>
+                        <button type="submit" value="Aceptar"><i class="fas fa-check"></i> Confirmar</button>
                     </div>
                 </form>
             </div>

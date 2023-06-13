@@ -21,9 +21,9 @@
 										WHERE idusuario = $idusuario ");
 		mysqli_close($conection);
 		if($query_delete){
-			header("location: ../Vista/Usuarios.php");
+			header("location: ../Vista/Gestion_Usuario.php");
 		}else{
-			echo "Error al eliminar";
+			echo "Error al eliminar Administrador";
 		}
 
 	}

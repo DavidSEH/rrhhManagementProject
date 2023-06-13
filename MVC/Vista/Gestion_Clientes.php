@@ -51,7 +51,7 @@ session_start();
         <!--Navbar Fin-->
         <section>
             <div class="cab-user">
-                <h2>Gestion Empleado</h2>
+                <h3>Gestion Empleado</h3>
                 <a href="NuevoCliente.php">Nuevo empleado</a>
             </div>
             <div class="seccion-user ">
@@ -143,12 +143,18 @@ session_start();
                                 <div class="lista-btn">
                                     <?php
                                     if ($estatus == 0) {
-                                        echo '<a href="AscenderEmpleado.php?id=' . $data["idcliente"] . '" class="btn-restore"><i class="fas fa-level-up-alt"></i>Ascender</a>';
+                                        echo '<a href="AscenderEmpleado.php?id=' . $data["idcliente"] . '" class="btn-restore"><span class="material-symbols-outlined">
+                                        person
+                                        </span>Ascender</a>';
                                     } else {
                                         if ($data["idcliente"] != 1) {
-                                            echo '<a href="EliminarCliente.php?id=' . $data["idcliente"] . '" class="btn-delete"><i class="fas fa-level-down-alt"></i>Cese</a>';
+                                            echo '<a href="EliminarCliente.php?id=' . $data["idcliente"] . '" class="btn-delete"><span class="material-symbols-outlined">
+                                            person_off
+                                            </span>Cese</a>';
                                         }
-                                        echo '<a href="ModificarCliente.php?id=' . $data["idcliente"] . '" class="btn-update"><i class="fas fa-edit"></i>Modificar</a>';
+                                        echo '<a href="ModificarCliente.php?id=' . $data["idcliente"] . '" class="btn-update"><span class="material-symbols-outlined">
+                                        edit
+                                        </span>Modificar</a>';
                                     }
                                     ?>
                                 </div>

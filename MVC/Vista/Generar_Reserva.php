@@ -57,7 +57,7 @@ include '../Controlador/Generar_Reserva_Controlador.php';
         <!--Navbar Fin-->
         <section>
             <div class="cab-user">
-                <h2><i class="fas fa-sign-out-alt"></i> Proceso de registro <span>/Generar</span></h2>
+                <h3> Proceso de registro<h2> <span>/Solicitar</span></h2></h3>
                 <?php echo isset($msg2) ? $msg2 : ''; ?>
             </div>
 

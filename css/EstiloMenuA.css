@@ -1,5 +1,6 @@
 
-@import url('https://fonts.googleapis.com/css2? family = Poppins:whgt@300;400;500;600& display = swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');@import url('https://fonts.googleapis.com/css2? family = Poppins:whgt@300;400;500;600& display = swap');
 :root{
     -main: orange;
     -bg: #0d2235;
@@ -27,7 +28,7 @@ i{
     margin: 0 2px;
 }
 *{
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     box-sizing: border-box;
     text-decoration: none;
     list-style-type: none;
@@ -2709,4 +2710,34 @@ dos bordes con color y que giramos con transform: rotate(-45deg);
  
 .content-select:hover i{
 	margin-top: 3px;
+}
+
+.new-input {
+    padding: 13px;
+    font-size: 14px;
+    border-width: 0px;
+    border-color: #cccccc;
+    background-color: #eff2fb;
+    color: 595b62;
+    border-style: solid;
+    border-radius: 28px;
+    box-shadow: 0px 0px 0px rgba(66,66,66,.75);
+    text-shadow: 0px 0px 0px rgba(66,66,66,.0);
+}
+
+.input-container {
+    position: relative;
+    display: inline-block;
+}
+
+.input-container input {
+    padding-right: 10px; /* Ajusta el valor según sea necesario para que el botón se ajuste correctamente */
+}
+
+.input-container button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
 }
