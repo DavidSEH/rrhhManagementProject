@@ -18,7 +18,7 @@ session_start();
     <!--Sidebar Inicio-->
 
     <?php include "./sidebar.php" ?>
-    
+
     <!--Sidebar Fin-->
     <div class="main-content">
         <!--Navbar Inicio-->
@@ -39,13 +39,13 @@ session_start();
         <!--Navbar Fin-->
         <section>
             <div class="cab-user">
-                <h2>Gestion Usuarios</h2>
-                <a href="NuevoUsuario.php">Nuevo Usuario</a>
+                <h2>Gestion Administrador</h2>
+                <a href="NuevoUsuario.php">Nuevo Admin</a>
             </div>
             <div class="seccion-user ">
                 <div class="search-p">
                     <div class="">
-                        <p>Buscar Usuario</p>
+                        <p>Buscar Administrador</p>
                         <div class="search-med">
                             <input type="search" placeholder="Ingresar nombre de usuario">
                             <span class="las la-search"></span>
@@ -53,7 +53,7 @@ session_start();
                     </div>
                 </div>
                 <form action="" method="GET" id="estatus-form">
-                    <h2 for="estatus-checkbox">Mostrar Usuarios deshabilitados:
+                    <h2 for="estatus-checkbox">Mostrar administradores deshabilitados:
 
                         <input type="checkbox" id="estatus-checkbox" name="estatus" onchange="document.getElementById('estatus-form').submit()" <?php if (isset($_GET['estatus']) && $_GET['estatus'] == 'on') echo 'checked'; ?>>
 
@@ -82,27 +82,27 @@ session_start();
                                             <h3><?php echo $data["nombre"]; ?></h3>
                                             <div class="lista-datos-personal">
                                                 <li>
-                                                    <span class="fas fa-id-card"></span>
+                                                    <span class="material-symbols-outlined">
+                                                        badge
+                                                    </span>
                                                     <span>DNI: <?php echo $data["dni"]; ?></span>
                                                 </li>
                                                 <li>
-                                                    <span class="fas fa-at"></span>
+                                                    <span class="material-symbols-outlined">
+                                                        alternate_email
+                                                    </span>
                                                     <span>Correo:<?php echo $data["correo"]; ?></span>
                                                 </li>
                                                 <li>
-                                                    <span class="fas fa-birthday-cake"></span>
-                                                    <span>Edad:<?php echo $data["edad"]; ?></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fas fa-birthday-cake"></span>
+                                                    <span class="material-symbols-outlined">
+                                                        call
+                                                    </span>
                                                     <span>Telefono:<?php echo $data["telefono"]; ?></span>
                                                 </li>
                                                 <li>
-                                                    <span class="fas fa-birthday-cake"></span>
-                                                    <span>Domicilio:<?php echo $data["domicilio"]; ?></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fas fa-user-secret"></span>
+                                                    <span class="material-symbols-outlined">
+                                                        account_circle
+                                                    </span>
                                                     <span>Usuario:<?php echo $data["usuario"]; ?></span>
                                                 </li>
                                                 <li>
@@ -119,12 +119,18 @@ session_start();
                                 <div class="lista-btn">
                                     <?php
                                     if ($estatus == 0) {
-                                        echo '<a href="AscenderUsuario.php?id=' .  $data["idusuario"] . '" class="btn-restore"><i class="fas fa-level-up-alt"></i>Ascender</a>';
+                                        echo '<a href="AscenderUsuario.php?id=' .  $data["idusuario"] . '" class="btn-restore"><span class="material-symbols-outlined">
+                                        person
+                                        </span>Ascender</a>';
                                     } else {
                                         if ($data["idusuario"] != 1) {
-                                            echo '<a href="EliminarUsuario.php?id=' . $data["idusuario"] . '" class="btn-delete"><i class="fas fa-level-down-alt"></i>Cese</a>';
+                                            echo '<a href="EliminarUsuario.php?id=' . $data["idusuario"] . '" class="btn-delete"><span class="material-symbols-outlined">
+                                            person_off
+                                            </span>Cese</a>';
                                         }
-                                        echo '<a href="ModificarUsuario.php?id=' .  $data["idusuario"] . '" class="btn-update"><i class="fas fa-edit"></i>Modificar</a>';
+                                        echo '<a href="ModificarUsuario.php?id=' .  $data["idusuario"] . '" class="btn-update"><span class="material-symbols-outlined">
+                                        edit
+                                        </span>Modificar</a>';
                                     }
                                     ?>
                                 </div>

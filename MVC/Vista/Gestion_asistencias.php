@@ -10,6 +10,7 @@ include '../Controlador/Crear_asistencia.php';
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Asistencias</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <?php include "../Modelo/scripts.php" ?>
 </head>
 
@@ -96,85 +97,93 @@ include '../Controlador/Crear_asistencia.php';
                     <div class="seccion-datos-ca">
                         <div class="seccion-datos-cli">
                             <p>Datos del la asistencia</p>
-                            <div class="datos-cli">
+                            
 
                                 <div class="seccion-datos-aloj">
                                     <div class="div-ext">
-                                        <label for="">Nro de documento:</label>
-                                        <div class="div-int">
-                                            <i class="fas fa-address-card"></i>
-                                            <input type="number" name="busqueda" value="<?php echo isset($dni) ? $dni : ''; ?>" maxlength="7">
-                                            <button type="submit" name="btnBuscar"> Buscar</button>
-                                        </div>
-                                    </div>
-                                    <div class="div-ext">
-                                        <label for="">Nombres:</label>
-                                        <div class="div-int">
-                                            <i class="fas fa-user-edit"></i>
-                                            <input type="text" value="<?php echo isset($nombre) ? $nombre : ''; ?>" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="div-ext-part">
-                                        <div class="datos-aloj">
-                                            <div class="div-div-int">
-                                                <label for="">Fecha Ingreso:</label>
-                                                <div class="div-input-aloj">
-                                                    <i class="fas fa-calendar-alt"></i>
-                                                    <input type="date" name="fechain" value="" id="" onchange="">
+                                        
+                                            <div class="datos-aloj">
+                                                <label for="">Nro de documento:</label>
+                                                <div class="div-div-int">
+                                                    <div class="input-container">
+                                                        <input type="number" name="busqueda" value="<?php echo isset($dni) ? $dni : ''; ?>" maxlength="7" class="new-input">
+                                                        <button type="submit" name="btnBuscar"> <span class="material-symbols-outlined">
+                                                                search
+                                                            </span></button>
+                                                    </div>
+                                                </div>
+                                                <div class="div-ext">
+                                                    <label for="">Nombres:</label>
+                                                    <div class="div-div-int">
+
+                                                        <input type="text" class="new-input" value="<?php echo isset($nombre) ? $nombre : ''; ?>" disabled>
+                                                    </div>
+                                                </div>
+
+                                                <div class="div-div-int">
+                                                    <label for="">Fecha Ingreso:</label>
+
+
+                                                    <input type="date" class="new-input" name="fechain" value="" id="" onchange="">
+
+                                                </div>
+                                                <div class="div-div-int" id="num-habitacion">
+                                                    <label for="">Hora Ingreso:</label>
+
+
+                                                    <input type="time" class="new-input" name="horain" value="" id="userdate" onchange="TDate()">
+
+                                                </div>
+
+
+
+                                                <div class="div-div-int" style="display: none;">
+                                                    <label for="">Fecha Salida:</label>
+
+
+                                                    <input type="date" class="new-input" name="fechasal" value="2037-12-31" id="userdate" onchange="TDate()">
+
+                                                </div>
+                                                <div class="div-div-int" id="num-habitacion">
+                                                    <label for="">Hora Salida:</label>
+
+
+                                                    <input type="time" class="new-input" name="horasal" value="" id="userdate" onchange="TDate()">
                                                 </div>
                                             </div>
-                                            <div class="div-div-int" id="num-habitacion">
-                                                <label for="">Hora Ingreso:</label>
-                                                <div class="div-input-aloj">
-                                                    <i class="fas fa-clock"></i>
-                                                    <input type="time" name="horain" value="" id="userdate" onchange="TDate()">
+
+
+                                            <div class="seccion-datos-aloj">
+                                                <div class="datos-aloj">
+                                                    <div class="div-ext-part">
+
+                                                        <div class="div-div-int">
+                                                            <button name="regresar">
+                                                                <span class="material-symbols-outlined">
+                                                                    undo
+                                                                </span></i>Regresar</button>
+                                                        </div>
+
+                                                        <div class="div-div-int">
+                                                            <button type="submit" name="btnGenerar">
+                                                                <span class="material-symbols-outlined">
+                                                                    done
+                                                                </span></i>Confirmar</button>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="div-ext-part">
-                                        <div class="datos-aloj">
-                                            <div class="div-div-int" style="display: none;">
-                                                <label for="">Fecha Salida:</label>
-                                                <div class="div-input-aloj">
-                                                    <i class="fas fa-calendar-alt"></i>
-                                                    <input type="date" name="fechasal" value="2037-12-31" id="userdate" onchange="TDate()">
-                                                </div>
-                                            </div>
-                                            <div class="div-div-int" id="num-habitacion">
-                                                <label for="">Hora Salida:</label>
-                                                <div class="div-input-aloj">
-                                                    <i class="fas fa-clock"></i>
-                                                    <input type="time" name="horasal" value="" id="userdate" onchange="TDate()">
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
-
-                                <div class="seccion-datos-aloj">
-                                    <div class="datos-aloj">
-                                        <div class="div-ext-part">
-
-                                            <div class="div-div-int">
-                                                <button name="regresar">
-                                                    <i class="fas fa-undo"></i>Regresar</button>
-                                            </div>
-
-                                            <div class="div-div-int">
-                                                <button type="submit" name="btnGenerar">
-                                                    <i class="fas fa-check-circle"></i>Confirmar</button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
-                    <?php echo isset($alert) ? $alert : ''; ?>
-            </form>
-        </section>
+                </div>
+    </div>
+    <?php echo isset($alert) ? $alert : ''; ?>
+    </form>
+    </section>
     </div>
     <?php include "../Modelo/Footer.php" ?>
 </body>

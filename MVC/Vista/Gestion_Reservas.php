@@ -34,13 +34,13 @@
                             <input type="text" value="Fecha: <?php echo $fecha;?>" disabled>
                             <i class="fas fa-calendar-day"></i>
                         </div>
-                        <!--div class="cab__tabla_enlace">
+                        <div class="cab__tabla_enlace">
 
                             <a href="../../Reportes/Reporte_Reservas_Generada.php?idUser=<?php echo $_SESSION['idUser']; ?>"
                             target="_blank" class="bg_success">
-                            <i class="fas fa-file-pdf"></i>Generadas</a>
+                            <i class="fas fa-file-pdf"></i>Generar Reporte</a>
 
-                            <a href="../../Reportes/Reporte_Reservas_Confirmada.php?idUser=<?php echo $_SESSION['idUser']; ?>"
+                            <!--a href="../../Reportes/Reporte_Reservas_Confirmada.php?idUser=<?php echo $_SESSION['idUser']; ?>"
                             target="_blank" class="bg_confir">
                             <i class="fas fa-file-pdf"></i>Confirmadas</a>
                             
@@ -54,9 +54,9 @@
 
                             <a href="../../Reportes/Reporte_Reservas_Anulada.php?idUser=<?php echo $_SESSION['idUser']; ?>"
                             target="_blank" class="bg_danger">
-                            <i class="fas fa-file-pdf"></i>Anuladas</a>
+                            <i class="fas fa-file-pdf"></i>Anuladas</a-->
 
-                        </div-->
+                        </div>
                     </div >
                     <div class="listado-tabla">
                         <table>
@@ -66,8 +66,8 @@
                                     
                                     <th>Empleado</th>
                                     <th>DNI</th>
-                                    <th>Fecha Ingreso</th>
-                                    <th>Fecha Salida</th>
+                                    <th>Fecha Inicio</th>
+                                    <th>Fecha Termino</th>
                                     
                                     <th>Estado</th>
                                     <th></th>
@@ -103,19 +103,19 @@
                             if($result > 0){
                                 while ($data = mysqli_fetch_array($query)) {
                                     if ($data['estatus']==1) {
-                                        $msg='<p class="msg_disp">Inicializada</p>';
+                                        $msg='<p class="msg_disp">Pendiente</p>';
                                     }
                                     if ($data['estatus']==2) {
-                                        $msg='<p class="msg_reser" style="background: #2EB380">Aprovada</p>';
+                                        $msg='<p class="msg_reser" style="background: #2EB380">Aprobada</p>';
                                     }
                                     if ($data['estatus']==3) {
                                         $msg='<p class="msg_reser">Confirmada</p>';
                                     }
                                     if ($data['estatus']==4) {
-                                        $msg='<p class="msg_reser" style="background: #2C2C98">Finalizada</p>';
+                                        $msg='<p class="msg_reser" style="background: #2C2C98">Terminada</p>';
                                     }
                                     if ($data['estatus']==5) {
-                                        $msg='<p class="msg_ocup">Expirada</p>';
+                                        $msg='<p class="msg_ocup">Denegada</p>';
                                     }
                                     if ($data['estatus']==6) {
                                         $msg='<p class="msg_ocup">Anulada</p>';
