@@ -62,10 +62,11 @@ include "../Controlador/EliminarClienteControlador.php"
                                 <p>Fecha de cese: </p>
                                 <p>Motivo de cese: </p>
                             </div>
-                            <div class="segundary-eliminar-datos">
-                                <p> </p>
-                                <p><?php echo fechaC(); ?></p>
-                                
+                            <form method="post" action="">
+                                <div class="segundary-eliminar-datos">
+                                    <p> </p>
+                                    <p><?php echo fechaC(); ?></p>
+
                                     <select name="motivo_cese" id="motivo">
                                         <option value="1">Despido</option>
                                         <option value="2">Termino de contrato</option>
@@ -74,17 +75,17 @@ include "../Controlador/EliminarClienteControlador.php"
                                         <option value="5">Otros notivos</option>
                                         <i></i>
                                     </select>
-                                
-                            </div>
+
+                                </div>
                         </div>
                     </div>
                 </div>
-                <form method="post" action="">
-                    <div class="footer-eliminar">
-                        <input type="hidden" name="idcliente" value="<?php echo $idcliente; ?>">
-                        <a href="Gestion_Clientes.php"><i class="fas fa-ban"></i> Cancelar</a>
-                        <button type="submit" value="Aceptar"><i class="fas fa-check"></i> Confirmar</button>
-                    </div>
+
+                <div class="footer-eliminar">
+                    <input type="hidden" name="idcliente" value="<?php echo $idcliente; ?>">
+                    <a href="Gestion_Clientes.php"><i class="fas fa-ban"></i> Cancelar</a>
+                    <button type="submit" name="submit" value="Aceptar"><i class="fas fa-check"></i> Confirmar</button>
+                </div>
                 </form>
             </div>
         </section>
