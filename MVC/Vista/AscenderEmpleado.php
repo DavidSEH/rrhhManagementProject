@@ -3,15 +3,16 @@ session_start();
 include "../Modelo/conexion.php";
 
 if (isset($_GET['id'])) {
-    $idcliente = $_GET['id'];
+    $cod_personal = $_GET['id'];
 
-    // Actualizar el estatus del empleado a 1 (ascender)
-    $query = "UPDATE cliente SET estatus = 1 WHERE idcliente = $idcliente";
+    // Actualizar el estado del empleado a 1 (ascender)
+    $query = "UPDATE personal SET estado = 1 WHERE cod_personal = $cod_personal";
+    $query_update_usuario = mysqli_query($conection, "UPDATE usuario SET estado = 1 WHERE cod_personal = $cod_personal ");
     $result = mysqli_query($conection, $query);
 
     if ($result) {
         // Redireccionar a la página principal
-        header("Location: Gestion_Clientes.php");
+        header("Location: Gestion_Empleados.php");
         exit();
     } else {
         // Manejar el error en caso de fallo en la consulta

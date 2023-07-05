@@ -15,11 +15,11 @@ if (!empty($_POST)) {
 		$hora_ingreso = $_POST['hora_ingreso'];
 		$hora_salida = $_POST['hora_salida'];
 		$idusuario = $_POST['idusuario'];
-		$idasistencia = $_POST['idasistencia'];
+		$cod_asistencia = $_POST['cod_asistencia'];
 
 		$sql_update = mysqli_query($conection, "UPDATE asistencia
-				SET fecha_ingreso = '$fecha_ingreso', hora_ingreso = '$hora_ingreso', hora_salida = '$hora_salida', id_usu_mod = '$idusuario'
-				WHERE idasistencia = $idasistencia");
+				SET fecha_ingreso = '$fecha_ingreso', hora_ingreso = '$hora_ingreso', hora_salida = '$hora_salida', modificado_por = '$idusuario'
+				WHERE cod_asistencia = $cod_asistencia");
 
 		if ($sql_update) {
 			$alert = '<p class="msg_save">Asistencia actualizada correctamente.</p>';
@@ -34,21 +34,23 @@ if (empty($_REQUEST['id'])) {
 	mysqli_close($conection);
 }
 
-$idasistencia = $_REQUEST['id'];
+$cod_asistencia = $_REQUEST['id'];
 
-$sql = mysqli_query($conection, "SELECT a.idasistencia, a.fecha_ingreso, a.hora_ingreso, a.hora_salida, c.nombre
+$sql = mysqli_query($conection, "SELECT a.cod_asistencia, a.fecha_ingreso, a.hora_ingreso, a.hora_salida, c.nombres
 		FROM asistencia a
-		INNER JOIN cliente c ON a.idcliente = c.idcliente
-		WHERE a.idasistencia = '$idasistencia'");
+		INNER JOIN personal c ON a.cod_personal = c.cod_personal
+		WHERE a.cod_asistencia = '$cod_asistencia'");
 
 $result_sql = mysqli_num_rows($sql);
 
 if ($result_sql == 0) {
 	// No se encontraron resultados
+	$error = mysqli_error($conection);
+	$alert = '<p class="msg_error">Error al recibir los datos: ' . $error . '</p>';
 } else {
 	while ($data = mysqli_fetch_array($sql)) {
-		$idasistencia = $data['idasistencia'];
-		$nombre = $data['nombre'];
+		$cod_asistencia = $data['cod_asistencia'];
+		$nombres = $data['nombres'];
 		$fecha_ingreso = $data['fecha_ingreso'];
 		$hora_ingreso = $data['hora_ingreso'];
 		$hora_salida = $data['hora_salida'];

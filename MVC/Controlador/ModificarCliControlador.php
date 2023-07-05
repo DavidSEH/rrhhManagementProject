@@ -6,20 +6,18 @@
 	if(!empty($_POST))
 	{
 		$alert='';
-		if(empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['usuario']))
+		if(empty($_POST['nombres']) || empty($_POST['correo']))
 		{
 			$alert='<p class="msg_error">Todos los campos son obligatorios.</p>';
 		}else{
 
-			$idcliente 	= $_POST['idcliente'];
+			$cod_personal 	= $_POST['cod_personal'];
 			$dni 		= $_POST['dni'];
-			$nombre 	= $_POST['nombre'];
+			$nombres 	= $_POST['nombres'];
 			$edad 		= $_POST['edad'];
 			$correo  	= $_POST['correo'];
 			$telefono 	= $_POST['telefono'];
-			$domicilio 	= $_POST['domicilio'];
-        	$usuario   	= $_POST['usuario'];
-			$clave  	= md5($_POST['clave']);
+			$direccion 	= $_POST['direccion'];
 
 
 			$query = mysqli_query($conection,"SELECT * FROM cliente
@@ -48,9 +46,9 @@
 				}
 
 				if($sql_update){
-					$alert='<p class="msg_save">Usuario actualizado correctamente.</p>';
+					$alert='<p class="msg_save">Daatos del empleado actualizados correctamente.</p>';
 				}else{
-					$alert='<p class="msg_error">Error al actualizar el usuario.</p>';
+					$alert='<p class="msg_error">Error al actualizar datos del empleado.</p>';
 				}
 
 			}
@@ -66,11 +64,11 @@
 		header("location: ../Vista/Clientes.php");
 		mysqli_close($conection);
 	}
-	$idcliente = $_REQUEST['id'];
+	$cod_personal = $_REQUEST['id'];
 
-	$sql= mysqli_query($conection,"SELECT idcliente,dni,nombre,edad,telefono,domicilio,correo,usuario_cli,clave_cli 
-                                    FROM cliente
-									WHERE idcliente= '$idcliente'");
+	$sql= mysqli_query($conection,"SELECT cod_personal,dni,nombres,edad,telefono,direccion,correo
+                                    FROM personal
+									WHERE cod_personal= '$cod_personal'");
 	
 	$result_sql = mysqli_num_rows($sql);
 
@@ -80,16 +78,13 @@
 		$option = '';
 		while ($data = mysqli_fetch_array($sql)) {
 			# code...
-			$idcliente  = $data['idcliente'];
+			$cod_personal  = $data['cod_personal'];
 			$dni 		= $data['dni'];
-			$nombre 	= $data['nombre'];
+			$nombres 	= $data['nombres'];
 			$edad 		= $data['edad'];
 			$telefono 	= $data['telefono'];
-			$domicilio 	= $data['domicilio'];
+			$direccion 	= $data['direccion'];
 			$correo  	= $data['correo'];
-        	$usuario   	= $data['usuario_cli'];
-			$clave   	= $data['clave_cli'];
-            
 		}
 	}
 

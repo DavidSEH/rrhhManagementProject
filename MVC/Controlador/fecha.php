@@ -14,7 +14,7 @@
 					  "Octubre", 
 					  "Noviembre", 
 					  "Diciembre");
-		return date('d')." de ". $mes[date('n')] . " de " . date('Y');
+		return date('d')." de ". $mes[date('n')] . " del " . date('Y');
 	}
 
 

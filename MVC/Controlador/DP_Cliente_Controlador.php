@@ -5,11 +5,11 @@ if(empty($_REQUEST['id'])){
     header("location: ../Vista/MenuCliente.php");
     mysqli_close($conection);
 }else{
-    $idcliente = $_REQUEST['id'];
+    $cod_personal = $_REQUEST['id'];
 
     $sql= mysqli_query($conection,"SELECT *
-                        FROM cliente 
-                        WHERE idcliente= '$idcliente' ");
+                        FROM personal 
+                        WHERE cod_personal= '$cod_personal' ");
 
     $result_sql = mysqli_num_rows($sql);
 
@@ -19,14 +19,13 @@ if(empty($_REQUEST['id'])){
         $option = '';
         while ($data = mysqli_fetch_array($sql)) {
 
-            $idcliente  	= $data['idcliente'];
-            $nombre  	= $data['nombre'];
+            $cod_personal  	= $data['cod_personal'];
+            $nombre  	= $data['nombres'];
             $dni		    = $data['dni'];
             $edad		    = $data['edad'];
             $correo 	    = $data['correo'];
             $telefono  		= $data['telefono'];
-            $domicilio 		= $data['domicilio'];
-            $informacion   	= $data['informacion'];
+            $domicilio 		= $data['direccion'];
 
         }
     }
@@ -38,19 +37,18 @@ if(!empty($_POST)){
     
     if (isset($_POST['btnEnviar'])) {
 
-        $idcliente 	= $_POST['idcliente'];
+        $cod_personal 	= $_POST['cod_personal'];
 
-        $query_envio = mysqli_query($conection,"SELECT * FROM cliente WHERE idcliente = $idcliente");
+        $query_envio = mysqli_query($conection,"SELECT * FROM cliente WHERE cod_personal = $cod_personal");
 
         if ($query_envio) {
             while ($data2=mysqli_fetch_array($query_envio)) {
-                $idcliente2		    = $data2['idusuario'];
+                $cod_personal2		    = $data2['cod_personal'];
                 $dni2			    = $data2['dni'];
                 $nombre2	        = $data2['nombre'];
-                $domicilio2		    = $data2['domicilio'];
+                $domicilio2		    = $data2['direccion'];
                 $telefono2		    = $data2['telefono'];
                 $correo2			    = $data2['correo'];
-                $informacion2		= $data2['informacion'];
             }
         }else{
             $alert='<p class="msg_error">Error al enviar los Datos.</p>';
@@ -61,19 +59,18 @@ if(!empty($_POST)){
     if (isset($_POST['btnGuardar'])) {
 
         if (empty($_POST['telefono']) || empty($_POST['correo']) 
-            || empty($_POST['domicilio']) || empty($_POST['informacion'])) {
+            || empty($_POST['domicilio'])) {
                 $alert='<p class="msg_error">Error:Campos vacios</p>';
         }else{
             $alert='';
-            $idcliente 	    = $_POST['idcliente'];
+            $cod_personal 	    = $_POST['cod_personal'];
             $telefono 	    = $_POST['telefono'];
             $correo         = $_POST['correo'];
-            $domicilio      = $_POST['domicilio'];
-            $informacion 	= $_POST['informacion'];
+            $domicilio      = $_POST['direccion'];
 
             $query_guardar = mysqli_query($conection,"UPDATE cliente SET telefono= $telefono,
                                         correo='$correo', domicilio='$domicilio', informacion ='$informacion'
-                                        WHERE idcliente= $idcliente ");
+                                        WHERE cod_personal= $cod_personal ");
 
             if($query_guardar){
                 $alert='<p class="msg_save">Datos Editados Correctamente</p>';
@@ -87,7 +84,7 @@ if(!empty($_POST)){
     $result='';
     if (isset($_POST['btnPassword'])) {
         
-        $idcliente 	    = $_POST['idcliente'];
+        $cod_personal 	    = $_POST['cod_personal'];
         $result='<div class="modificar-pas">
                     <div class="cab-mp">
                         <p>Editar Password</p>
@@ -114,7 +111,7 @@ if(!empty($_POST)){
     }
     if (isset($_POST['btnGuardarPas'])){
         $alert='';
-        $idcliente 	= $_POST['idcliente'];
+        $cod_personal 	= $_POST['cod_personal'];
         $passActual = md5($_POST['passActual']);
         $passNuevo  = md5($_POST['passNuevo']);
         if (empty($_POST['passActual']) || empty($_POST['passNuevo'])) {
@@ -163,7 +160,7 @@ if(!empty($_POST)){
                 </div>';
         }else {
             $query_validar=mysqli_query($conection,"SELECT clave_cli FROM cliente 
-                                        WHERE idcliente='$idcliente'");
+                                        WHERE cod_personal='$cod_personal'");
             $sql_result = mysqli_num_rows($query_validar);                    
             
             if ($sql_result > 0) {
@@ -194,7 +191,7 @@ if(!empty($_POST)){
                     }else{
 
                         $query_guardarPas = mysqli_query($conection,"UPDATE cliente SET clave_cli= '$passNuevo'
-                                    WHERE idcliente= $idcliente");
+                                    WHERE cod_personal= $cod_personal");
 
                         if($query_guardarPas){
                             $alert='<p class="msg_save">Password Editado Correctamente.</p>';

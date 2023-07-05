@@ -61,7 +61,7 @@ include "../Controlador/Modificar_Asistencia_Controlador.php";
     </script>
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
-    <?php include "sidebar.php" ?>
+    <?php include "./sidebarAdministrador.php" ?>
     <!--Sidebar Fin-->
 
     <div class="main-content">
@@ -87,11 +87,11 @@ include "../Controlador/Modificar_Asistencia_Controlador.php";
                     <form action="" method="post" onsubmit="return validarFechas();">
                         <input type="hidden" name="idusuario" value="<?php echo $_SESSION['idUser'] ?>">
                         <div class="formulario-actualizar-user">
-                            <input type="hidden" name="idasistencia" id="idasistencia" value="<?php echo $idasistencia; ?>">
+                            <input type="hidden" name="cod_asistencia" id="cod_asistencia" value="<?php echo $cod_asistencia; ?>">
                             <div class="conten-p-upd">
                                 <div class="contenido-upd">
                                     <label for="nombre">Nombre del empelado:</label>
-                                    <input type="text" name="nombre" id="nombre" value="<?php echo $nombre; ?>" disabled>
+                                    <input type="text" name="nombres" id="nombres" value="<?php echo $nombres; ?>" disabled>
                                 </div>
                             </div>
                             <div class="conten-p-upd">

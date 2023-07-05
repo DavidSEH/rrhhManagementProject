@@ -1,5 +1,5 @@
 <?php
-    include "../Controlador/EliminarUsuarioControlador.php"
+    include "../Controlador/Eliminar_Reserva_Controlador.php"
 ?>
 
 <!DOCTYPE html>
@@ -34,33 +34,43 @@
             <div class="container-eliminar">
                 <div class="container-secion-eliminar">
                     <div class="icon-eliminar-user">
-                        <i class="fas fa-user-times"></i>
+                    <i class="fab fa-resolving"></i>
                     </div>
                     <div class="section-eliminar">
-                        <h2>¿Deseas dar de baja al Usuario?</h2>
+                        <h2>¿Deseas dar de baja la Reserva?</h2>
                         <div class="section-eliminar-datos">
                             <div>
-                                <p>Cod. Usuario: </p>
-                                <p>Nombre: </p>
-                                <p>Rol Usuario:</p>
+                                <p>ID Reserva: </p>
+                                <p>Cliente: </p>
+                                <p>Fecha Ingreso: </p>
+                                <p>Fecha Salida: </p>
+                                
                             </div>
                             <div class="segundary-eliminar-datos">
-                                <p><?php echo $cod_usuario; ?></p>
-                                <p><?php echo $usuario; ?></p>
-                                <p><?php echo $rol; ?></p>
+                                <p><?php echo $idreserva; ?></p>
+                                <p><?php echo $nombre; ?></p>
+                                <p><?php echo $fecha_ingreso; ?></p>
+                                <p><?php echo $fecha_salida; ?></p>
                             </div>
                         </div>
+                    </div>
+                    <div class="footer_container">
+                        <p>!Si procede a dar de baja es por que la reserva ya vencio!</p>
                     </div>
                 </div>
                 <form method="post" action="">
                     <div class="footer-eliminar">
-                       <input type="hidden" name="cod_usuario" value="<?php echo $cod_usuario; ?>">
-                       <a href="Gestion_Usuario.php"><i class="fas fa-ban"></i>  Cancelar</a>
-                       <button type="submit" value="Aceptar"><i class="fas fa-check"></i>  Aceptar</button>
+                       <input type="hidden" name="idreserva" value="<?php echo $idreserva; ?>">
+                       <input type="hidden" name="idhabitacion" value="<?php echo $idhabitacion; ?>">
+                       <a href="Gestion_Reservas.php"><i class="fas fa-undo"></i>  Regresar</a>
+                       <button type="submit" name="btn_Eliminar"><i class="fas fa-check"></i>  Aceptar</button>
                     </div>
                </form>
             </div>
         </section>
+        <div  class="alert" >
+            <?php echo isset($alert) ? $alert : ''; ?>
+        </div>
     </div>
     <?php include "../Modelo/Footer.php" ?>
 </body>

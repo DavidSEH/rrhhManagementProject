@@ -3,9 +3,10 @@
     -bg: #0B1218;
     -bg-body: #131d28;
 }
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 *{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
     text-decoration: none;
     list-style-type: none;
