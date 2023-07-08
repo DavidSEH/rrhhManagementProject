@@ -20,8 +20,8 @@
                 <li><a href="#contactanos">Contactanos</a></li>
                 <li class="session">Inicia Sesion
                     <ul class="sesion_list">
-                        <li><a href="MVC/Vista/loginCliente.php">Empleado</a></li>
-                        <li><a href="MVC/Vista/loginUsuario.php">Administrador</a></li>
+                        <li><a href="MVC/Vista/loginEmpleado.php">Empleado</a></li>
+                        <li><a href="MVC/Vista/loginAdministrador.php">Administrador</a></li>
                     </ul>
                 </li>
             </ul>
