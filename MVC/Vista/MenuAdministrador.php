@@ -34,10 +34,7 @@ if (!isset($_SESSION['idUser'])) {
 
             <div class="contenedor__main">
                 <div class="container__graphic">
-
-                </div>
-                <div class="container__graphic">
-
+                    <iframe title="Report Section" width="1450" height="850" src="https://app.powerbi.com/view?r=eyJrIjoiZDVmZWExMmItZTkyZS00M2E3LTg4ZDQtNGM5NzhhMWVlZWRmIiwidCI6ImM0YTY2YzM0LTJiYjctNDUxZi04YmUxLWIyYzI2YTQzMDE1OCIsImMiOjR9" frameborder="0" allowFullScreen="true"></iframe>
                 </div>
             </div>
 

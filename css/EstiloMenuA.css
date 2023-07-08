@@ -447,7 +447,6 @@ section h2 i {
     display: flex;
     width:100%;
     justify-content: space-around;
-    height: 400px;
     overflow: hidden;
 }
 .container__graphic canvas{
@@ -459,7 +458,7 @@ section h2 i {
     display: flex;
     flex-direction: column;
     border: 0.5px solid #F6F6F6;
-    width: 49%;
+    width: 100%;
 }
 .container__graphic div{
     padding: 10px;
