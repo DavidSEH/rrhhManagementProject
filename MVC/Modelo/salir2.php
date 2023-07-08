@@ -3,6 +3,6 @@
 	session_start();
 	session_destroy();
 
-	header('location: ../Vista/loginCliente.php');
+	header('location: ../Vista/loginEmpleado.php');
 
  ?>

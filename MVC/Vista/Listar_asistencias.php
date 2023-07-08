@@ -14,7 +14,7 @@ session_start();
 <body>
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
-    <?php include "sidebar.php" ?>
+    <?php include "./sidebarAdministrador.php" ?>
     <!--Sidebar Fin-->
 
     <div class="main-content">
@@ -26,7 +26,7 @@ session_start();
         <section>
             <div class="cab-user">
                 <h2> <i class="fas fa-ad"></i> Asistencias</h2>
-                <a href="Gestion_asistencias.php">Nueva Asistencia</a>
+                <a href="Nueva_Asistencia.php">Nueva Asistencia</a>
             </div>
             <div class="listado-principal-tabla">
                 <div class="cab-tabla">
@@ -68,39 +68,30 @@ session_start();
                         }
                         $desde = ($pagina - 1) * $por_pagina;
                         $total_paginas = ceil($total_registro / $por_pagina);
-                        $query = mysqli_query($conection, "SELECT a.idasistencia, a.idusuario, a.idcliente, a.fecha_ingreso, a.hora_ingreso, a.hora_salida, a.id_usu_mod, c.nombre AS cliente, u.nombre AS usuario
+                        $query = mysqli_query($conection, "SELECT a.cod_asistencia, a.cod_personal, a.registrado_por, a.fecha_ingreso, a.hora_ingreso, a.hora_salida, a.modificado_por
                                             FROM asistencia a
-                                            INNER JOIN cliente c ON a.idcliente = c.idcliente
-                                            INNER JOIN usuario u ON a.idusuario = u.idusuario
-                                            ORDER BY a.idasistencia DESC LIMIT $desde,$por_pagina;");
+                                            ORDER BY a.cod_asistencia DESC LIMIT $desde,$por_pagina;");
                         if (!$query) {
                             die("Error en la consulta: " . mysqli_error($conection));
                         }
                         $msg = '';
-                        
+
                         $result = mysqli_num_rows($query);
                         if ($result > 0) {
                             while ($data = mysqli_fetch_array($query)) {
                         ?>
                                 <tbody>
                                     <tr>
-                                        <td><?php echo $data['idasistencia']; ?></td>
-                                        <td><?php echo $data['cliente']; ?></td>
-                                        <td><?php echo $data['usuario']; ?></td>
-                                        <?php
-                $id_usu_mod = $data['id_usu_mod'];
-                $query_usuario_mod = mysqli_query($conection, "SELECT nombre FROM usuario WHERE idusuario = '$id_usu_mod'");
-                $usuario_mod = mysqli_fetch_array($query_usuario_mod);
-                $nombre_modificador = ($usuario_mod !== null) ? $usuario_mod['nombre'] : "Ninguno";
-                ?>
-
-                <td><?php echo $nombre_modificador; ?></td>
+                                        <td><?php echo $data['cod_asistencia']; ?></td>
+                                        <td><?php echo $data['cod_personal']; ?></td>
+                                        <td><?php echo $data['registrado_por']; ?></td>
+                                        <td><?php echo $data['modificado_por']; ?></td>
                                         <td><?php echo $data['fecha_ingreso']; ?></td>
                                         <td><?php echo $data['hora_ingreso']; ?></td>
                                         <td><?php echo $data['hora_salida']; ?></td>
                                         <td>
-                                            <a href="Modificar_asistencia.php?id=<?php echo $data["idasistencia"]; ?>"><i class="fas fa-edit"></i></a>
-                                            <a href="Eliminar_asistencia.php?id=<?php echo $data["idasistencia"]; ?>">
+                                            <a href="Modificar_asistencia.php?id=<?php echo $data["cod_asistencia"]; ?>"><i class="fas fa-edit"></i></a>
+                                            <a href="Eliminar_asistencia.php?id=<?php echo $data["cod_asistencia"]; ?>">
                                                 <i class="fas fa-window-close"></i>
                                             </a>
                                         </td>
@@ -108,7 +99,7 @@ session_start();
                         <?php
                             }
                         }
-                        mysqli_close($conection);?>
+                        mysqli_close($conection); ?>
                         <tfoot class="paginacion">
                             <tr>
                                 <td colspan="9">

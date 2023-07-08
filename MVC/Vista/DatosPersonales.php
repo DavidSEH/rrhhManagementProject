@@ -13,7 +13,7 @@
     <body>
         <input type="checkbox" id="menu-toggle">
         <!--Sidebar Inicio-->
-        <?php include "./sidebar.php" ?>
+        <?php include "./sidebarAdministrador.php" ?>
         <!--Sidebar Fin-->
         <div class="main-content">
             <!--Navbar Inicio-->
@@ -80,7 +80,7 @@
                                     </div>
                                     <div>
                                         <p class="parr-sect-sdp2"><i class="fas fa-pen-alt"></i>Informacion Adicional</p>
-                                        <p ><?php echo $informacion;?></p>
+                                        <p ><?/*php echo $informacion;*/?></p>
                                     </div>
                                 </div>
                                 <div class="section-btn-datos-p">

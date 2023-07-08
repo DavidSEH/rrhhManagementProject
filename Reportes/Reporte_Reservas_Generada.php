@@ -5,26 +5,14 @@ if (empty($_REQUEST['idUser'])) {
     header('location: ../MVC/Vista/Gestion_Reservas.php');
     mysqli_close($conection);
 } else {
-
-    $idusuario = $_REQUEST['idUser'];
+    session_start();
     date_default_timezone_set('America/Lima');
     $fecha = date("Y-m-d");
     $fecha_cab = date("Y-m-d  /  " . "H:m:s");
-    /*Query Datos Usuario*/
-    $query_user = mysqli_query($conection, "SELECT r.rol,u.nombre,u.dni,u.domicilio
-                    FROM usuario u
-                    INNER JOIN rol r ON (u.rol=r.idrol)
-                    WHERE u.idusuario=$idusuario");
+    /*Datos Usuario*/
+    $nombre            = $_SESSION['nombre'];
+    $domicilio            = $_SESSION['domicilio'];
 
-    while ($dataUs = mysqli_fetch_array($query_user)) {
-        $nombre            = $dataUs['nombre'];
-        $dni            = $dataUs['dni'];
-        $domicilio            = $dataUs['domicilio'];
-        $nombre            = $dataUs['nombre'];
-        $nombre            = $dataUs['nombre'];
-        $nombre            = $dataUs['nombre'];
-        $nombre            = $dataUs['nombre'];
-    }
     /*Query Datos Empresa*/
     $query_empresa = mysqli_query($conection, "SELECT * FROM empresa");
     while ($dataEmp = mysqli_fetch_array($query_empresa)) {
@@ -32,22 +20,17 @@ if (empty($_REQUEST['idUser'])) {
         $razon_social   = $dataEmp['razon_social'];
         $telefono            = $dataEmp['telefono'];
         $direccion            = $dataEmp['direccion'];
-        $pagina_web            = $dataEmp['pagina_web'];
+        $pagina_web            = $dataEmp['web'];
     }
     /*Query Reservas Generadas*/
-    $query_reserv_generate = mysqli_query($conection, " SELECT r.idreserva, r.fecha_ingreso, r.hora_ingreso, r.hora_salida,
-            r.fecha_salida, r.estatus, r.cant_noches, h.num_habitacion, (c.nombre) AS nom_cli,
-            c.dni,c.motivo_cese, c.puesto_trabajo, DATEDIFF(r.fecha_salida, r.fecha_ingreso) AS dias
-        FROM reserva r 
-        INNER JOIN habitacion h ON (h.idhabitacion = r.idhabitacion)
-        INNER JOIN cliente c ON (c.idcliente = r.idcliente)
-
-        ORDER BY r.idreserva");
+    $query_reserv_generate = mysqli_query($conection, "SELECT l.cod_licencia, t.nom_licencia AS tipo, p.nombres AS nombres, p.dni AS dni, l.fecha_inicio, p.cod_puesto,l.fecha_fin, l.estado, DATEDIFF(l.fecha_fin, l.fecha_inicio) AS dias
+                        FROM licencia l
+                        INNER JOIN personal p ON l.cod_personal = p.cod_personal
+                        INNER JOIN tipo_licencia t ON l.cod_licencia = t.cod_licencia
+                        ORDER BY l.cod_licencia");
 
 
     $result = mysqli_num_rows($query_reserv_generate);
-
-
 
     $pdf = new PDF("P", "mm", "A4");
     $pdf->AliasNbPages();
@@ -88,7 +71,7 @@ if (empty($_REQUEST['idUser'])) {
     $pdf->SetTextColor(1, 1, 1);
     $pdf->Cell(35, 7, "DNI: ", 0, 0, "C", 1);
     $pdf->SetFont("Arial", "", 11);
-    $pdf->Cell(80, 7, $dni, 0, 0, "D", 1);
+    $pdf->Cell(80, 7, "$", 0, 0, "D", 1);
     $pdf->Cell(80, 7, $fecha_cab, 0, 1, "C", 1);
 
     $pdf->SetFont("Arial", "B", 11);
@@ -124,77 +107,77 @@ if (empty($_REQUEST['idUser'])) {
 
             $num = $num + 1;
             $pdf->Cell(10, 12, $num, 1, 0, "C", 1);
-            $pdf->Cell(40, 12, $data['nom_cli'], 1, 0, "C", 1);
+            $pdf->Cell(40, 12, $data['nombres'], 1, 0, "C", 1);
             $pdf->Cell(20, 12, $data['dni'], 1, 0, "C", 1);
-            $puesto_trabajo = '';
-            switch ($data['puesto_trabajo']) {
+            $cod_puesto = '';
+            switch ($data['cod_puesto']) {
                 case 1:
-                    $puesto_trabajo = "Vigilate";
+                    $cod_puesto = "Analista";
                     break;
                 case 2:
-                    $puesto_trabajo = "Limpieza";
+                    $cod_puesto = "Coordinador";
                     break;
                 case 3:
-                    $puesto_trabajo = "Secretaria";
+                    $cod_puesto = "Jefe T.I";
                     break;
                 default:
-                    $puesto_trabajo = "Desconocida";
+                    $cod_puesto = "Desconocida";
                     break;
             }
-            $pdf->Cell(22, 12, $puesto_trabajo, 1, 0, "C", 1);
-            // Obtener el valor de estatus y asignar el texto correspondiente
-            $num_habitacion = '';
-            switch ($data['num_habitacion']) {
+            $pdf->Cell(22, 12, $cod_puesto, 1, 0, "C", 1);
+            // Obtener el valor de estado y asignar el texto correspondiente
+            $cod_licencia = '';
+            switch ($data['cod_licencia']) {
                 case 1:
-                    $num_habitacion = "Maternidad";
-                    break;
-                case 10:
-                    $num_habitacion = "Familiar enfermo";
-                    break;
-                case 101:
-                    $num_habitacion = "Paternidad";
-                    break;
-                case 102:
-                    $num_habitacion = "Accidente Laboral";
-                    break;
-                case 112:
-                    $num_habitacion = "Vacaciones";
-                    break;
-                default:
-                    $num_habitacion = "Desconocida";
-                    break;
-            }
-            $pdf->Cell(28, 12, $num_habitacion, 1, 0, "C", 1);
-            $pdf->Cell(20.5, 12, $data['fecha_ingreso'], 1, 0, "C", 1);
-            $pdf->Cell(20.5, 12, $data['fecha_salida'], 1, 0, "C", 1);
-            $pdf->Cell(16, 12, $data['dias'], 1, 0, "C", 1);
-            // Obtener el valor de estatus y asignar el texto correspondiente
-            $estatus = '';
-            switch ($data['estatus']) {
-                case 1:
-                    $estatus = "Pendiente";
+                    $cod_licencia = "Paternidad";
                     break;
                 case 2:
-                    $estatus = "Aprobada";
+                    $cod_licencia = "Maternidad";
                     break;
                 case 3:
-                    $estatus = "Confirmada";
+                    $cod_licencia = "Vacaciones";
                     break;
                 case 4:
-                    $estatus = "Terminada";
+                    $cod_licencia = "Accidente Laboral";
                     break;
                 case 5:
-                    $estatus = "Denegada";
-                    break;
-                case 6:
-                    $estatus = "Anulada";
+                    $cod_licencia = "Familiar Enfermo";
                     break;
                 default:
-                    $estatus = "Desconocida";
+                    $cod_licencia = "Desconocida";
+                    break;
+            }
+            $pdf->Cell(28, 12, $cod_licencia, 1, 0, "C", 1);
+            $pdf->Cell(20.5, 12, $data['fecha_inicio'], 1, 0, "C", 1);
+            $pdf->Cell(20.5, 12, $data['fecha_fin'], 1, 0, "C", 1);
+            $pdf->Cell(16, 12, $data['dias'], 1, 0, "C", 1);
+            // Obtener el valor de estado y asignar el texto correspondiente
+            $estado = '';
+            switch ($data['estado']) {
+                case 1:
+                    $estado = "Pendiente";
+                    break;
+                case 2:
+                    $estado = "Aprobada";
+                    break;
+                case 3:
+                    $estado = "Confirmada";
+                    break;
+                case 4:
+                    $estado = "Terminada";
+                    break;
+                case 5:
+                    $estado = "Denegada";
+                    break;
+                case 6:
+                    $estado = "Anulada";
+                    break;
+                default:
+                    $estado = "Desconocida";
                     break;
             }
 
-            $pdf->Cell(18, 12, $estatus, 1, 1, "C", 1);
+            $pdf->Cell(18, 12, $estado, 1, 1, "C", 1);
         }
     }
 

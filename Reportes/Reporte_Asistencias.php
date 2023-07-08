@@ -5,26 +5,13 @@ if (empty($_REQUEST['idUser'])) {
     header('location: ../MVC/Vista/Gestion_Reservas.php');
     mysqli_close($conection);
 } else {
-
-    $idusuario = $_REQUEST['idUser'];
+    session_start();
     date_default_timezone_set('America/Lima');
     $fecha = date("Y-m-d");
     $fecha_cab = date("Y-m-d  /  " . "H:m:s");
-    /*Query Datos Usuario*/
-    $query_user = mysqli_query($conection, "SELECT r.rol,u.nombre,u.dni,u.domicilio
-                    FROM usuario u
-                    INNER JOIN rol r ON (u.rol=r.idrol)
-                    WHERE u.idusuario=$idusuario");
+    $nombre            = $_SESSION['nombre'];
+    $domicilio            = $_SESSION['domicilio'];
 
-    while ($dataUs = mysqli_fetch_array($query_user)) {
-        $nombre            = $dataUs['nombre'];
-        $dni            = $dataUs['dni'];
-        $domicilio            = $dataUs['domicilio'];
-        $nombre            = $dataUs['nombre'];
-        $nombre            = $dataUs['nombre'];
-        $nombre            = $dataUs['nombre'];
-        $nombre            = $dataUs['nombre'];
-    }
     /*Query Datos Empresa*/
     $query_empresa = mysqli_query($conection, "SELECT * FROM empresa");
     while ($dataEmp = mysqli_fetch_array($query_empresa)) {
@@ -32,14 +19,13 @@ if (empty($_REQUEST['idUser'])) {
         $razon_social   = $dataEmp['razon_social'];
         $telefono            = $dataEmp['telefono'];
         $direccion            = $dataEmp['direccion'];
-        $pagina_web            = $dataEmp['pagina_web'];
+        $pagina_web            = $dataEmp['web'];
     }
-    /*Query Reservas Generadas*/
-    $query_reserv_generate =  mysqli_query($conection, " SELECT a.idasistencia, a.idusuario, a.idcliente, a.fecha_ingreso, a.hora_ingreso, a.hora_salida, a.id_usu_mod, c.nombre AS cliente, u.nombre AS usuario
-        FROM asistencia a
-        INNER JOIN cliente c ON (a.idcliente = c.idcliente)
-        INNER JOIN usuario u ON (a.idusuario = u.idusuario)
-        ORDER BY a.idasistencia");
+    /*Query Asistencias Generadas*/
+    $query_reserv_generate = mysqli_query($conection, "SELECT a.cod_asistencia, a.cod_personal, a.registrado_por, a.fecha_ingreso, a.hora_ingreso, a.hora_salida, a.modificado_por
+                                            FROM asistencia a
+                                            ORDER BY a.cod_asistencia;");
+
 
     $result = mysqli_num_rows($query_reserv_generate);
 
@@ -82,7 +68,7 @@ if (empty($_REQUEST['idUser'])) {
     $pdf->SetTextColor(1, 1, 1);
     $pdf->Cell(35, 7, "DNI: ", 0, 0, "C", 1);
     $pdf->SetFont("Arial", "", 11);
-    $pdf->Cell(80, 7, $dni, 0, 0, "D", 1);
+    $pdf->Cell(80, 7, "--- ", 0, 0, "D", 1);
     $pdf->Cell(80, 7, $fecha_cab, 0, 1, "C", 1);
 
     $pdf->SetFont("Arial", "B", 11);
@@ -114,22 +100,15 @@ if (empty($_REQUEST['idUser'])) {
         while ($data = mysqli_fetch_array($query_reserv_generate)) {
             $num = $num + 1;
             $pdf->Cell(10, 12, $num, 1, 0, "C", 1);
-            $pdf->Cell(38, 12, $data['cliente'], 1, 0, "C", 1);
-            $pdf->Cell(32, 12, $data['usuario'], 1, 0, "C", 1);
-    
-            // Obtener el nombre de usuario modificador
-            $id_usu_mod = $data['id_usu_mod'];
-            $query_usuario_mod = mysqli_query($conection, "SELECT nombre FROM usuario WHERE idusuario = '$id_usu_mod'");
-            $usuario_mod = mysqli_fetch_array($query_usuario_mod);
-            $nombre_modificador = ($usuario_mod !== null) ? $usuario_mod['nombre'] : "Ninguno";
-    
-            $pdf->Cell(32, 12, $nombre_modificador, 1, 0, "C", 1);
+            $pdf->Cell(38, 12, $data['cod_personal'], 1, 0, "C", 1);
+            $pdf->Cell(32, 12, $data['registrado_por'], 1, 0, "C", 1);
+            $pdf->Cell(32, 12, $data['modificado_por'], 1, 0, "C", 1);
             $pdf->Cell(28, 12, $data['fecha_ingreso'], 1, 0, "C", 1);
             $pdf->Cell(28, 12, $data['hora_ingreso'], 1, 0, "C", 1);
             $pdf->Cell(28, 12, $data['hora_salida'], 1, 1, "C", 1);
         }
     }
-    
+
 
     $pdf->Output();
     mysqli_close($conection);

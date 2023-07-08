@@ -13,7 +13,7 @@
     <body>
         <input type="checkbox" id="menu-toggle">
         <!--Sidebar Inicio-->
-        <?php include "sidebar.php" ?>
+        <?php include "./sidebarAdministrador.php" ?>
         <!--Sidebar Fin-->
 
         <div class="main-content">
@@ -53,26 +53,6 @@
                                 </div>
                                 <div class="conten-p-new">
                                     <div class="contenido-new"> 
-                                        <label for="edad">Edad:</label>
-                                        <input type="number" name="edad" id="edad" placeholder="Edad" value="">
-                                    </div>
-                                    <div class="contenido-new">
-                                        <label for="correo">Correo electrónico:</label>
-                                        <input type="email" name="correo" id="correo" placeholder="Correo electrónico" value="">
-                                    </div>
-                                </div>
-                                <div class="conten-p-new">
-                                    <div class="contenido-new"> 
-                                        <label for="telefono">Telefono:</label>
-                                        <input type="number" name="telefono" id="telefono" placeholder="Telefono" value="">
-                                    </div>
-                                    <div class="contenido-new"> 
-                                        <label for="domicilio">Domicilio:</label>
-                                        <input type="text" name="domicilio" id="domicilio" placeholder="Domicilio" value="">
-                                    </div>
-                                </div>
-                                <div class="conten-p-new">
-                                    <div class="contenido-new"> 
                                         <label for="usuario">Usuario:</label>
                                         <input type="text" name="usuario" id="usuario" placeholder="Usuario" value="">
                                     </div>
@@ -85,7 +65,7 @@
                                 
                                 <label for="rol">Tipo Usuario:</label>
                                 <?php 
-                                $query_rol = mysqli_query($conection,"SELECT * FROM rol");
+                                $query_rol = mysqli_query($conection,"SELECT * FROM tipo_rol");
                                 mysqli_close($conection);
                                 $result_rol = mysqli_num_rows($query_rol);
                                 ?>
@@ -95,7 +75,7 @@
                                         {
                                             while ($rol = mysqli_fetch_array($query_rol)) {
                                     ?>
-                                            <option value="<?php echo $rol["idrol"]; ?>"><?php echo $rol["rol"] ?></option>
+                                            <option value="<?php echo $rol["id_rol"]; ?>"><?php echo $rol["rol"] ?></option>
                                     <?php 
                                                 
                                         }

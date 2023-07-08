@@ -1,13 +1,13 @@
-
+                    
 <?php 
-    include "../Controlador/ModificarUControlador.php"
+    include "../Controlador/ModificarCliControlador.php";
  ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Modificar Usuario</title>
+        <title>Modificar Empleado</title>
         <?php include "../Modelo/scripts.php"?>
     </head>
     <body>
@@ -35,10 +35,10 @@
             <section>
                 <div class="container-actualizar-user">
                     <div class="section-actualizar-user">
-                        <p>Actualizar usuario</p>
+                        <p>Actualizar Empleado</p>
                         <form action="" method="post">
                         <div class="formulario-actualizar-user">
-                            <input type="hidden" name="idUsuario" value="<?php echo $idusuario; ?>">
+                        <input type="hidden" name="cod_personal" value="<?php echo $cod_personal;?>">
                                 <div class="conten-p-upd">
                                     <div class="contenido-upd">
                                         <label for="dni">DNI:</label>
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="contenido-upd">
                                         <label for="nombre">Nombre:</label>
-                                        <input type="text" name="nombre" id="nombre" placeholder="Nombre completo" value="<?php echo $nombre; ?>">
+                                        <input type="text" name="nombre" id="nombre" placeholder="Nombre completo" value="<?php echo $nombres; ?>">
                                     </div>
                                 </div>
                                 <div class="conten-p-upd">
@@ -66,45 +66,12 @@
                                     </div>
                                     <div class="contenido-upd"> 
                                         <label for="domicilio">Domicilio:</label>
-                                        <input type="text" name="domicilio" id="domicilio" placeholder="Domicilio" value="<?php echo $domicilio;?>">
+                                        <input type="text" name="domicilio" id="domicilio" placeholder="Domicilio" value="<?php echo $direccion;?>">
                                     </div>
-                                </div>
-                                <div class="conten-p-upd">
-                                    <div class="contenido-upd"> 
-                                        <label for="usuario">Usuario:</label>
-                                        <input type="text" name="usuario" id="usuario" placeholder="Usuario" value="<?php echo $usuario; ?>">
-                                    </div>
-                                    <div class="contenido-upd">  
-                                        <label for="clave">Clave:</label>
-                                        <input type="password" name="clave" id="clave" placeholder="Clave de acceso" value="">
-                                    </div>
-                                </div>
-                                
-                                <label for="rol">Tipo Usuario</label>
-                                <?php 
-                                    $query_rol = mysqli_query($conection,"SELECT * FROM rol");
-                                    mysqli_close($conection);
-                                    $result_rol = mysqli_num_rows($query_rol);
-
-                                ?>
-                                <select name="rol" id="rol" class="notItemOne">
-                                    <?php
-                                        echo $option; 
-                                        if($result_rol > 0)
-                                        {
-                                            while ($rol = mysqli_fetch_array($query_rol)) {
-                                    ?>
-                                            <option value="<?php echo $rol["idrol"]; ?>">
-                                            <?php echo $rol["rol"] ?></option>
-                                    <?php 
-                                                
-                                            }
-                                        }
-                                    ?>
-                                </select>
+                                </div> 
                         </div>
                         <div class="btn-actualizar-user">
-                            <a href="Gestion_Usuario.php"><i class="fas fa-undo"></i>Regresar</a>
+                            <a href="Gestion_Empleados.php"><i class="fas fa-undo"></i>Regresar</a>
                             <button type="submit" value="Actualizar usuario"><i class="fas fa-edit"></i>Actualizar</button>
                         </div>
                         </form>

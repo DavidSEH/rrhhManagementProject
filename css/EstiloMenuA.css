@@ -1,6 +1,6 @@
 
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');@import url('https://fonts.googleapis.com/css2? family = Poppins:whgt@300;400;500;600& display = swap');
 :root{
     -main: orange;
     -bg: #0d2235;
@@ -27,8 +27,9 @@
 i{
     margin: 0 2px;
 }
+
 *{
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
     text-decoration: none;
     list-style-type: none;
@@ -304,14 +305,15 @@ section h2 i {
     border-radius: 5px;
     width: 140px;
     margin-left: 20px;
-    background: #007BFF;
+    background: #2887ec;
     color: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
 }
 .seccion-user{
-    color: white;
+    color: rgb(0, 0, 0);
     border-radius: 9px;
 }
 .search-p{
@@ -445,7 +447,6 @@ section h2 i {
     display: flex;
     width:100%;
     justify-content: space-around;
-    height: 400px;
     overflow: hidden;
 }
 .container__graphic canvas{
@@ -457,7 +458,7 @@ section h2 i {
     display: flex;
     flex-direction: column;
     border: 0.5px solid #F6F6F6;
-    width: 49%;
+    width: 100%;
 }
 .container__graphic div{
     padding: 10px;
@@ -554,7 +555,7 @@ section h2 i {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    box-shadow: 1px 2px 4px 0px rgba(39, 39, 39, 0.75);
 
 }
 .btn-delete{
@@ -579,16 +580,18 @@ section h2 i {
     
 }
 .container-eliminar .container-secion-eliminar{
-    background: #DAE2E6;
-    border: 3px solid #8F979B;
+    background: #ffffff;
+    border: 3px solid #ffffff;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
 }
 .container-secion-eliminar .footer_container{
     margin-top: 10px;
     color: #ffffff;
     text-align: center;
     background:rgb(211, 122, 122);
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
 }
 .container-eliminar .icon-eliminar-user{
     display: flex;
@@ -619,12 +622,13 @@ section h2 i {
 
 .container-eliminar .footer-eliminar{
     margin-top: 10px;
-    background: #DAE2E6;
-    border: 3px solid #8F979B;
+    background: #ffffff;
+    border: 3px solid #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
 }
 .container-eliminar .footer-eliminar a, .container-eliminar .footer-eliminar button{
     margin:20px 15px 20px 0;
@@ -632,7 +636,7 @@ section h2 i {
     width: 200px;
     height: 35px;
     font-weight: 550;
-    
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
 }
 
 
@@ -666,22 +670,18 @@ section h2 i {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background: #DAE2E6;
-    border: 3px solid #8F979B;
+    background: #ffffff;
+    border: 3px solid #ffffff;
     border-radius: 10px;
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
+    
 }
 .formulario-new-user label{
     margin: 20px 0 5px 0;
     font-size: 1.2rem;
     
 }
-.formulario-new-user input{
-    border: 0.5px solid #29A5A1;
-    border-radius: 5px;
-    height: 30px;
-    font-size: .9rem;
-    padding: 10px;
-}
+
 .btn-new-user{
     border-radius: 10px;
     margin-top: 20px;
@@ -711,9 +711,14 @@ section h2 i {
 .formulario-new-user select{
     height: 30px;
     font-size: .9rem;
-    padding: 5px;
-    border-radius: 5px;
-    border: 0.5px solid #29A5A1;
+    padding: 13px;
+    border: 0.5px solid #0d1d55;
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
+    border-width: 0px;
+    border-color: #cccccc;
+    background-color: #eff2fb;
+    border-style: solid;
+    border-radius: 28px;
 }
 
 .formulario-new-user .conten-p-new{
@@ -750,21 +755,15 @@ section h2 i {
     display: flex;
     flex-direction: column;
     padding: 20px;
-    background: #DAE2E6;
-    border: 3px solid #8F979B;
+    background: #ffffff;
+    border: 3px solid #c0ddeb;
     border-radius: 10px;
 }
 .formulario-actualizar-user label{
     margin: 20px 0 5px 0;
     font-size: 1.2rem;
 }
-.formulario-actualizar-user input{
-    border: 0.5px solid #29A5A1;
-    border-radius: 5px;
-    height: 30px;
-    font-size: .9rem;
-    padding: 10px;
-}
+
 .formulario-actualizar-user select{
     height: 30px;
     font-size: .9rem;
@@ -777,8 +776,9 @@ section h2 i {
     margin-top: 20px;
     display: flex;
     justify-content: center;
-    background: #DAE2E6;
-    border: 3px solid #8F979B;
+    background: #ffffff;
+    border: 3px solid #ffffff;
+    box-shadow: 1px 2px 4px 0px rgba(66,66,66,0.75);
 }
 .btn-actualizar-user a, .btn-actualizar-user button{
     margin:20px 15px 20px 0;
@@ -839,13 +839,7 @@ section h2 i {
     margin: 20px 0 5px 0;
     font-size: 1.2rem;
 }
-.formulario-actualizar-hab input{
-    border: 0.5px solid #29A5A1;
-    border-radius: 5px;
-    height: 30px;
-    font-size: .9rem;
-    padding: 10px;
-}
+
 .btn-actualizar-hab{
     border-radius: 10px;
     margin-top: 20px;
@@ -1992,11 +1986,12 @@ section h2 i {
     border-radius: 5px;
     width: 23.2%;
     height: 125px;
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
 }
 .seccion-hab-recepcion .princ-hab-recepcion{
     display: flex;
     color: #ffffff;
-    background: #28A745;
+    background: #1b911b;
     height: 75%;
 }
 
@@ -2020,7 +2015,8 @@ section h2 i {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #228E3B;
+    background: #3cad2d;
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
 
 }.seccion-hab-recepcion .princ-hab-recepcion2{
     display: flex;
@@ -2126,9 +2122,9 @@ section h2 i {
     width: 100%;
 }
 .listado-tabla table thead th{
-    padding: 10px;
+    padding: 6px;
     color: #fff;
-    background: #29A5A1;
+    background: #297ea5;
     border: 2px solid #E5E5E5;
     font-weight: bold;
     text-align: center;
@@ -2136,12 +2132,12 @@ section h2 i {
 
 .listado-tabla table tbody td{
     border: 2px solid #E5E5E5;
-    padding: 10px 0 10px 10px;
+    padding: 8px 0 8px 8px;
     font-size: .9rem;
 }
 .listado-tabla table tbody td a{
     padding: 5px 8px;
-    margin-right: 3px;
+    margin-right: 1px;
     color: #fff;
 }
 .listado-tabla table tbody td a:nth-child(1){
@@ -2149,6 +2145,9 @@ section h2 i {
 }
 .listado-tabla table tbody td a:nth-child(2){
     background:  #DC143C;
+}
+.listado-tabla table tbody td a:nth-child(3){
+    background:  #147bdc;
 }
 .display_flex{
     display: flex;
@@ -2163,7 +2162,7 @@ section h2 i {
 }
 .listado-tabla table tfoot td{
     border: 2px solid #E5E5E5;
-    padding: 10px 12px;
+    padding: 8px 10px;
     color: #3e454d;
     font-size: .9rem;
 }
@@ -2219,6 +2218,7 @@ section h2 i {
     border-left: 0.5px solid #8F979B;
     border-bottom: 0.5px solid #8F979B;
     border-right: 0.5px solid #8F979B;
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
 }
 .cab-datosh .title-datosh{
     font-size: 1.1rem;
@@ -2279,6 +2279,7 @@ section h2 i {
     border-left: 0.5px solid #8F979B;
     border-bottom: 0.5px solid #8F979B;
     border-right: 0.5px solid #8F979B;
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
 }
 
 .seccion-datos-cli,.seccion-datos-aloj{
@@ -2307,17 +2308,25 @@ section h2 i {
 }
 .princ-metpago p,.princ-pago p{
     font-weight: bold;
-    color: #29A5A1;
+    color: #315aca;
     width: 30%;
 }
 .princ-metpago input,.princ-metpago select,.princ-pago input{
-    padding-left: 10px;
+    padding-left: 13px;
     width: 80%;
     height: 30px;
+    font-size: 14px;
+    border-width: 0px;
+    background-color: #eff2fb;
+    color: 595b62;
+    border-style: solid;
+    border-radius: 28px;
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
+    text-shadow: 0px 0px 0px rgba(66,66,66,.0);
 }
 .princ-metpago input:focus ,
 .princ-metpago select:focus{
-    border: 2px solid #29A5A1;
+    border: 2px solid #3373e9;
 }
 .princ-metpago div:nth-child(2) input{
     height: 135px
@@ -2617,25 +2626,26 @@ section h2 i {
     justify-content: center;
     position: fixed;
     color: #fff;
-    top: 800px;
+    top:57px;
     padding: 15px;
     animation: mover-izquierda 4s ease;
     transform: translateX(1200px) ;
 
    }
 .alertSave{
-    background: #0e992c;
+    background: #2c8820;
 }
 .alertError{
-    background: #c71b1b;
+    background: #c74343;
 }
   
 @keyframes mover-izquierda {
   0%{
     transform: translateX(1200px);
+
   }
   20%,30%,40%,50%{
-   transform: translateX(800px);
+   transform: translateX(20300px);
   }
   70%,80%,90%,100%{
    transform: translateX(1200px);
@@ -2712,7 +2722,7 @@ dos bordes con color y que giramos con transform: rotate(-45deg);
 	margin-top: 3px;
 }
 
-.new-input {
+input {
     padding: 13px;
     font-size: 14px;
     border-width: 0px;
@@ -2721,7 +2731,7 @@ dos bordes con color y que giramos con transform: rotate(-45deg);
     color: 595b62;
     border-style: solid;
     border-radius: 28px;
-    box-shadow: 0px 0px 0px rgba(66,66,66,.75);
+    box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
     text-shadow: 0px 0px 0px rgba(66,66,66,.0);
 }
 
