@@ -9,41 +9,10 @@ include "../Controlador/Modificar_Licencia_Administrador_Controlador.php";
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Gestión Licencias</title>
     <?php include "../Modelo/scripts.php" ?>
+
 </head>
 
 <body>
-    <script>
-        function TDate() {
-            var UserDate = document.getElementById("userdate").value;
-            var ToDate = new Date();
-            console.log(ToDate.toISOString());
-            if (new Date(UserDate).toISOString() <= ToDate.toISOString()) {
-                alert("La fecha debe ser mayor a (actual): " + ToDate);
-                return false;
-            }
-            return true;
-        }
-
-        function validarFechas() {
-            const fechaInicio = new Date(document.getElementsByName('fecha_inicio')[0].value);
-            const fechaFinal = new Date(document.getElementsByName('fecha_fin')[0].value);
-            const fechaActual = new Date();
-            if (fechaInicio < fechaActual || fechaFinal < fechaActual) {
-                alert('Las fechas deben ser desde la fecha actual hacia adelante.');
-                document.getElementsByName('fecha_inicio')[0].value = '';
-                document.getElementsByName('fecha_fin')[0].value = '';
-                return false;
-            }
-
-            if (fechaInicio > fechaFinal) {
-                alert('La fecha de inicio debe ser anterior a la fecha final.');
-                document.getElementsByName('fecha_ingreso')[0].value = '';
-                document.getElementsByName('fecha_fin')[0].value = '';
-                return false;
-            }
-            return true;
-        }
-    </script>
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
     <?php include "./sidebarAdministrador.php" ?>
@@ -75,6 +44,30 @@ include "../Controlador/Modificar_Licencia_Administrador_Controlador.php";
                 </div>
                 <div class="seccion-datos-ca">
                     <div class="seccion_metpago">
+                        <p class="title-pagos">Estado de la licencia</p>
+                        <div class="princ-metpago">
+                            <form action="" method="post">
+                                <div>
+                                    <p>Estado</p>
+                                    <select name="estado" id="estadoSelect">
+                                        <option value="2">Aprobado</option>
+                                        <option value="3">Denegado</option>
+                                    </select>
+                                </div>
+                                <div id="motivoJustificacion" style="display: none;">
+                                    <p>Motivo o justificación:</p>
+                                    <input name="comentario" type="text">
+                                </div>
+                                <div>
+                                    <button name="btn_Estado" class="bg_confir"><i class="fas fa-check-circle"></i> Confirmar</button>
+                                    <?php echo isset($msg_print) ? $msg_print : ''; ?>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="seccion-datos-ca">
+                    <div class="seccion_metpago">
                         <p class="title-pagos">Editar duración de licencia</p>
                         <div class="princ-metpago">
                             <form action="" method="post" onsubmit="validarFechas();">
@@ -100,30 +93,8 @@ include "../Controlador/Modificar_Licencia_Administrador_Controlador.php";
                         </div>
                     </div>
                 </div>
-                <div class="seccion-datos-ca">
-                    <div class="seccion_metpago">
-                        <p class="title-pagos">Estado de la licencia</p>
-                        <div class="princ-metpago">
-                            <form action="" method="post">
-                                <div>
-                                    <p>Estado</p>
-                                    <select name="estado" id="">
-                                        <option value="2">Aprobado</option>
-                                        <option value="3">Denegado</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <p>Motivo o justificación:</p>
-                                    <input name="comentario" type="text" required>
-                                </div>
-                                <div>
-                                    <button name="btn_Estado" class="bg_confir"><i class="fas fa-check-circle"></i> Confirmar</button>
-                                    <?php echo isset($msg_print) ? $msg_print : ''; ?>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
+                <script src="../../js/Tramite_licencias.js"></script>
             </div>
     </div>
     </section>

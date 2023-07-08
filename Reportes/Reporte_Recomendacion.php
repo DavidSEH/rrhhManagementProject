@@ -39,31 +39,39 @@ if (empty($_REQUEST['idUser'])) {
     $pdf->Cell(195, 5, "Telefono: " . $telefono, 0, 1, "R");
     $pdf->Cell(195, 5, "Direccion: " . $direccion, 0, 1, "R");
 
+    $pdf->Ln(15);
+    $pdf->SetFont("Arial", "", 15);
+    $pdf->SetFillColor(255, 255, 255);
+    $pdf->SetDrawColor(255, 255, 255);
+    $pdf->Cell(195, 12, "Lima, $fecha", 1, 1, "R", 2);
+ 
 
     $pdf->Ln(10);
     $pdf->SetFont("Arial", "B", 20);
     $pdf->SetFillColor(255, 255 ,255);
     $pdf->SetTextColor(1, 1, 1);
     $pdf->SetDrawColor(255, 255, 255);
-    $pdf->Cell(195, 16, "", 1, 1, "C", 2);
-    $pdf->Cell(195, 4, "CERTIFICADO DE TRABAJO", 1, 1, "C", 2);
+    $pdf->Cell(195, 7, "", 1, 1, "C", 2);
+    $pdf->Cell(195, 4, "CARTA DE RECOMENDACION", 1, 1, "C", 2);
  
     $pdf->Ln(15);
     $pdf->SetFont("Arial", "", 15);
     $pdf->SetFillColor(255, 255, 255);
     $pdf->SetDrawColor(255, 255, 255);
 
+
+
+    $pdf->MultiCell(0, 7, utf8_decode("A quien corresponda:"), 0, "L");
     $pdf->Cell(195, 4, "", 1, 1, "C", 2);
-    $pdf->MultiCell(0, 7, utf8_decode("El Sr. JHONATAN GOMEZ MONROY, Identificado con DNI N° 45485080, Gerente General de $razon_social, con RUC $ruc"), 0, "C");
+    $pdf->MultiCell(0, 7, utf8_decode("Me permito informarle que conozco amplia y detalladamente al Sr. " . $dataEmpleado['nombres'] . " " . $dataEmpleado['apellidos'] . "  quien laboró conmigo desde el " . $dataEmpleado['fecha_ingreso'] . " hasta el " . $dataEmpleado['fecha_cese'] . ", y puedo asegurar que es una persona integra, estable, responsable y competente para cualquier tipo de actividad que se le encomiende"), 0, "L");
     $pdf->Cell(195, 8, "", 1, 1, "C", 2);
-    $pdf->MultiCell(0, 7, utf8_decode("CERTIFICA:"), 0, "C");
-    $pdf->Cell(195, 8, "", 1, 1, "C", 2);
-    $pdf->MultiCell(0, 7, utf8_decode("         Que, el Sr. " . $dataEmpleado['nombres'] . " " . $dataEmpleado['apellidos'] . ", Identificado con DNI N° " . $dataEmpleado['dni'] . ", labora en nuestra empresa como " . $dataEmpleado['descripcion'] . " desde el " . $dataEmpleado['fecha_ingreso'] . " , demostrando su responsabilidad, honestidad y dedicación en las labores que le son encomendadas."), 0, "C");
-    $pdf->Cell(195, 8, "", 1, 1, "C", 2);
-    $pdf->MultiCell(0, 7, utf8_decode("                     Se expide la presente a solicitud del interesado, para los fines que "), 0, "L");
-    $pdf->MultiCell(0, 7, utf8_decode("     crea conveniente."), 0, "L");
-    $pdf->Cell(195, 12, "", 1, 1, "C", 2);
-    $pdf->Cell(195, 12, "Lima, $fecha", 1, 1, "R", 2);
+    $pdf->MultiCell(0, 7, utf8_decode("Por lo anterior no tengo incomveniente ninguno en recomendarlo ampliamente agradeciendo de antemano la atencion, un cordial saludo. "), 0, "L");
+    $pdf->Cell(195, 40, "", 1, 1, "C", 2);
+    $pdf->MultiCell(0, 7, utf8_decode("Atentamente."), 0, "C");
+    $pdf->Cell(195, 20, "", 1, 1, "C", 2);
+    $pdf->MultiCell(0, 7, utf8_decode("___________________________"), 0, "C");
+    $pdf->MultiCell(0, 7, utf8_decode("JHONATAN GOMEZ MONROY"), 0, "C");
+    $pdf->MultiCell(0, 7, utf8_decode("DNI: 75425684"), 0, "C");
     $pdf->Output();
     mysqli_close($conection);
 }

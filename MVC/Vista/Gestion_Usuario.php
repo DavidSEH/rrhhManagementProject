@@ -51,7 +51,7 @@ session_start();
                     <h2 for="estado-checkbox">Mostrar usuarios deshabilitados:
                         <input type="checkbox" id="estado-checkbox" name="estado" onchange="document.getElementById('estado-form').submit()" <?php if (isset($_GET['estado']) && $_GET['estado'] == 'on') echo 'checked'; ?>>
                         <?php if (isset($_GET['estado']) && $_GET['estado'] == 'on') : ?>
-                            <input type="submit" value="Actualizar" class="btnPassword">
+                            <input type="submit" value="Actualizar" class="btnPassword" hidden>
                         <?php endif; ?>
                     </h2>
                 </form>

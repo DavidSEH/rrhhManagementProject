@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +53,14 @@ session_start();
                 <h3>Gestion Empleado</h3>
                 <a href="NuevoEmpleado.php">Nuevo empleado</a>
             </div>
+            <div class="cab-user">
+                <h3>Importar Datos
+                    <form action="../Controlador/Importar_Datos_Empleado.php" method="post" enctype="multipart/form-data">
+                        <input type="file" name="archivo_sql" accept=".sql" required>
+                        <a><button type="submit">Importar</button></a>
+                    </form>
+                </h3>
+            </div>
             <div class="seccion-user ">
 
                 <div class="search-p">
@@ -67,12 +74,12 @@ session_start();
                 </div>
                 <form action="" method="GET" id="estado-form">
                     <div class="cab-user">
+                        <h3>Mostrar empleados cesados</h3>
                         <div class="ckbx-style-8">
-                            <h2>Mostrar empleados cesados</h2>
                             <input type="checkbox" id="estado-checkbox" name="estado" onchange="document.getElementById('estado-form').submit()" <?php if (isset($_GET['estado']) && $_GET['estado'] == 'on') echo 'checked'; ?>>
                             <label for="estado-checkbox"></label>
                             <?php if (isset($_GET['estado']) && $_GET['estado'] == 'on') : ?>
-                                <input type="submit" value="Actualizar" class="btnPassword">
+                                <input type="submit" value="Actualizar" class="btnPassword" hidden>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -143,8 +150,11 @@ session_start();
                                     <?php
                                     if ($estado == 0) {
                                         echo '<a href="AscenderEmpleado.php?id=' . $data["cod_personal"] . '" class="btn-restore"><span class="material-symbols-outlined">person</span>Ascender</a>';
-                                        echo '<a href="../../Reportes/Reporte_Certificado.php?idUser=' . $data["cod_personal"] . '" class="btn-restore" target="_blank"><span class="material-symbols-outlined">task</span>Certificado</a>';
+                                        echo '<a href="../../Reportes/Reporte_Certificado_cesado.php?idUser=' . $data["cod_personal"] . '" class="btn-restore" target="_blank"><span class="material-symbols-outlined">task</span>Certificado</a>';
+                                        echo '<a href="../../Reportes/Reporte_Recomendacion.php?idUser=' . $data["cod_personal"] . '" class="btn-restore" target="_blank"><span class="material-symbols-outlined">task</span>Recomend.</a>';
+
                                     } else {
+                                        echo '<a href="../../Reportes/Reporte_Certificado.php?idUser=' . $data["cod_personal"] . '" class="btn-restore" target="_blank"><span class="material-symbols-outlined">task</span>Certificado</a>';
                                         if ($data["cod_personal"] != 1) {
                                             echo '<a href="EliminarEmpleado.php?id=' . $data["cod_personal"] . '" class="btn-delete"><span class="material-symbols-outlined">person_off</span>Cese</a>';
                                         }
@@ -162,6 +172,7 @@ session_start();
             </div>
         </section>
     </div>
+    <?php echo isset($alert) ? $alert : ''; ?>
     <?php include "../Modelo/Footer.php" ?>
 </body>
 

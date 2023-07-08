@@ -58,7 +58,7 @@ if (empty($_REQUEST['idUser'])) {
     $pdf->Cell(195, 8, "", 1, 1, "C", 2);
     $pdf->MultiCell(0, 7, utf8_decode("CERTIFICA:"), 0, "C");
     $pdf->Cell(195, 8, "", 1, 1, "C", 2);
-    $pdf->MultiCell(0, 7, utf8_decode("         Que, el Sr. " . $dataEmpleado['nombres'] . " " . $dataEmpleado['apellidos'] . ", Identificado con DNI N° " . $dataEmpleado['dni'] . ", labora en nuestra empresa como " . $dataEmpleado['descripcion'] . " desde el " . $dataEmpleado['fecha_ingreso'] . " , demostrando su responsabilidad, honestidad y dedicación en las labores que le son encomendadas."), 0, "C");
+    $pdf->MultiCell(0, 7, utf8_decode("         Que, el Sr. " . $dataEmpleado['nombres'] . " " . $dataEmpleado['apellidos'] . ", Identificado con DNI N° " . $dataEmpleado['dni'] . ", ha laborado en nuestra empresa como " . $dataEmpleado['descripcion'] . ", durante el periodo comprendido desde el " . $dataEmpleado['fecha_ingreso'] . " hasta el " . $dataEmpleado['fecha_cese'] . ", demostrando durante su permanencia responsabilidad, honestidad y dedicación en las labores que le fueron encomendadas."), 0, "C");
     $pdf->Cell(195, 8, "", 1, 1, "C", 2);
     $pdf->MultiCell(0, 7, utf8_decode("                     Se expide la presente a solicitud del interesado, para los fines que "), 0, "L");
     $pdf->MultiCell(0, 7, utf8_decode("     crea conveniente."), 0, "L");
