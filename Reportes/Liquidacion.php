@@ -32,7 +32,7 @@ if (empty($_REQUEST['idUser'])) {
     $pdf = new PDF("P", "mm", "A4");
     $pdf->AliasNbPages();
     $pdf->SetMargins(10, 10, 10);
-    $pdf->AddPage("PORTRAIT", "letter");
+    $pdf->AddPage("Landscape", "letter");
 
 
     $pdf->Ln(10);
@@ -48,10 +48,12 @@ if (empty($_REQUEST['idUser'])) {
     $pdf->SetFillColor(41, 165, 161);
     $pdf->SetTextColor(255, 255, 255);
     $pdf->SetDrawColor(229, 229, 229);
-    $pdf->Cell(195, 10, "Listado de asistencias", 1, 1, "C", 2);
+    $pdf->Cell(256, 10, "Liquidacion", 1, 1, "C", 2);
     $pdf->SetFont("Arial", "B", 12);
-    $pdf->Cell(100, 10, " Responsable", 1, 0, "C", 2);
-    $pdf->Cell(95, 10, " Fecha", 1, 1, "C", 2);
+    $pdf->Cell(64, 10, " RUC", 1, 0, "C", 2);
+    $pdf->Cell(64, 10, " Razón Social", 1, 0, "C", 2);
+    $pdf->Cell(64, 10, " Rubro", 1, 0, "C", 2);
+    $pdf->Cell(64, 10, " Dirección", 1, 0, "C", 2);
 
 
     $pdf->SetFillColor(210, 245, 244);

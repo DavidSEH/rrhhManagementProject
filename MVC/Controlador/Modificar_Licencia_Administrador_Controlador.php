@@ -16,7 +16,7 @@ $cod_licencia = $_REQUEST['id'];
 $sql = mysqli_query($conection, "SELECT l.cod_licencia,t.nom_licencia AS tipo, l.fecha_inicio, l.fecha_fin, l.tipo, p.nombres, t.descripcion
                                  FROM licencia l
                                  INNER JOIN personal p ON l.cod_personal = p.cod_personal
-                                 INNER JOIN tipo_licencia t ON l.cod_licencia = t.cod_licencia
+                                 INNER JOIN tipo_licencia t ON l.tipo = t.cod_licencia
                                  WHERE l.cod_licencia = '$cod_licencia'");
 
 $result_sql = mysqli_num_rows($sql);

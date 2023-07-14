@@ -1,76 +1,64 @@
 
-<?php 
-	session_start();
-	if($_SESSION['rol'] != 1)
-	{
-		header("location: ../Vista/Gestion_Promocion.hp");
-	}
-	include "../Modelo/conexion.php";
+<?php
+session_start();
+if ($_SESSION['rol'] != 1) {
+    header("location: ../Vista/Gestion_Licencias.php");
+}
+include "../Modelo/conexion.php";
 
 
-    if(empty($_REQUEST['id']) ){
-        header("location: ../Vista/Gestion_Promocion.php");
-        mysqli_close($conection);
-    }else{
+if (empty($_REQUEST['id'])) {
+    header("location: ../Vista/Gestion_Licencias.php");
+    mysqli_close($conection);
+} else {
 
-        $idreserva = $_REQUEST['id'];
+    $cod_licencia = $_REQUEST['id'];
 
-        $query = mysqli_query($conection,"SELECT * FROM reserva r
-                                    INNER JOIN cliente c ON (r.idcliente=c.idcliente)
-                                         WHERE idreserva = $idreserva ");
-        
-        $result = mysqli_num_rows($query);
+    $query = mysqli_query($conection, "SELECT * FROM licencia l
+                                    INNER JOIN personal p ON (l.cod_personal=p.cod_personal)
+                                         WHERE cod_licencia = $cod_licencia ");
 
-        if($result > 0){
-            while ($data = mysqli_fetch_array($query)) {
-                $idreserva = $data['idreserva'];
-                $fecha_ingreso = $data['fecha_ingreso'];
-                $fecha_salida = $data['fecha_salida'];
-                $nombre = $data['nombre'];
-                $idhabitacion = $data['idhabitacion'];
-            }
-        }else{
-            header("location: ../Vista/Gestion_Reservas.php");
+    $result = mysqli_num_rows($query);
+
+    if ($result > 0) {
+        while ($data = mysqli_fetch_array($query)) {
+            $cod_licencia = $data['cod_licencia'];
+            $fecha_inicio = $data['fecha_inicio'];
+            $fecha_fin = $data['fecha_fin'];
+            $nombres = $data['nombres'];
         }
-
-
+    } else {
+        header("location: ../Vista/Gestion_Licencias.php");
     }
+}
 
 
-	if(!empty($_POST)){   
-        
-        $alert='';
-        
-        if (isset($_POST['btn_Eliminar'])) {
+if (!empty($_POST)) {
 
-            $idreserva = $_POST['idreserva'];
-            $idhabitacion = $_POST['idhabitacion'];
+    $alert = '';
 
+    if (isset($_POST['btn_Eliminar'])) {
 
-             $query_delete = mysqli_query($conection,
-                "UPDATE reserva SET estatus = 5 WHERE idreserva = '$idreserva' ");
+        $cod_licencia = $_POST['cod_licencia'];
 
-            $query_delete2= mysqli_query($conection,
-            "UPDATE habitacion SET estatus = 1 WHERE idhabitacion = '$idhabitacion' ");
-            
-            
-             if($query_delete & $query_delete2){
-                $alert = '<div class="alertSave">!Finalizado con Exito!  </div>';
-            }else{
-                $alert = '<div class="alertError">Error</div>';
-            }
+        $query_delete = mysqli_query(
+            $conection,
+            "DELETE FROM licencia WHERE cod_licencia = '$cod_licencia' "
+        );
 
+        if ($query_delete) {
+            header("location: ../Vista/Gestion_Licencias.php");
+        } else {
+            $alert = '<div class="alertError">Error</div>';
         }
-		
-		
-
-	}
-
-    
-    
-        
-    
-	
+    }
+}
 
 
- ?>
+
+
+
+
+
+
+?>

@@ -45,8 +45,8 @@
                                         <input type="number" name="dni" id="dni" placeholder="DNI" value="<?php echo $dni; ?>">
                                     </div>
                                     <div class="contenido-upd">
-                                        <label for="nombre">Nombre:</label>
-                                        <input type="text" name="nombre" id="nombre" placeholder="Nombre completo" value="<?php echo $nombres; ?>">
+                                        <label for="nombres">Nombre:</label>
+                                        <input type="text" name="nombres" id="nombres" placeholder="Nombre completo" value="<?php echo $nombres; ?>">
                                     </div>
                                 </div>
                                 <div class="conten-p-upd">
@@ -62,11 +62,11 @@
                                 <div class="conten-p-upd">
                                     <div class="contenido-upd"> 
                                         <label for="telefono">Telefono:</label>
-                                        <input type="number" name="telefono" id="telefono" placeholder="Telefono" value="<?php echo $telefono; ?>">
+                                        <input type="number" name="telefonoo" id="telefono" placeholder="Telefono" value="<?php echo $telefonoo; ?>">
                                     </div>
                                     <div class="contenido-upd"> 
                                         <label for="domicilio">Domicilio:</label>
-                                        <input type="text" name="domicilio" id="domicilio" placeholder="Domicilio" value="<?php echo $direccion;?>">
+                                        <input type="text" name="direccioon" id="direccion" placeholder="Domicilio" value="<?php echo $direccioon;?>">
                                     </div>
                                 </div> 
                         </div>

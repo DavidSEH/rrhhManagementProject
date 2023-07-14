@@ -11,31 +11,7 @@ if (!empty($_POST)) {
 		header('location: ../Vista/MenuAdministrador.php');
 		mysqli_close($conection);
 	}
-	if (isset($_POST['btnBuscar'])) {
-		if (empty($_POST['busqueda'])) {
-			$alert = '<div class="alertError">Ingrese un N° DNI</div>';
-		} else {
-			$busqueda 	= $_POST['busqueda'];
-			if (strlen($busqueda) == 8) {
-				$query_busqueda = mysqli_query($conection, "SELECT * FROM personal WHERE dni='$busqueda'");
-				$result_busqueda = mysqli_num_rows($query_busqueda);
-				if ($result_busqueda == 0) {
-					$alert = '<div class="alertError">Empleado no Registrado</div>';
-					$msg2 = '<a href="NuevoCliente.php">Nuevo Empleado</a>';
-				} else {
-					if ($query_busqueda) {
-						while ($data2 = mysqli_fetch_array($query_busqueda)) {
-							$cod_personal		= $data2['cod_personal'];
-							$dni			= $data2['dni'];
-							$nombres			= $data2['nombres'];
-						}
-					}
-				}
-			} else {
-				$alert = '<div class="alertError">Por favor, ingrese solo 8 digitos.</div>';
-			}
-		}
-	}
+
 	if (isset($_POST['btnGenerar'])) {
 		$idusuario 		= $_POST['idusuario'];
 		$cod_personal 		= $_POST['cod_personal'];
@@ -55,3 +31,22 @@ if (!empty($_POST)) {
 		}
 	}
 }
+// Realizar la consulta a la base de datos para obtener empleados activos 
+$query = "SELECT cod_personal, CONCAT(nombres, ' ', apellidos) AS nombre_completo FROM personal WHERE estado = 1";
+$result = mysqli_query($conection, $query);
+
+// Verificar si se obtuvieron resultados
+if ($result && mysqli_num_rows($result) > 0) {
+	$options = ""; // Variable para almacenar las opciones del select
+
+	// Recorrer los resultados y generar las opciones
+	while ($row = mysqli_fetch_assoc($result)) {
+		$cod_personal = $row['cod_personal'];
+		$nombre_completo = $row['nombre_completo'];
+		$options .= "<option value=\"$cod_personal\">$nombre_completo</option>";
+	}
+} else {
+	// Manejar el caso en que no se obtuvieron resultados
+	$options = "<option value=\"\">No hay empleados disponibles</option>";
+}
+

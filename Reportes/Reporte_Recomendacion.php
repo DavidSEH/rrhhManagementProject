@@ -20,6 +20,8 @@ if (empty($_REQUEST['idUser'])) {
         $telefono            = $dataEmp['telefono'];
         $direccion            = $dataEmp['direccion'];
         $pagina_web            = $dataEmp['web'];
+        $gerente= $dataEmp['gerente'];
+        $dni_gerente= $dataEmp['dni_gerente'];
     }
     /*Query*/
     $cod_personal = $_REQUEST['idUser'];
@@ -52,7 +54,7 @@ if (empty($_REQUEST['idUser'])) {
     $pdf->SetTextColor(1, 1, 1);
     $pdf->SetDrawColor(255, 255, 255);
     $pdf->Cell(195, 7, "", 1, 1, "C", 2);
-    $pdf->Cell(195, 4, "CARTA DE RECOMENDACION", 1, 1, "C", 2);
+    $pdf->Cell(195, 4, "CARTA DE RECOMENDACIÓN", 1, 1, "C", 2);
  
     $pdf->Ln(15);
     $pdf->SetFont("Arial", "", 15);
@@ -65,13 +67,13 @@ if (empty($_REQUEST['idUser'])) {
     $pdf->Cell(195, 4, "", 1, 1, "C", 2);
     $pdf->MultiCell(0, 7, utf8_decode("Me permito informarle que conozco amplia y detalladamente al Sr. " . $dataEmpleado['nombres'] . " " . $dataEmpleado['apellidos'] . "  quien laboró conmigo desde el " . $dataEmpleado['fecha_ingreso'] . " hasta el " . $dataEmpleado['fecha_cese'] . ", y puedo asegurar que es una persona integra, estable, responsable y competente para cualquier tipo de actividad que se le encomiende"), 0, "L");
     $pdf->Cell(195, 8, "", 1, 1, "C", 2);
-    $pdf->MultiCell(0, 7, utf8_decode("Por lo anterior no tengo incomveniente ninguno en recomendarlo ampliamente agradeciendo de antemano la atencion, un cordial saludo. "), 0, "L");
+    $pdf->MultiCell(0, 7, utf8_decode("Por lo anterior no tengo inconveniente ninguno en recomendarlo ampliamente agradeciendo de antemano la atencion, un cordial saludo. "), 0, "L");
     $pdf->Cell(195, 40, "", 1, 1, "C", 2);
     $pdf->MultiCell(0, 7, utf8_decode("Atentamente."), 0, "C");
     $pdf->Cell(195, 20, "", 1, 1, "C", 2);
     $pdf->MultiCell(0, 7, utf8_decode("___________________________"), 0, "C");
-    $pdf->MultiCell(0, 7, utf8_decode("JHONATAN GOMEZ MONROY"), 0, "C");
-    $pdf->MultiCell(0, 7, utf8_decode("DNI: 75425684"), 0, "C");
+    $pdf->MultiCell(0, 7, utf8_decode("$gerente"), 0, "C");
+    $pdf->MultiCell(0, 7, utf8_decode("DNI: ".$dni_gerente), 0, "C");
     $pdf->Output();
     mysqli_close($conection);
 }
