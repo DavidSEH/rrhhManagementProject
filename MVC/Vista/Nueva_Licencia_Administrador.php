@@ -102,7 +102,7 @@ include '../Controlador/Nueva_Licencia_Administrador_Controlador.php';
                                     <label for="">Nombres y apellidos:</label>
                                     <div class="div-int">
                                         <i class="fas fa-user-secret"></i>
-                                        <input type="text" value="<?php echo isset($nombres_usu) ? $nombres_usu : ''; ?> " required disable>
+                                        <input type="text" value="<?php echo isset($nombres_usu) ? $nombres_usu : ''; ?> " required disabled>
                                     </div>
                                 </div>
                                 <div class="div-ext">

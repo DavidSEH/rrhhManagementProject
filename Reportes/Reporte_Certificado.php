@@ -20,6 +20,8 @@ if (empty($_REQUEST['idUser'])) {
         $telefono            = $dataEmp['telefono'];
         $direccion            = $dataEmp['direccion'];
         $pagina_web            = $dataEmp['web'];
+        $gerente= $dataEmp['gerente'];
+        $dni_gerente= $dataEmp['dni_gerente'];
     }
     /*Query*/
     $cod_personal = $_REQUEST['idUser'];
@@ -54,7 +56,7 @@ if (empty($_REQUEST['idUser'])) {
     $pdf->SetDrawColor(255, 255, 255);
 
     $pdf->Cell(195, 4, "", 1, 1, "C", 2);
-    $pdf->MultiCell(0, 7, utf8_decode("El Sr. JHONATAN GOMEZ MONROY, Identificado con DNI N° 45485080, Gerente General de $razon_social, con RUC $ruc"), 0, "C");
+    $pdf->MultiCell(0, 7, utf8_decode("El Sr. $gerente, Identificado con DNI N° $dni_gerente, Gerente General de $razon_social, con RUC $ruc"), 0, "C");
     $pdf->Cell(195, 8, "", 1, 1, "C", 2);
     $pdf->MultiCell(0, 7, utf8_decode("CERTIFICA:"), 0, "C");
     $pdf->Cell(195, 8, "", 1, 1, "C", 2);

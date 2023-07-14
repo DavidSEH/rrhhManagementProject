@@ -53,14 +53,6 @@ session_start();
                 <h3>Gestion Empleado</h3>
                 <a href="NuevoEmpleado.php">Nuevo empleado</a>
             </div>
-            <div class="cab-user">
-                <h3>Importar Datos
-                    <form action="../Controlador/Importar_Datos_Empleado.php" method="post" enctype="multipart/form-data">
-                        <input type="file" name="archivo_sql" accept=".sql" required>
-                        <a><button type="submit">Importar</button></a>
-                    </form>
-                </h3>
-            </div>
             <div class="seccion-user ">
 
                 <div class="search-p">
@@ -150,14 +142,16 @@ session_start();
                                     <?php
                                     if ($estado == 0) {
                                         echo '<a href="AscenderEmpleado.php?id=' . $data["cod_personal"] . '" class="btn-restore"><span class="material-symbols-outlined">person</span>Ascender</a>';
-                                        echo '<a href="../../Reportes/Reporte_Certificado_cesado.php?idUser=' . $data["cod_personal"] . '" class="btn-restore" target="_blank"><span class="material-symbols-outlined">task</span>Certificado</a>';
-                                        echo '<a href="../../Reportes/Reporte_Recomendacion.php?idUser=' . $data["cod_personal"] . '" class="btn-restore" target="_blank"><span class="material-symbols-outlined">task</span>Recomend.</a>';
-
+                                        echo '<a href="../../Reportes/Reporte_Certificado_cesado.php?idUser=' . $data["cod_personal"] . '" class="btn-generate" target="_blank"><span class="material-symbols-outlined">task</span>Certificado</a>';
+                                        echo '<a href="../../Reportes/Reporte_Recomendacion.php?idUser=' . $data["cod_personal"] . '" class="btn-generate" target="_blank"><span class="material-symbols-outlined">task</span>Recomend.</a>';
+                                        echo '<a href="../../Reportes/Liquidacion.php?idUser=' . $data["cod_personal"] . '" class="btn-generate" target="_blank"><span class="material-symbols-outlined">task</span>Liquidación</a>';
                                     } else {
-                                        echo '<a href="../../Reportes/Reporte_Certificado.php?idUser=' . $data["cod_personal"] . '" class="btn-restore" target="_blank"><span class="material-symbols-outlined">task</span>Certificado</a>';
+
                                         if ($data["cod_personal"] != 1) {
                                             echo '<a href="EliminarEmpleado.php?id=' . $data["cod_personal"] . '" class="btn-delete"><span class="material-symbols-outlined">person_off</span>Cese</a>';
                                         }
+                                        echo '<a href="../../Reportes/Reporte_Certificado.php?idUser=' . $data["cod_personal"] . '" class="btn-generate" target="_blank"><span class="material-symbols-outlined">task</span>Certificado</a>';
+                                        echo '<a href="../../Reportes/Reporte_Certificado.php?idUser=' . $data["cod_personal"] . '" class="btn-generate" target="_blank"><span class="material-symbols-outlined">task</span>Boleta de pagos</a>';
                                         echo '<a href="ModificarEmpleado.php?id=' . $data["cod_personal"] . '" class="btn-update"><span class="material-symbols-outlined">edit</span>Modificar</a>';
                                     }
                                     ?>

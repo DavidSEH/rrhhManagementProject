@@ -26,7 +26,7 @@ if (empty($_REQUEST['idUser'])) {
     $query_reserv_generate = mysqli_query($conection, "SELECT l.cod_licencia, t.nom_licencia AS tipo, p.nombres AS nombres, p.dni AS dni, l.fecha_inicio, p.cod_puesto,l.fecha_fin, l.estado, DATEDIFF(l.fecha_fin, l.fecha_inicio) AS dias
                         FROM licencia l
                         INNER JOIN personal p ON l.cod_personal = p.cod_personal
-                        INNER JOIN tipo_licencia t ON l.cod_licencia = t.cod_licencia
+                        INNER JOIN tipo_licencia t ON l.tipo = t.cod_licencia
                         ORDER BY l.cod_licencia");
 
 
@@ -41,10 +41,9 @@ if (empty($_REQUEST['idUser'])) {
     $pdf->Ln(10);
 
     $pdf->SetFont("Arial", "", 9.5);
-    $pdf->Cell(195, 5, utf8_decode("N° RUC: " . $ruc), 0, 1, "C");
-    $pdf->Cell(195, 5, "Razon Social: " . $razon_social, 0, 1, "C");
-    $pdf->Cell(195, 5, "Telefono: " . $telefono, 0, 1, "C");
-    $pdf->Cell(195, 5, "Direccion: " . $direccion, 0, 1, "C");
+    $pdf->Cell(195, 5, utf8_decode("N° RUC: " . $ruc), 0, 1, "R");
+    $pdf->Cell(195, 5, "Telefono: " . $telefono, 0, 1, "R");
+    $pdf->Cell(195, 5, "Direccion: " . $direccion, 0, 1, "R");
 
 
     $pdf->Ln(10);

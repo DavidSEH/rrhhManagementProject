@@ -77,7 +77,7 @@ session_start();
                         $query = mysqli_query($conection, "SELECT l.cod_licencia, t.nom_licencia AS tipo, p.nombres AS nombres, p.dni AS dni, l.fecha_inicio, l.fecha_fin, l.estado,l.comentario
                         FROM licencia l
                         INNER JOIN personal p ON l.cod_personal = p.cod_personal
-                        INNER JOIN tipo_licencia t ON l.cod_licencia = t.cod_licencia
+                        INNER JOIN tipo_licencia t ON l.tipo = t.cod_licencia
                         ORDER BY l.cod_licencia DESC LIMIT $desde, $por_pagina;");
                         mysqli_close($conection);
                         $result = mysqli_num_rows($query);

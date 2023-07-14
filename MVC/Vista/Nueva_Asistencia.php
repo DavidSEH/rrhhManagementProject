@@ -92,80 +92,59 @@ include '../Controlador/Nueva_Asistencia_Controlador.php';
             </div>
             <form method="post" action="" onsubmit="validarFechas();">
                 <input type="hidden" name="idusuario" value="<?php echo $_SESSION['idUser'] ?>">
-                <input type="hidden" name="cod_personal" value="<?php echo isset($cod_personal) ? $cod_personal : ''; ?>">
                 <div class="principal-genera-r">
-                    <div class="seccion-datos-ca">
-                        <div class="seccion-datos-cli">
+                    <div class="container-new-user">
+                        <div class="section-new-user">
                             <p>Datos de la asistencia</p>
-                            <div class="seccion-datos-aloj">
-                                <div class="div-ext">
-
-                                    <div class="datos-aloj">
-                                        <label for="">Nro de documento:</label>
-                                        <div class="div-div-int">
-                                            <div class="input-container">
-                                                <input type="number" name="busqueda" value="<?php echo isset($dni) ? $dni : ''; ?>" maxlength="7" class="new-input">
-                                                <button type="submit" name="btnBuscar"> <span class="material-symbols-outlined">
-                                                        search
-                                                    </span></button>
-                                            </div>
-                                        </div>
-                                        <div class="div-ext">
-                                            <label for="">Nombres:</label>
-                                            <div class="div-div-int">
-
-                                                <input type="text" class="new-input" value="<?php echo isset($nombres) ? $nombres : ''; ?>" disabled>
-                                            </div>
-                                        </div>
-                                        <div class="div-div-int">
-                                            <label for="">Fecha Ingreso:</label>
-                                            <input type="date" class="new-input" name="fechain" value="" id="" onchange="">
-                                        </div>
-                                        <div class="div-div-int" id="num-habitacion">
-                                            <label for="">Hora Ingreso:</label>
-                                            <input type="time" class="new-input" name="horain" value="" id="userdate" onchange="TDate()">
-                                        </div>
-                                        <div class="div-div-int" style="display: none;">
-                                            <label for="">Fecha Salida:</label>
-                                        </div>
-                                        <div class="div-div-int" id="num-habitacion">
-                                            <label for="">Hora Salida:</label>
-                                            <input type="time" class="new-input" name="horasal" value="" id="userdate" onchange="TDate()">
-                                        </div>
+                            <div class="formulario-new-user">
+                                <div class="conten-p-new">
+                                    <div class="contenido-new">
+                                        <label for="">Seleccione un empleado:</label>
+                                        <select name="cod_personal" id="cod_personal">
+                                            <?php echo $options; ?>
+                                        </select>
                                     </div>
-
-
-                                    <div class="seccion-datos-aloj">
-                                        <div class="datos-aloj">
-                                            <div class="div-ext-part">
-
-                                                <div class="div-div-int">
-                                                    <button name="regresar">
-                                                        <span class="material-symbols-outlined">
-                                                            undo
-                                                        </span></i>Regresar</button>
-                                                </div>
-
-                                                <div class="div-div-int">
-                                                    <button type="submit" name="btnGenerar">
-                                                        <span class="material-symbols-outlined">
-                                                            done
-                                                        </span></i>Confirmar</button>
-                                                </div>
-                                            </div>
-                                        </div>
+                                </div>
+                                <div class="conten-p-new">
+                                    <div class="contenido-new">
+                                        <label for="">Fecha Ingreso:</label>
+                                        <input type="date" class="new-input" name="fechain" value="" id="" onchange="">
                                     </div>
-
+                                </div>
+                                <div class="conten-p-new">
+                                    <div class="contenido-new" id="horain">
+                                        <label for="">Hora Ingreso:</label>
+                                        <input type="time" class="new-input" name="horain" value="" id="userdate" onchange="TDate()">
+                                    </div>
+                                    <div class="contenido-new" id="horasal">
+                                        <label for="">Hora Salida:</label>
+                                        <input type="time" class="new-input" name="horasal" value="" id="userdate" onchange="TDate()">
+                                    </div>
                                 </div>
                             </div>
+
+                            <div class="btn-actualizar-user">
+                                <div class="div-div-int">
+                                    <button name="regresar">
+                                        <span class="material-symbols-outlined">
+                                            undo
+                                        </span></i>Regresar</button>
+                                </div>
+                                <div class="div-div-int">
+                                    <button type="submit" name="btnGenerar">
+                                        <span class="material-symbols-outlined">
+                                            done
+                                        </span></i>Confirmar</button>
+                                </div>
+                            </div>
+
 
                         </div>
                     </div>
                 </div>
-    </div>
-    <?php echo isset($alert) ? $alert : ''; ?>
-    </form>
-    </section>
+                <?php echo isset($alert) ? $alert : ''; ?>
+            </form>
+        </section>
     </div>
     <?php include "../Modelo/Footer.php" ?>
 </body>
