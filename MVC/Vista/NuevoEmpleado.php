@@ -86,7 +86,13 @@ include "../Controlador/RegistroEmpleadoControlador.php";
                                     <label for="sueldo">Sueldo:</label>
                                     <input type="number" name="sueldo" id="sueldo" placeholder="Monto a ganar" value="">
                                 </div>
-
+                                <div class="contenido-new">
+                                    <label for="hijos">Tiene hijos:</label>
+                                    <select name="hijos" id="hijos">
+                                        <option value="1">Si</option>
+                                        <option value="0">No</option>
+                                    </select> 
+                                </div>
                             </div>
                         </div>
                         <div class="btn-new-user">

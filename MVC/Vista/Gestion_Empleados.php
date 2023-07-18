@@ -80,7 +80,7 @@ session_start();
                     <?php
                     include "../Modelo/conexion.php";
                     $estado = isset($_GET['estado']) && $_GET['estado'] == 'on' ? 0 : 1;
-                    $query = mysqli_query($conection, "SELECT cod_personal,dni,nombres,apellidos,telefono,fecha_ingreso,fecha_cese,cod_motivo_cese,cod_puesto,sueldo,correo
+                    $query = mysqli_query($conection, "SELECT cod_personal,dni,nombres,apellidos,telefono,fecha_ingreso,fecha_cese,cod_motivo_cese,cod_puesto,sueldo,correo,hijos
                                                     from personal c 
                                                     WHERE estado = $estado ORDER BY cod_personal");
                     mysqli_close($conection);
@@ -127,6 +127,10 @@ session_start();
                                                     echo '<li>';
                                                     echo '<span class="fas fa-calendar-alt"></span>';
                                                     echo '<span>Salario:' . $data["sueldo"] . '</span>';
+                                                    echo '</li>';
+                                                    echo '<li>';
+                                                    echo '<span class="fas fa-calendar-alt"></span>';
+                                                    echo '<span>Hijos:' . $data["hijos"] . '</span>';
                                                     echo '</li>';
                                                 }
                                                 ?>

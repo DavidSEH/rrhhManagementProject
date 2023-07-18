@@ -34,6 +34,7 @@ if (!empty($_POST)) {
         $domicilio = $_POST['domicilio'];
         $fecha_ingreso = $_POST['fecha_ingreso'];
         $sueldo = $_POST['sueldo'];
+        $hijos = $_POST['hijos'];
         $cod_puesto = $_POST['cod_puesto'];
 
         // Verificar si ya existe un cliente con el mismo DNI
@@ -46,8 +47,8 @@ if (!empty($_POST)) {
 
             $query_insert = mysqli_query(
                 $conection,
-                "INSERT INTO personal(dni,nombres,edad,correo,telefono,direccion,fecha_ingreso, sueldo,cod_puesto, estado)
-                VALUES('$dni','$nombre','$edad','$correo','$telefono','$domicilio','$fecha_ingreso','$sueldo','$cod_puesto',1)"
+                "INSERT INTO personal(dni,nombres,edad,correo,telefono,direccion,fecha_ingreso, sueldo,cod_puesto,hijos, estado)
+                VALUES('$dni','$nombre','$edad','$correo','$telefono','$domicilio','$fecha_ingreso','$sueldo','$cod_puesto','$hijos',1)"
             );
             
             if ($query_insert) {
