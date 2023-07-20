@@ -1,72 +1,47 @@
+<?php session_start();
+include_once "../Modelo/conexion.php";
 
-<?php 
+if (empty($_REQUEST['id'])) {
+    header("location: ../Vista/ListaReservasCliente.php");
+    mysqli_close($conection);
+} else {
 
-	include "../Modelo/conexion.php";
+    $cod_licencia = $_REQUEST['id'];
 
-    if(empty($_REQUEST['id']) ){
-        header("location: ../Vista/ListaReservasCliente.php");
-        mysqli_close($conection);
-    }else{
+    $query = mysqli_query($conection, "SELECT * FROM licencia l INNER JOIN personal p ON (l.cod_personal=p.cod_personal)
+                                         WHERE cod_licencia = $cod_licencia ");
 
-        $idreserva = $_REQUEST['id'];
+    $result = mysqli_num_rows($query);
 
-        $query = mysqli_query($conection,"SELECT * FROM reserva r
-                                    INNER JOIN cliente c ON (r.idcliente=c.idcliente)
-                                         WHERE idreserva = $idreserva ");
-        
-        $result = mysqli_num_rows($query);
-
-        if($result > 0){
-            while ($data = mysqli_fetch_array($query)) {
-                $idreserva = $data['idreserva'];
-                $fecha_ingreso = $data['fecha_ingreso'];
-                $fecha_salida = $data['fecha_salida'];
-                $nombre = $data['nombre'];
-                $cant_noches = $data['cant_noches'];
-                $idhabitacion = $data['idhabitacion'];
-            }
-        }else{
-            header("location: ../Vista/Gestion_Reservas.php");
+    if ($result > 0) {
+        while ($data = mysqli_fetch_array($query)) {
+            $cod_licencia = $data['cod_licencia'];
+            $fecha_inicio = $data['fecha_inicio'];
+            $fecha_fin = $data['fecha_fin'];
+            $nombres = $data['nombres'];
         }
-
-
+    } else {
+        header("location: ../Vista/ListaLicenciasEmpleado.php");
     }
+}
 
+if (!empty($_POST)) {
 
-	if(!empty($_POST)){   
-        
-        $alert='';
-        
-        if (isset($_POST['btn_Eliminar'])) {
+    $alert = '';
 
-            $idreserva = $_POST['idreserva'];
-            $idhabitacion = $_POST['idhabitacion'];
+    if (isset($_POST['btn_Eliminar'])) {
 
+        $cod_licencia = $_POST['cod_licencia'];
 
-             $query_delete = mysqli_query($conection,
-                "UPDATE reserva SET estatus = 6 WHERE idreserva = '$idreserva' ");
+        $query_delete = mysqli_query(
+            $conection,
+            "DELETE FROM licencia WHERE cod_licencia = '$cod_licencia' "
+        );
 
-            $query_delete2= mysqli_query($conection,
-            "UPDATE habitacion SET estatus = 1 WHERE idhabitacion = '$idhabitacion' ");
-            
-            
-             if($query_delete & $query_delete2){
-                $alert = '<div class="alertSave">!Reserva Anulada!  </div>';
-            }else{
-                $alert = '<div class="alertError">Error</div>';
-            }
-
+        if ($query_delete) {
+            header("location: ../Vista/ListaLicenciasEmpleado.php");
+        } else {
+            $alert = '<div class="alertError">Error</div>';
         }
-		
-		
-
-	}
-
-    
-    
-        
-    
-	
-
-
- ?>
+    }
+}

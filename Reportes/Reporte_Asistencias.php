@@ -22,8 +22,11 @@ if (empty($_REQUEST['idUser'])) {
         $pagina_web            = $dataEmp['web'];
     }
     /*Query Asistencias Generadas*/
-    $query_reserv_generate = mysqli_query($conection, "SELECT a.cod_asistencia, a.cod_personal, a.registrado_por, a.fecha_ingreso, a.hora_ingreso, a.hora_salida, a.modificado_por
+    $query_reserv_generate = mysqli_query($conection, "SELECT a.cod_asistencia, p.nombres AS nombres, u.usuario as registrado_por, a.fecha_ingreso, a.hora_ingreso, a.hora_salida, IFNULL(u2.usuario, '---') as modificado_por                                           
                                             FROM asistencia a
+                                            INNER JOIN personal p ON a.cod_personal = p.cod_personal
+                                            left join usuario u2 on a.modificado_por = u2.cod_usuario
+                                            inner join usuario u on a.registrado_por = u.cod_usuario
                                             ORDER BY a.cod_asistencia;");
 
 
@@ -99,7 +102,7 @@ if (empty($_REQUEST['idUser'])) {
         while ($data = mysqli_fetch_array($query_reserv_generate)) {
             $num = $num + 1;
             $pdf->Cell(10, 12, $num, 1, 0, "C", 1);
-            $pdf->Cell(38, 12, $data['cod_personal'], 1, 0, "C", 1);
+            $pdf->Cell(38, 12, $data['nombres'], 1, 0, "C", 1);
             $pdf->Cell(32, 12, $data['registrado_por'], 1, 0, "C", 1);
             $pdf->Cell(32, 12, $data['modificado_por'], 1, 0, "C", 1);
             $pdf->Cell(28, 12, $data['fecha_ingreso'], 1, 0, "C", 1);

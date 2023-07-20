@@ -1,7 +1,6 @@
-<?php 
-session_start();
+<?php session_start();
 
-include "../Modelo/conexion.php";
+include_once "../Modelo/conexion.php";
 
 if(empty($_REQUEST['ruc']) ){
     header("location: ../Vista/MenuUsuario.php");
@@ -47,8 +46,7 @@ if (isset($_POST)) {
             $direccion3     =$_POST['direccion'];
             $pagina_web3    =$_POST['pagina'];
             $query_update=mysqli_query($conection,"UPDATE  empresa SET razon_social='$razon_social3',
-                                telefono='$telefono3',direccion='$direccion3',pagina_web='$pagina_web3' 
-                                WHERE ruc=$nro_ruc");
+            telefono='$telefono3',direccion='$direccion3',pagina_web='$pagina_web3' WHERE ruc=$nro_ruc");
             if ($query_update) {
                 $alert = '<div class="alertSave">Datos Modificados Correctamente</div>';
             }
@@ -56,4 +54,3 @@ if (isset($_POST)) {
        
     }
 }
-?>

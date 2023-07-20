@@ -1,5 +1,5 @@
 <?php
-    include "../Controlador/EliminarUsuarioControlador.php"
+    include_once "../Controlador/EliminarUsuarioControlador.php"
 ?>
 
 <!DOCTYPE html>
@@ -7,12 +7,12 @@
 <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Menu Administrador</title>
-        <?php include "../Modelo/scripts.php"?>
+        <?php include_once "../Modelo/scripts.php"?>
     </head>
 <body>
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
-    <?php include "./sidebarAdministrador.php" ?>
+    <?php include_once "./sidebarAdministrador.php" ?>
     <!--Sidebar Fin-->
     <div class="main-content">
             <!--Navbar Inicio-->
@@ -62,6 +62,6 @@
             </div>
         </section>
     </div>
-    <?php include "../Modelo/Footer.php" ?>
+    <?php include_once "../Modelo/Footer.php" ?>
 </body>
 </html>

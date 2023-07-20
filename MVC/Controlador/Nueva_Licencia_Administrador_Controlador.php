@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../Modelo/conexion.php";
+include_once "../Modelo/conexion.php";
 //Mostrar Datos
 $alert = '';
 $msg2 = '';
@@ -8,14 +8,11 @@ $msg3 = '';
 if (empty($_REQUEST['id'])) {
 	header('location: ../Vista/Licencias.php');
 	mysqli_close($conection);
-} else { 
-
+} else {
 	$tipo_licencia = $_REQUEST['id'];
-
-	$sql = mysqli_query($conection, "SELECT nom_licencia, descripcion FROM `tipo_licencia` WHERE cod_licencia = '$tipo_licencia' ");
-
+	$sql = mysqli_query($conection, "SELECT nom_licencia, descripcion FROM `tipo_licencia` 
+									WHERE cod_licencia = '$tipo_licencia' ");
 	$result_sql = mysqli_num_rows($sql);
-
 	if ($result_sql == 0) {
 	} else {
 		while ($data = mysqli_fetch_array($sql)) {
@@ -25,7 +22,6 @@ if (empty($_REQUEST['id'])) {
 	}
 }
 if (!empty($_POST)) {
-
 	if (isset($_POST['regresar'])) {
 		header('location: ../Vista/Licencias.php');
 		mysqli_close($conection);
@@ -56,7 +52,6 @@ if (!empty($_POST)) {
 		}
 	}
 	if (isset($_POST['btnGenerar'])) {
-
 		$fechain    	= $_POST['fechain'];
 		$fechasal    	= $_POST['fechasal'];
 		$cod_personal = $_POST['cod_personal'];
@@ -74,7 +69,6 @@ if (!empty($_POST)) {
 		}
 	}
 	if (isset($_POST['btn_Estado'])) {
-
 		$estado    	= $_POST['fechain'];
 		$fechasal    	= $_POST['fechasal'];
 		$cod_personal = $_POST['cod_personal'];

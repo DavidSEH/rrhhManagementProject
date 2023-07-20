@@ -1,25 +1,21 @@
 <?php
-include "../Controlador/Modificar_Licencia_Administrador_Controlador.php";
-
+include_once "../Controlador/Modificar_Licencia_Administrador_Controlador.php";
 ?>
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Gestión Licencias</title>
-    <?php include "../Modelo/scripts.php" ?>
-
+    <?php include_once "../Modelo/scripts.php" ?>
 </head>
-
 <body>
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
-    <?php include "./sidebarAdministrador.php" ?>
+    <?php include_once "./sidebarAdministrador.php" ?>
     <!--Sidebar Fin-->
     <div class="main-content">
         <!--Navbar Inicio-->
-        <?php include "../Modelo/HeaderUsu.php" ?>
+        <?php include_once "../Modelo/HeaderUsu.php" ?>
         <!--Navbar Fin-->
         <section>
             <h2><i class="fas fa-sign-out-alt"></i> Gestión <span>/Licencia</span></h2>
@@ -71,7 +67,6 @@ include "../Controlador/Modificar_Licencia_Administrador_Controlador.php";
                         <p class="title-pagos">Editar duración de licencia</p>
                         <div class="princ-metpago">
                             <form action="" method="post" onsubmit="validarFechas();">
-
                                 <div>
                                     <p>Fecha de inicio:</p>
                                     <input type="date" name="fecha_inicio" id="userdate" onchange="TDate()" value="<?php echo $fecha_inicio; ?>">
@@ -85,7 +80,6 @@ include "../Controlador/Modificar_Licencia_Administrador_Controlador.php";
                                     <a href="Gestion_Licencias.php"><i class="fas fa-undo"></i>Regresar</a>
                                     <button type="submit" name="btn_Modificar"><i class="fas fa-edit"></i>Modificar</button>
                                 </div>
-
                             </form>
                             <div>
                                 <?php echo isset($alert) ? $alert : ''; ?>
@@ -93,13 +87,12 @@ include "../Controlador/Modificar_Licencia_Administrador_Controlador.php";
                         </div>
                     </div>
                 </div>
-
                 <script src="../../js/Tramite_licencias.js"></script>
             </div>
     </div>
     </section>
     </div>
-    <?php include "../Modelo/Footer.php" ?>
+    <?php include_once "../Modelo/Footer.php" ?>
 </body>
 
 </html>

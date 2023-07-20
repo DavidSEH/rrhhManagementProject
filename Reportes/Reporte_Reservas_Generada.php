@@ -23,9 +23,10 @@ if (empty($_REQUEST['idUser'])) {
         $pagina_web            = $dataEmp['web'];
     }
     /*Query Reservas Generadas*/
-    $query_reserv_generate = mysqli_query($conection, "SELECT l.cod_licencia, t.nom_licencia AS tipo, p.nombres AS nombres, p.dni AS dni, l.fecha_inicio, p.cod_puesto,l.fecha_fin, l.estado, DATEDIFF(l.fecha_fin, l.fecha_inicio) AS dias
+    $query_reserv_generate = mysqli_query($conection, "SELECT l.cod_licencia, t.nom_licencia AS tipo, p.nombres AS nombres, p.dni AS dni, l.fecha_inicio,  pt.descripcion as cod_puesto,l.fecha_fin, l.estado, DATEDIFF(l.fecha_fin, l.fecha_inicio) AS dias
                         FROM licencia l
                         INNER JOIN personal p ON l.cod_personal = p.cod_personal
+                        inner join tipo_puesto pt on p.cod_puesto = pt.cod_puesto 
                         INNER JOIN tipo_licencia t ON l.tipo = t.cod_licencia
                         ORDER BY l.cod_licencia");
 
@@ -87,11 +88,11 @@ if (empty($_REQUEST['idUser'])) {
     $pdf->Cell(10, 12, utf8_decode("N°"), 1, 0, "C", 1);
     $pdf->Cell(40, 12, "Nombre Emp.", 1, 0, "C", 1);
     $pdf->Cell(20, 12, "DNI", 1, 0, "C", 1);
-    $pdf->Cell(22, 12, "Puesto", 1, 0, "C", 1);
+    $pdf->Cell(28, 12, "Puesto", 1, 0, "C", 1);
     $pdf->Cell(28, 12, "Tipo Lic.", 1, 0, "C", 1);
     $pdf->Cell(20.5, 12, "F-Inicio ", 1, 0, "C", 1);
     $pdf->Cell(20.5, 12, "F-Final ", 1, 0, "C", 1);
-    $pdf->Cell(16, 12, utf8_decode("N° Dias"), 1, 0, "C", 1);
+    $pdf->Cell(10, 12, utf8_decode("Dias"), 1, 0, "C", 1);
     $pdf->Cell(18, 12, "Estado", 1, 1, "C", 1);
 
 
@@ -108,48 +109,11 @@ if (empty($_REQUEST['idUser'])) {
             $pdf->Cell(10, 12, $num, 1, 0, "C", 1);
             $pdf->Cell(40, 12, $data['nombres'], 1, 0, "C", 1);
             $pdf->Cell(20, 12, $data['dni'], 1, 0, "C", 1);
-            $cod_puesto = '';
-            switch ($data['cod_puesto']) {
-                case 1:
-                    $cod_puesto = "Analista";
-                    break;
-                case 2:
-                    $cod_puesto = "Coordinador";
-                    break;
-                case 3:
-                    $cod_puesto = "Jefe T.I";
-                    break;
-                default:
-                    $cod_puesto = "Desconocida";
-                    break;
-            }
-            $pdf->Cell(22, 12, $cod_puesto, 1, 0, "C", 1);
-            // Obtener el valor de estado y asignar el texto correspondiente
-            $cod_licencia = '';
-            switch ($data['cod_licencia']) {
-                case 1:
-                    $cod_licencia = "Paternidad";
-                    break;
-                case 2:
-                    $cod_licencia = "Maternidad";
-                    break;
-                case 3:
-                    $cod_licencia = "Vacaciones";
-                    break;
-                case 4:
-                    $cod_licencia = "Accidente Laboral";
-                    break;
-                case 5:
-                    $cod_licencia = "Familiar Enfermo";
-                    break;
-                default:
-                    $cod_licencia = "Desconocida";
-                    break;
-            }
-            $pdf->Cell(28, 12, $cod_licencia, 1, 0, "C", 1);
+            $pdf->Cell(28, 12, $data['cod_puesto'], 1, 0, "l", 1);
+            $pdf->Cell(28, 12, $data['tipo'], 1, 0, "C", 1);
             $pdf->Cell(20.5, 12, $data['fecha_inicio'], 1, 0, "C", 1);
             $pdf->Cell(20.5, 12, $data['fecha_fin'], 1, 0, "C", 1);
-            $pdf->Cell(16, 12, $data['dias'], 1, 0, "C", 1);
+            $pdf->Cell(10, 12, $data['dias'], 1, 0, "C", 1);
             // Obtener el valor de estado y asignar el texto correspondiente
             $estado = '';
             switch ($data['estado']) {
@@ -160,16 +124,7 @@ if (empty($_REQUEST['idUser'])) {
                     $estado = "Aprobada";
                     break;
                 case 3:
-                    $estado = "Confirmada";
-                    break;
-                case 4:
-                    $estado = "Terminada";
-                    break;
-                case 5:
                     $estado = "Denegada";
-                    break;
-                case 6:
-                    $estado = "Anulada";
                     break;
                 default:
                     $estado = "Desconocida";

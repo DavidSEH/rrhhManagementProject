@@ -2,8 +2,8 @@
 session_start();
 ?>
 
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html >
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -68,8 +68,11 @@ session_start();
                         }
                         $desde = ($pagina - 1) * $por_pagina;
                         $total_paginas = ceil($total_registro / $por_pagina);
-                        $query = mysqli_query($conection, "SELECT a.cod_asistencia, a.cod_personal, a.registrado_por, a.fecha_ingreso, a.hora_ingreso, a.hora_salida, a.modificado_por
+                        $query = mysqli_query($conection, "SELECT a.cod_asistencia, p.nombres AS nombres, u.usuario as registrado_por, a.fecha_ingreso, a.hora_ingreso, a.hora_salida, IFNULL(u2.usuario, '---') as modificado_por                                           
                                             FROM asistencia a
+                                            INNER JOIN personal p ON a.cod_personal = p.cod_personal
+                                            left join usuario u2 on a.modificado_por = u2.cod_usuario
+                                            inner join usuario u on a.registrado_por = u.cod_usuario
                                             ORDER BY a.cod_asistencia DESC LIMIT $desde,$por_pagina;");
                         if (!$query) {
                             die("Error en la consulta: " . mysqli_error($conection));
@@ -83,7 +86,7 @@ session_start();
                                 <tbody>
                                     <tr>
                                         <td><?php echo $data['cod_asistencia']; ?></td>
-                                        <td><?php echo $data['cod_personal']; ?></td>
+                                        <td><?php echo $data['nombres']; ?></td>
                                         <td><?php echo $data['registrado_por']; ?></td>
                                         <td><?php echo $data['modificado_por']; ?></td>
                                         <td><?php echo $data['fecha_ingreso']; ?></td>

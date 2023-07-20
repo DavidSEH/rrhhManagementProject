@@ -1,5 +1,5 @@
 <?php
-include "../Modelo/conexion.php";
+include_once "../Modelo/conexion.php";
 
 // Realizar la consulta a la base de datos para obtener los puestos
 $query = "SELECT cod_puesto, descripcion FROM tipo_puesto";

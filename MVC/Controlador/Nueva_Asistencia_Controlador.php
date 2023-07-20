@@ -1,6 +1,5 @@
-<?php
-session_start();
-include "../Modelo/conexion.php";
+<?php session_start();
+include_once "../Modelo/conexion.php";
 //Mostrar Datos
 $alert = '';
 $msg2 = '';

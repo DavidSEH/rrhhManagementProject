@@ -1,20 +1,18 @@
-<?php
-session_start();
-?>
+<?php session_start(); ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Nuevo Usuario</title>
-    <?php include "../Modelo/scripts.php" ?>
+    <?php include_once "../Modelo/scripts.php" ?>
 </head>
 
 <body>
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
-    <?php include "./sidebarAdministrador.php" ?>
+    <?php include_once "./sidebarAdministrador.php" ?>
     <!--Sidebar Fin-->
 
     <div class="main-content">
@@ -26,7 +24,6 @@ session_start();
                 </label>
                 <p>Home</p>
             </div>
-
             <div class="head-icons">
                 <span><?php echo fechaC(); ?></span>
                 <a href="../Modelo/salir.php"><span class="fas fa-sign-out-alt"></span></a>
@@ -35,7 +32,7 @@ session_start();
         <!--Navbar Fin-->
         <section>
             <?php
-            include "../Controlador/RegistroControlador.php";
+            include_once "../Controlador/RegistroControlador.php";
             ?>
             <div class="container-new-user">
                 <div class="section-new-user">
@@ -60,7 +57,6 @@ session_start();
                                     <input type="password" name="clave" id="clave" placeholder="Clave de acceso">
                                 </div>
                             </div>
-
                             <label for="id_rol">Tipo Usuario:</label>
                             <?php
                             $query_rol = mysqli_query($conection, "SELECT * FROM tipo_rol");
@@ -92,7 +88,7 @@ session_start();
             <?php echo isset($alert) ? $alert : ''; ?>
         </div>
     </div>
-    <?php include "../Modelo/Footer.php" ?>
+    <?php include_once "../Modelo/Footer.php" ?>
 </body>
 
 </html>

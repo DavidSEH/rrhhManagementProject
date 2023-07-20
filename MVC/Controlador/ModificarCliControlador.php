@@ -1,7 +1,6 @@
-<?php
-session_start();
+<?php session_start();
 
-include "../Modelo/conexion.php";
+include_once "../Modelo/conexion.php";
 
 if (!empty($_POST)) {
 	$alert = '';

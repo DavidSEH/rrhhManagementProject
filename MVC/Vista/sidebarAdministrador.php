@@ -9,9 +9,7 @@
                 <img class="side-img" src="../../Imagenes/imgmen.jpg" alt="">
             </div>
             <div class="user">
-                <a href="DatosPersonales.php?id=<?php echo  $_SESSION['idUser']; ?>">
                     <p><?php echo $_SESSION['user']; ?></p>
-                </a>
                 <?php
                 $msg = '';
                 if ($_SESSION['rol'] == 1) {
@@ -27,8 +25,9 @@
         <div class="sider-ul">
             <div class="acordion">
                 <div class="contentBx">
-                    <div class="label">
-                        <i class="fas fa-home"></i> <a href="MenuAdministrador.php">Portal</a>
+                    <div class="label" >
+                    <a href="MenuAdministrador.php">
+                        <i class="fas fa-home"></i>Portal</a>
                     </div>
                 </div>
                 <div class="contentBx">
@@ -66,16 +65,12 @@
                 </div>
                 <?php
                 if ($_SESSION['rol'] == 1) {
-
                 ?>
                     <div class="contentBx">
                         <div class="label">
                             <i class="fas fa-wrench"></i> Configurar
                         </div>
                         <div class="content">
-                            <a href="listarLicencias.php"><i class="far fa-circle"></i>Licencias</a>
-                            <a href="listarCeses.php"><i class="far fa-circle"></i>Ceses</a>
-                            <a href="listarPuestos.php"><i class="far fa-circle"></i>Puestos</a>
                             <?php
                             include "../Modelo/conexion.php";
                             $query = mysqli_query($conection, "SELECT * FROM empresa");

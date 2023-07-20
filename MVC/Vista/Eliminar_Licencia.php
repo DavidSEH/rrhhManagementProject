@@ -1,21 +1,20 @@
 <?php
-include "../Controlador/Eliminar_Licencia_Controlador.php"
+include_once "../Controlador/Eliminar_Licencia_Controlador.php"
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Menu Administrador</title>
-    <?php include "../Modelo/scripts.php" ?>
+    <?php include_once "../Modelo/scripts.php" ?>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@72,700,1,200" />
 </head>
 
 <body>
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
-    <?php include "./sidebarAdministrador.php" ?>
+    <?php include_once "./sidebarAdministrador.php" ?>
     <!--Sidebar Fin-->
     <div class="main-content">
         <!--Navbar Inicio-->
@@ -60,7 +59,7 @@ include "../Controlador/Eliminar_Licencia_Controlador.php"
                         </div>
                     </div>
                     <div class="footer_container">
-                        <p>!Esta acción no se puede deshacer!</p>
+                        <p>!Esta accion no se puede deshacer!</p>
                     </div>
                 </div>
                 <form method="post" action="">
@@ -76,7 +75,7 @@ include "../Controlador/Eliminar_Licencia_Controlador.php"
             <?php echo isset($alert) ? $alert : ''; ?>
         </div>
     </div>
-    <?php include "../Modelo/Footer.php" ?>
+    <?php include_once "../Modelo/Footer.php" ?>
 </body>
 
 </html>

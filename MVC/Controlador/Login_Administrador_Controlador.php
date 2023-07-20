@@ -31,7 +31,8 @@ if (!empty($_SESSION['active'])) {
                 $user = mysqli_real_escape_string($conection, $_POST['usuario']);
                 $pass = md5(mysqli_real_escape_string($conection, $_POST['clave']));
 
-                $query = mysqli_query($conection, "SELECT * FROM usuario WHERE usuario = '$user' AND clave = '$pass' AND ID_ROL = 1");
+                $query = mysqli_query($conection, "SELECT * FROM usuario WHERE usuario = '$user' 
+                                                    AND clave = '$pass' AND ID_ROL = 1");
 
                 $result = mysqli_num_rows($query);
 
@@ -43,9 +44,9 @@ if (!empty($_SESSION['active'])) {
                         $_SESSION['idUser']         = $data['cod_usuario'];
                         // Obtener datos del usuario desde la tabla "personal"
                         $codPersonal = $data['cod_personal'];
-                        $personalQuery = mysqli_query($conection, "SELECT * FROM personal WHERE cod_personal = '$codPersonal'");
+                        $personalQuery = mysqli_query($conection, "SELECT * FROM personal 
+                        WHERE cod_personal = '$codPersonal'");
                         $personalData = mysqli_fetch_array($personalQuery);
-
                         $_SESSION['nombre'] = $personalData['nombres'];
                         $_SESSION['email'] = $personalData['correo'];
                         $_SESSION['telefono'] = $personalData['telefono'];
@@ -57,7 +58,7 @@ if (!empty($_SESSION['active'])) {
                         header('location: MenuAdministrador.php');
                         mysqli_close($conection);
                     } else {
-                        $alert = '<div class="alertLogin">Tu cuenta está desactivada. Por favor, ponte en contacto con un administrador.</div>';
+                        $alert = '<div class="alertLogin">Tu cuenta está desactivada. Contacta con un administrador.</div>';
                         session_destroy();
                     }
                 } else {

@@ -4,9 +4,7 @@
 	{
         header("location: ../Vista/Usuario.php");
 	}
-
-	include "../Modelo/conexion.php";
-
+	include_once "../Modelo/conexion.php";
 	if(!empty($_POST))
 	{
 		$alert='';
@@ -15,7 +13,7 @@
 			$alert='<p class="msg_error">Todos los campos son obligatorios.</p>';
 		}else{
 
-			$idUsuario 	= $_POST['idUsuario'];
+			$cod_usuario 	= $_POST['cod_usuario'];
 			$dni 		= $_POST['dni'];
 			$nombre 	= $_POST['nombre'];
 			$edad 		= $_POST['edad'];
@@ -25,11 +23,9 @@
         	$usuario   	= $_POST['usuario'];
 			$clave  	= md5($_POST['clave']);
 			$rol    	= $_POST['rol'];
-
-
 			$query = mysqli_query($conection,"SELECT * FROM usuario 
-											WHERE (usuario = '$usuario' AND idusuario != $idUsuario)
-											OR (correo = '$correo' AND idusuario != $idUsuario) ");
+											WHERE (usuario = '$usuario' AND cod_usuario != $cod_usuario)
+											OR (correo = '$correo' AND cod_usuario != $cod_usuario) ");
 			$result = mysqli_fetch_array($query);
 
 			if($result > 0){
@@ -42,14 +38,13 @@
 					$sql_update = mysqli_query($conection,"UPDATE usuario
 												SET dni = '$dni',nombre = '$nombre',edad = '$edad',correo='$correo',
 												telefono = '$telefono',domicilio = '$domicilio',usuario='$usuario',rol='$rol'
-												WHERE idusuario= $idUsuario ");
+												WHERE cod_usuario= $cod_usuario ");
 				}else{
 					$sql_update = mysqli_query($conection,"UPDATE usuario
 												SET dni = '$dni',nombre = '$nombre',edad = '$edad',correo='$correo',
 												telefono = '$telefono',domicilio = '$domicilio',usuario='$usuario',
 												clave='$clave', rol='$rol'
-												WHERE idusuario= $idUsuario ");
-
+												WHERE cod_usuario= $cod_usuario ");
 				}
 
 				if($sql_update){
@@ -59,57 +54,35 @@
 				}
 
 			}
-
-
 		}
-
 	}
 
 	//Mostrar Datos
 	if(empty($_REQUEST['id']))
 	{
-		header("location: ../Vista/Usuario.php");
+		header("location: ../Vista/Gestion_Usuario.php");
 		mysqli_close($conection);
 	}
-	$idusuario = $_REQUEST['id'];
+	$cod_usuario = $_REQUEST['id'];
 
-	$sql= mysqli_query($conection,"SELECT u.idusuario,u.dni,u.nombre,u.edad,u.correo,u.telefono,u.domicilio,
-									u.usuario, (u.rol) as idrol, 
-									(r.rol) as rol
-									FROM usuario u
-									INNER JOIN rol r
-									on u.rol = r.idrol
-									WHERE idusuario= $idusuario ");
+	$sql= mysqli_query($conection,"SELECT u.usuario,r.rol
+	FROM usuario u
+	INNER JOIN tipo_rol r ON u.id_rol = r.id_rol
+	WHERE u.cod_usuario = $cod_usuario ");
 	
 	$result_sql = mysqli_num_rows($sql);
 
 	if($result_sql == 0){
-		header("location: ../Vista/Usuario.php");
+		header("location: ../Vista/Gestion_Usuario.php");
 	}else{
 		$option = '';
 		while ($data = mysqli_fetch_array($sql)) {
 			# code...
-			$idusuario  = $data['idusuario'];
-			$dni 		= $data['dni'];
-			$nombre 	= $data['nombre'];
-			$edad 		= $data['edad'];
-			$correo  	= $data['correo'];
-			$telefono 	= $data['telefono'];
-			$domicilio 	= $data['domicilio'];
         	$usuario   	= $data['usuario'];
-			$idrol   	= $data['idrol'];
 			$rol     	= $data['rol'];
 
-			if($idrol == 1){
-				$option = '<option value="'.$idrol.'" select>'.$rol.'</option>';
-			}else if($idrol == 2){
-				$option = '<option value="'.$idrol.'" select>'.$rol.'</option>';	
-			}else if($idrol == 3){
-				$option = '<option value="'.$idrol.'" select>'.$rol.'</option>';
-			}
+			
 
             
 		}
 	}
-
- ?>
