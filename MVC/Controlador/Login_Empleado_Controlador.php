@@ -11,7 +11,7 @@ if (!empty($_SESSION['active'])) {
 if (!empty($_POST) && isset($_POST['Acceso'])) {
     if (empty($_POST['usuario']) || empty($_POST['clave'])) {
         $alert = '<div class="alertLogin">Ingrese su usuario y clave</div>';
-    } else if ($_POST['g-recaptcha-response'] == '') {
+    } elseif ($_POST['g-recaptcha-response'] == '') {
         $alert = '<div class="alertLogin">No se ha completado el Captcha</div>';
     } else {
         $obj = new stdClass();

@@ -26,26 +26,21 @@ if (!empty($_SESSION['active'])) {
                         'content' => http_build_query($obj)
                     )
                 );
-
                 $msg = '';
                 $user = mysqli_real_escape_string($conection, $_POST['usuario']);
                 $pass = md5(mysqli_real_escape_string($conection, $_POST['clave']));
-
-                $query = mysqli_query($conection, "SELECT * FROM usuario WHERE usuario = '$user' 
-                                                    AND clave = '$pass' AND ID_ROL = 1");
+                $query = mysqli_query($conection, "SELECT * FROM usuario WHERE usuario = '$user' AND clave = '$pass' 
+                AND ID_ROL = 1");
 
                 $result = mysqli_num_rows($query);
-
                 if ($result > 0) {
                     $data = mysqli_fetch_array($query);
                     if ($data['estado'] != 0) {
-
                         $_SESSION['active']         = true;
                         $_SESSION['idUser']         = $data['cod_usuario'];
                         // Obtener datos del usuario desde la tabla "personal"
                         $codPersonal = $data['cod_personal'];
-                        $personalQuery = mysqli_query($conection, "SELECT * FROM personal 
-                        WHERE cod_personal = '$codPersonal'");
+                        $personalQuery = mysqli_query($conection, "SELECT * FROM personal WHERE cod_personal='$codPersonal'");
                         $personalData = mysqli_fetch_array($personalQuery);
                         $_SESSION['nombre'] = $personalData['nombres'];
                         $_SESSION['email'] = $personalData['correo'];

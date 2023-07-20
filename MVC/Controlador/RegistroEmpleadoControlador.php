@@ -1,5 +1,4 @@
-<?php
-include_once "../Modelo/conexion.php";
+<?php include_once "../Modelo/conexion.php";
 
 // Realizar la consulta a la base de datos para obtener los puestos
 $query = "SELECT cod_puesto, descripcion FROM tipo_puesto";
@@ -22,7 +21,7 @@ if ($result && mysqli_num_rows($result) > 0) {
 
 if (!empty($_POST)) {
     $alert = '';
-    if (empty($_POST['nombre']) || empty($_POST['correo'])|| empty($_POST['dni'])) {
+    if (empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['dni'])) {
         $alert = '<p class="msg_error">Todos los campos son obligatorios.</p>';
     } else {
 
@@ -50,7 +49,7 @@ if (!empty($_POST)) {
                 "INSERT INTO personal(dni,nombres,edad,correo,telefono,direccion,fecha_ingreso, sueldo,cod_puesto,hijos, estado)
                 VALUES('$dni','$nombre','$edad','$correo','$telefono','$domicilio','$fecha_ingreso','$sueldo','$cod_puesto','$hijos',1)"
             );
-            
+
             if ($query_insert) {
                 $alert = '<p class="msg_save">¡Empleado registrado correctamente!.</p>';
             } else {
@@ -60,4 +59,3 @@ if (!empty($_POST)) {
         }
     }
 }
-?>
