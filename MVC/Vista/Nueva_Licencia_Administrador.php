@@ -152,7 +152,7 @@ include '../Controlador/Nueva_Licencia_Administrador_Controlador.php';
                                         </div>
                                     </div>
                                 </div>
-                                <div class="btn-actualizar-user">
+                                <div class="div-ext-part">
                                     <div class="div-div-int" style="display: flex;justify-content: center;align-items: center;">
                                         <button name="regresar">
                                             <i class="fas fa-undo"></i>Regresar</button>

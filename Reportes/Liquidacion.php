@@ -95,7 +95,7 @@ if (empty($_REQUEST['idUser'])) {
         $diferencia = $inicio->diff($fin);
         global $meses_trabajados_año;
         $meses_trabajados_año = $diferencia->m;
-
+        
         if ($meses_trabajados_año == 0) {
             // Manejo de división entre 0
             return 0;
@@ -337,7 +337,7 @@ if (empty($_REQUEST['idUser'])) {
             $pdf->SetDrawColor(255, 255, 255);
             $pdf->SetTextColor(1, 1, 1);
             $pdf->Cell(195, 4, "", 1, 1, "C", 1);
-
+            
             $pdf->SetFillColor(210, 245, 244);
 
             $pdf->Ln(10);
@@ -389,19 +389,7 @@ if (empty($_REQUEST['idUser'])) {
             $pdf->SetDrawColor(255, 255, 255);
             $pdf->SetTextColor(1, 1, 1);
             $pdf->Cell(195, 4, "", 1, 1, "C", 1);
-            $pdf->MultiCell(0, 7, utf8_decode("Recibo de " . $razon_social . " la cantidad de " . $liquidacion . " Nuevos Soles por concepto de compensacion por tiempo de servicios, vacaciones y gratificaciones que corresponden de acuerdo a Ley, no teniendo reclamo alguno posterior que formular, por dichos conceptos lo que firmo en señal de conformidad. "), 0, "L");
-            $pdf->SetTextColor(0, 0, 0); // Color de texto para las celdas de la tabla
-
-            $pdf->SetFont('Arial', 'B', 12);
-            $pdf->Ln(10);
-            $pdf->MultiCell(0, 7, utf8_decode("___________________________"), 0, "l");
-            $pdf->Cell(0, 10, "Firma del Trabajador", 0, 1, "L");
-
-
-            // Agregar línea para la firma del representante de la empresa
-            $pdf->Ln(10);
-            $pdf->MultiCell(0, 7, utf8_decode("___________________________"), 0, "l");
-            $pdf->Cell(1, 10, "Firma del Representante de la Empresa", 0, 1, "L");
+            $pdf->MultiCell(0, 7, utf8_decode("Recibo de " . $razon_social . " la cantidad de ".$liquidacion." Nuevos Soles por concepto de compensacion por tiempo de servicios, vacaciones y gratificaciones que corresponden de acuerdo a Ley, no teniendo reclamo alguno posterior que formular, por dichos conceptos lo que firmo en señal de conformidad. "), 0, "L");
         } else {
             $pdf->Ln(15);
             $pdf->SetFont("Arial", "", 15);
