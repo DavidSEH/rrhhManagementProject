@@ -154,7 +154,7 @@ include "../Controlador/Nueva_Licencia_Empleado_Controlador.php";
                                         </div>
                                     </div>
                                 </div>
-                                <div class="div-ext-part">
+                                <div class="btn-actualizar-user">
                                     <div class="div-div-int">
                                         <a href="./ReservaCliente.php" class="btn1-r-cancel">
                                             <i class="fas fa-undo"></i> Regresar

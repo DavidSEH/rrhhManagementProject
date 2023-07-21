@@ -1,9 +1,7 @@
 <?php 
-require '../MVC/Modelo/conexion.php';
+require "../MVC/Modelo/conexion.php";
 require "../fpdf/fpdf.php";
 require "../MVC/Controlador/fecha.php";
-
-
 
 class PDF extends FPDF{
 // Cabecera de página

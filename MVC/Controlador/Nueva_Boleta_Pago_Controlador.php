@@ -1,7 +1,6 @@
 <?php
 session_start();
-include_once "../Modelo/conexion.php";
-
+include "../Modelo/conexion.php";
 //Mostrar Datos
 $alert = '';
 $msg2 = '';
@@ -42,8 +41,18 @@ if (!empty($_POST)) {
 		$periodo       = $_POST['periodo'];
 		$dias_trabajo  = $_POST['dias_trabajo'];
 		$horas_trabajo = $_POST['horas_trabajo'];
+		// Dividir el periodo en mes y año
+		list($mes, $anio) = explode('-', $periodo);
 
-		$msg2 = $periodo;
+		// Validar que los campos no estén vacíos
+		if (empty($cod_personal)) {
+			echo "Error: Por favor busque un trabajador valido";
+			exit(); // Salir del script si hay errores
+		}
+		if (empty($periodo) || empty($dias_trabajo) || empty($horas_trabajo)) {
+			echo "Error: Por favor complete todos los campos obligatorios (Periodo, Días de Trabajo, Horas de Trabajo)";
+			exit(); // Salir del script si hay errores
+		}
 
 		/*Query Datos Empresa*/
 		$query_empresa = mysqli_query($conection, "SELECT * FROM empresa");
@@ -64,79 +73,117 @@ if (!empty($_POST)) {
 		$query_datos_empleado = mysqli_query($conection, $query);
 		$dataEmpleado = mysqli_fetch_assoc($query_datos_empleado);
 
-    	// Ahora puedes acceder a los datos del empleado utilizando el alias del resultado de la consulta
-    	$nombres = $dataEmpleado['NOMBRES'];
-    	$apellidos = $dataEmpleado['APELLIDOS'];
-    	$dni = $dataEmpleado['DNI'];
-    	$fecha_ingreso = $dataEmpleado['fecha_ingreso'];
-    	$fecha_cese = $dataEmpleado['fecha_cese'];
-    	$cod_motivo_cese = $dataEmpleado['cod_motivo_cese'];
-    	$sueldo = $dataEmpleado['sueldo'];
-    	$descripcion_tipo_puesto = $dataEmpleado['descripcion'];
+		// Ahora puedes acceder a los datos del empleado utilizando el alias del resultado de la consulta
+		$nombres = $dataEmpleado['NOMBRES'];
+		$apellidos = $dataEmpleado['APELLIDOS'];
+		$dni = $dataEmpleado['DNI'];
+		$fecha_ingreso = $dataEmpleado['fecha_ingreso'];
+		$fecha_cese = $dataEmpleado['fecha_cese'];
+		$cod_motivo_cese = $dataEmpleado['cod_motivo_cese'];
+		$sueldo = $dataEmpleado['sueldo'];
+		$descripcion_tipo_puesto = $dataEmpleado['descripcion'];
 		$nombre_pension_tipo = $dataEmpleado['nombre_pension_tipo'];
 		$dcto_pension_tipo = $dataEmpleado['dcto_pension_tipo'];
 		$banco = $dataEmpleado['banco'];
 		$cuenta_bancaria = $dataEmpleado['cuenta_bancaria'];
 
 		//formulas a utilizar
-		$total_ingresos= $sueldo;
-		$deducciones = ($sueldo*$dcto_pension_tipo)/100;
+		$total_ingresos = $sueldo;
+		$deducciones = ($sueldo * $dcto_pension_tipo) / 100;
 		$total_neto = $total_ingresos - $deducciones;
 
+		$sql = "INSERT INTO boleta_pagos (periodo,mes, anio, nombres, apellidos, dni, fecha_ingreso, dias_trabajo, horas_trabajo, descripcion_tipo_puesto, nombre_pension_tipo, sueldo, banco, cuenta_bancaria, total_ingresos, deducciones, total_neto) 
+            VALUES ('$periodo','$mes', '$anio', '$nombres', '$apellidos', '$dni', '$fecha_ingreso', '$dias_trabajo', '$horas_trabajo', '$descripcion_tipo_puesto', '$nombre_pension_tipo', '$sueldo', '$banco', '$cuenta_bancaria', '$total_ingresos', '$deducciones', '$total_neto')";
+    if ($conection->query($sql) === TRUE) {
 
-		require_once('../../fpdf/fpdf.php'); // Asegúrate de colocar la ruta correcta a la carpeta de FPDF
-
+		// Asegúrate de colocar la ruta correcta a la carpeta de FPDF
+		require "../../fpdf/fpdf.php";
 		// Crear una nueva instancia de FPDF
-		$pdf = new FPDF();
-		$pdf->AddPage();
-	
-		// Definir la fuente y tamaño del texto para el encabezado
-		$pdf->SetFont('Arial', 'B', 14);
-	
-		// Definir el contenido del encabezado del PDF (Datos de la Empresa)
-		$contenido_encabezado = "
-			Empresa: $razon_social\n
-			RUC: $ruc\n
-			Teléfono: $telefono\n
-			Dirección: $direccion\n
-			Página Web: $pagina_web\n\n
-		";
-	
-		// Escribir el contenido del encabezado en el PDF
-		$pdf->MultiCell(0, 10, $contenido_encabezado);
-	
-		// Definir la fuente y tamaño del texto para el contenido principal
-		$pdf->SetFont('Arial', 'B', 16);
-	
-		// Definir el contenido del PDF (Boleta de Pago)
-		$contenido_pdf = "
-			Boleta de Pago\n
-			Período: $periodo\n
-			
-			Datos del Empleado:\n
-			Nombres: $nombres\n
-			Apellidos: $apellidos\n
-			DNI: $dni\n
-			Fecha de Ingreso: $fecha_ingreso\n
-			Días de Trabajo: $dias_trabajo\n
-			Horas de Trabajo: $horas_trabajo\n\n
-			Descripción del Puesto: $descripcion_tipo_puesto\n
-			AFP/ONP: $nombre_pension_tipo\n
-			Sueldo: $sueldo\n
-			Banco: $banco\n
-			Cuenta: $cuenta_bancaria\n
-			Total Ingresos: $total_ingresos\n
-			Total Deducciones: $deducciones\n
-			Total Neto: $total_neto\n
-			
-		";
-	
-		// Escribir el contenido principal en el PDF
-		$pdf->MultiCell(0, 10, $contenido_pdf);
-	
+
+		$pdf = new FPDF("P", "mm", "A4");
+		$pdf->AliasNbPages();
+		$pdf->SetMargins(10, 10, 10);
+		$pdf->AddPage("PORTRAIT", "letter");
+
+			// Logo
+			$pdf->Image("../../Imagenes/logo_hotel.png",15,8,60,30,);
+			// Arial bold 15
+			$pdf->SetFont("Arial","B",18);
+			// Movernos a la derecha
+			$pdf->Cell(55);
+			$pdf->Cell(140,8,"Talenti S.A.",0,0,"R");
+		
+
+		$pdf->Ln(10);
+
+		$pdf->SetFont("Arial", "", 9.5);
+		$pdf->Cell(195, 5, utf8_decode("N° RUC: " . $ruc), 0, 1, "R");
+		$pdf->Cell(195, 5, "Telefono: " . $telefono, 0, 1, "R");
+		$pdf->Cell(195, 5, "Direccion: " . $direccion, 0, 1, "R");
+
+		$pdf->Ln(10);
+
+		// Definir el estilo para el título y la tabla
+		$pdf->SetFont('Arial', 'B', 20);
+		$pdf->SetFillColor(63, 81, 181); // Color de fondo para el título
+		$pdf->SetTextColor(255, 255, 255); // Color de texto para el título
+		$pdf->SetDrawColor(63, 81, 181); // Color de bordes para el título y la tabla
+		$column_width = 97.5; // Ancho de cada columna en la tabla
+
+		// Título de la boleta de pago con el periodo
+		$pdf->Cell(0, 10, "BOLETA DE PAGO $periodo", 1, 1, "C", true);
+
+		$pdf->Ln(10);
+
+		// Escribir el contenido principal en una tabla con bordes visibles en el PDF
+		$pdf->SetFont('Arial', '', 10);
+		$pdf->SetFillColor(239, 239, 239); // Color de fondo para las celdas de la tabla
+		$pdf->SetTextColor(0, 0, 0); // Color de texto para las celdas de la tabla
+
+		$contenido_pdf = array(
+			array("Datos del Empleado", ''),
+			array("Nombres:", $nombres),
+			array("Apellidos:", $apellidos),
+			array("DNI:", $dni),
+			array("Fecha de Ingreso:", $fecha_ingreso),
+			array("Días de Trabajo:", $dias_trabajo),
+			array("Horas de Trabajo:", $horas_trabajo),
+			array("Descripción del Puesto:", $descripcion_tipo_puesto),
+			array("AFP/ONP:", $nombre_pension_tipo),
+			array("Sueldo:", $sueldo),
+			array("Banco:", $banco),
+			array("Cuenta:", $cuenta_bancaria),
+			array("Total Ingresos:", $total_ingresos),
+			array("Total Deducciones:", $deducciones),
+			array("Total Neto:", $total_neto),
+		);
+
+		foreach ($contenido_pdf as $row) {
+			$pdf->Cell($column_width, 10, utf8_decode($row[0]), 1);
+			$pdf->Cell($column_width, 10, utf8_decode($row[1]), 1);
+			$pdf->Ln();
+		}
+
+
+		// Agregar línea para la firma del trabajador
+		$pdf->SetFont('Arial', 'B', 12);
+		$pdf->Ln(10);
+		$pdf->Line(20, $pdf->GetY(), 80, $pdf->GetY()); // Línea de firma para el trabajador
+		$pdf->Cell(0, 10, "Firma del Trabajador:", 0, 1, "L");
+
+
+		// Agregar línea para la firma del representante de la empresa
+		$pdf->Ln(10);
+		$pdf->Line(20, $pdf->GetY(), 80, $pdf->GetY()); // Línea de firma para el representante
+		$pdf->Cell(1, 10, "Firma del Representante de la Empresa:", 0, 1, "L");
+
+
 		// Generar el PDF y mostrarlo en el navegador
 		$pdf->Output('boleta_pago.pdf', 'I');
-		exit();  
+		exit();
+	} else {
+        $msg2= "Error al guardar los datos en la tabla: " . $conection->error;
+    }
 
 	}
 }
