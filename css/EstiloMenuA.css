@@ -33,10 +33,12 @@
 i {
     margin: 0 2px;
 }
+
 button:hover {
     /* Estilos al pasar el mouse sobre el botón */
     box-shadow: 0 0 10px 3px rgba(255, 255, 0, 0.5);
-  }
+}
+
 input {
     padding: 13px;
     font-size: 14px;
@@ -49,15 +51,27 @@ input {
     box-shadow: 1px 1px 3px 0px rgba(146, 146, 146, 0.75);
 }
 
+input[type="submit"]:hover {
+    border-color: #2691d9;
+    transition: .5s;
+}
+
+button[type="submit"]:hover {
+    border-color: #2691d9;
+    transition: .5s;
+}
+
 input:focus {
     border: 1.5px solid #20345a;
     background-color: #fdfdfd;
     box-shadow: 0px 0px 2px 1px rgba(29, 92, 187, 0.66);
 }
+
 select:focus {
     border: 1.5px solid #20345a;
     box-shadow: 0px 0px 2px 1px rgba(19, 64, 212, 0.66);
 }
+
 .input-container {
     position: relative;
     display: inline-block;
@@ -75,7 +89,7 @@ select:focus {
     background-color: transparent;
     border: none;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -113,7 +127,7 @@ button {
     border: none;
     cursor: pointer;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -125,7 +139,7 @@ input,
 button {
     outline: none;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -168,14 +182,14 @@ button {
     left: 0;
     top: 0;
     position: fixed;
-    background: #2d3f68;
+    background-image: linear-gradient(rgba(69, 152, 177, 0.7),
+    rgba(9, 62, 111, 0.9)),url(../Imagenes/background_cli.bmp);
     width: 180px;
     overflow-y: auto;
     transition: width 300ms;
     background-size: cover;
     z-index: 200;
     box-shadow: 8px 5px 5px rgb(0, 0, 0, 0.12);
-
 }
 
 .brand {
@@ -247,17 +261,18 @@ button {
     position: relative;
     color: #b8bdc2;
     padding: 15px 8px;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .acordion .contentBx .label i {
     margin-right: 10px;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .acordion .contentBx .label:hover {
     visibility: visible;
-    background: #29A5A1;
+    background-image: linear-gradient(#baffea66,
+    #29A5A1),url(../Imagenes/ImgProm2.jpg);
     border-radius: 5px;
     color: #ffffff;
 }
@@ -302,7 +317,8 @@ button {
 }
 
 .acordion .contentBx.active .content a:hover {
-    background: #EBECEC;
+    background-image: linear-gradient(#f5e2b066,
+    #ffa500),url(../Imagenes/ImgProm2.jpg);
     color: #3a4147;
     ;
 }
@@ -311,9 +327,31 @@ button {
     margin-right: 10px;
 }
 
-/**/
-/*sidebar*/
-
+/*sidebar emp*/
+.sidemenu{
+    padding: .5rem;
+}
+.sidemenu li{
+    margin-top: 1.5rem;
+}
+.sidemenu a{
+    height: 35px;
+    color: #fff;
+    font-size: .85rem;
+    display: flex;
+    align-items: center;
+}
+.sidemenu a span:first-child{
+    font-size: 1.3rem;
+    padding: 0.3rem .6rem;
+}
+.sidemenu a:hover{
+    background-image: linear-gradient(#f5e2b066,
+    #ffa500),url(../Imagenes/ImgProm2.jpg);
+    color: #fff;
+    border-radius: 5px;
+    height: 35px;
+}
 /*main*/
 .main-content {
     margin-left: 180px;
@@ -326,7 +364,8 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #fff;
+    background-image: linear-gradient(rgba(153, 196, 253, 0.521),
+    rgba(179, 178, 212, 0.76)),url(../Imagenes/ImgProm2.jpg);
     padding: 0rem 1rem;
     position: fixed;
     left: 180px;
@@ -335,7 +374,6 @@ header {
     transition: left 300ms;
     box-shadow: 5px 3px 10px rgb(0, 0, 0, 0.5);
     z-index: 20;
-
 }
 
 header .menu-toggler span {
@@ -674,7 +712,8 @@ section h2 i {
 }
 
 .lista-btn {
-    background: #59739b;
+    background-image: linear-gradient(#d3e2ff5d,
+    #2b5086),url(../Imagenes/ImgProm2.jpg);
     justify-content: flex-end;
     width: 100%;
     align-items: center;
@@ -797,7 +836,7 @@ section h2 i {
     height: 35px;
     font-weight: 550;
     box-shadow: 1px 2px 4px 0px rgba(146, 146, 146, 0.75);
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -819,7 +858,7 @@ section h2 i {
     background: #DC143C;
     cursor: pointer;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -876,7 +915,7 @@ section h2 i {
     align-items: center;
     font-weight: 550;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -884,7 +923,7 @@ section h2 i {
     background: #0962c0;
     cursor: pointer;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -1003,7 +1042,7 @@ section h2 i {
     background: #E2AF0E;
     cursor: pointer;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -1077,7 +1116,7 @@ section h2 i {
     align-items: center;
     font-weight: 550;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -1085,7 +1124,7 @@ section h2 i {
     background: #E2AF0E;
     cursor: pointer;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -1211,7 +1250,7 @@ section h2 i {
     font-size: 1rem;
     cursor: pointer;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -1265,7 +1304,7 @@ section h2 i {
     border: none;
     cursor: pointer;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -1333,7 +1372,7 @@ section h2 i {
     padding: 10px;
     margin: 10px;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -1361,21 +1400,21 @@ section h2 i {
     color: #fff;
     font-size: 1rem;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
 .modifcar-datospersonales .footer-mp button:nth-child(1) {
     background: #DC143C;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
 .modifcar-datospersonales .footer-mp button:nth-child(2) {
     background: #29A5A1;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -1902,7 +1941,7 @@ section h2 i {
     padding: 10px 30px;
     color: #ffffff;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -1911,7 +1950,7 @@ section h2 i {
     background: #29A5A1;
     color: #ffffff;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -1942,7 +1981,7 @@ section h2 i {
     background: #007BFF;
     color: #ffffff;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -2045,7 +2084,7 @@ section h2 i {
     font-size: .9rem;
     box-shadow: none;
     transition: box-shadow 0.3s ease;
-  
+
 }
 
 .div-ext-part:nth-child(5) .div-div-int:nth-child(1) button {
@@ -2162,7 +2201,7 @@ section h2 i {
     font-size: 1rem;
     cursor: pointer;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -2216,7 +2255,7 @@ section h2 i {
     border: none;
     cursor: pointer;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -2284,7 +2323,7 @@ section h2 i {
     padding: 10px;
     margin: 10px;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -2312,7 +2351,7 @@ section h2 i {
     color: #fff;
     font-size: 1rem;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -2894,7 +2933,7 @@ section h2 i {
     color: #ffffff;
     border-radius: 0px 40px 40px 0px;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 
 }
@@ -2998,7 +3037,7 @@ section h2 i {
     font-size: .9rem;
     box-shadow: none;
     transition: box-shadow 0.3s ease;
-  
+
 }
 
 .div-ext-part:nth-child(5) .div-div-int:nth-child(1) button {
@@ -3083,7 +3122,7 @@ section h2 i {
     font-size: 1rem;
     border-radius: 5px;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -3156,7 +3195,7 @@ section h2 i {
     background: #007BFF;
     color: #ffffff;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 
@@ -3191,7 +3230,7 @@ section h2 i {
     height: 35px;
     font-size: 1rem;
     box-shadow: none;
-  transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 
 }
 

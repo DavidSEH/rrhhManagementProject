@@ -1,10 +1,8 @@
 <?php
 include "../Controlador/Modificar_Asistencia_Controlador.php";
 ?>
-
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Modificar Asistencia</title>
@@ -24,7 +22,6 @@ include "../Controlador/Modificar_Asistencia_Controlador.php";
             }
             return true;
         }
-
         function validarFechas() {
             const fechaIngreso = new Date(document.getElementsByName("fecha_ingreso")[0].value + "T" + document.getElementsByName("hora_ingreso")[0].value);
             const fechaSalida = new Date(document.getElementsByName("fecha_salida")[0].value + "T" + document.getElementsByName("hora_salida")[0].value);

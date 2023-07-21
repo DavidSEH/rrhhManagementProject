@@ -110,34 +110,6 @@ input,button{
     color: orange;
 }
 
-/*sidebar*/
-.sidemenu{
-
-    padding: .5rem;
-}
-.sidemenu li{
-    margin-top: 1.5rem;
-}
-.sidemenu a{
-    height: 35px;
-    color: #fff;
-    font-size: .85rem;
-    display: flex;
-    align-items: center;
-}
-
-.sidemenu a span:first-child{
-    font-size: 1.3rem;
-    padding: 0.3rem .6rem;
-}
-
-.sidemenu a:hover{
-    background: orange;
-    color: #fff;
-    border-radius: 5px;
-    height: 35px;
-}
-
 
 /*main*/
 .main-content{

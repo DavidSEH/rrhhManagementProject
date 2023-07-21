@@ -4,10 +4,10 @@ session_start();
 
 include "../Modelo/conexion.php";
 
-$nombre = $_GET['nombre'];
+$nombres = $_GET['nombre'];
 
-$query = mysqli_query($conection, "SELECT cod_personal, dni, nombres,apellidos, edad, telefono, direccion, correo
-                                   FROM personal c
+$query = mysqli_query($conection, "SELECT cod_personal,dni,nombres,apellidos,telefono,fecha_ingreso,fecha_cese,cod_motivo_cese,cod_puesto,sueldo,correo,hijos
+                                    from personal c 
                                    WHERE estado = 1 AND nombres LIKE '%$nombres%'
                                    ORDER BY cod_personal");
 mysqli_close($conection);
@@ -33,15 +33,15 @@ if ($result > 0) {
                             </li>
                             <li>
                                 <span class="fas fa-birthday-cake"></span>
-                                <span>Edad:<?php echo $data["edad"]; ?></span>
+                                <span>Fecha de ingreso:<?php echo $data["fecha_ingreso"]; ?></span>
                             </li>
                             <li>
                                 <span class="fas fa-user-secret"></span>
-                                <span>Telefono:<?php echo $data["telefono"]; ?></span>
+                                <span>Puesto de trabajo:<?php echo $data["cod_puesto"]; ?></span>
                             </li>
                             <li>
                                 <span class="fas fa-smile-beam"></span>
-                                <span>Dirección:<?php echo $data["direccion"]; ?></span>
+                                <span>Sueldo:<?php echo $data["sueldo"]; ?></span>
                             </li>
                         </div>
                     </div>
@@ -51,8 +51,13 @@ if ($result > 0) {
                 </div>
             </div>
             <div class="lista-btn">
+                <?php
+                if ($data["cod_personal"] != 1) {
+                    echo '<a href="EliminarEmpleado.php?id=' . $data["cod_personal"] . '" class="btn-delete"><span class="material-symbols-outlined">person_off</span>Cese</a>';
+                }
+                ?>
+                                <a href="../../Reportes/Reporte_Certificado.php?idUser=<?php echo $data["cod_personal"]; ?>"  class="btn-generate" target="_blank"><span class="material-symbols-outlined">task</span>Certificado</a>
                 <a href="ModificarEmpleado.php?id=<?php echo $data["cod_personal"]; ?>" class="btn-update"><i class="fas fa-edit"></i>Modificar</a>
-                <a href="EliminarEmpleado.php?id=<?php echo $data["cod_personal"]; ?>" class="btn-delete"><i class="fas fa-level-down-alt"></i>Descender</a>
             </div>
         </div>
 <?php

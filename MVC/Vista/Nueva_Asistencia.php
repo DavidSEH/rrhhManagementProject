@@ -1,10 +1,8 @@
 <?php
-//session_start();
 include '../Controlador/Nueva_Asistencia_Controlador.php';
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -30,10 +28,8 @@ include '../Controlador/Nueva_Asistencia_Controlador.php';
         function validarFechas() {
             const fechaIngreso = new Date(document.getElementsByName("fechain")[0].value + "T" + document.getElementsByName("horain")[0].value);
             const fechaSalida = new Date(document.getElementsByName("fechasal")[0].value + "T" + document.getElementsByName("horasal")[0].value);
-
             // Obtener la fecha y hora actual
             const fechaActual = new Date();
-
             // Verificar si la fecha y hora de entrada son válidas (mayores que la actual)
             if (fechaIngreso <= fechaActual) {
                 alert("La fecha y hora de ingreso deben ser mayores que la fecha y hora actual.");
@@ -41,7 +37,6 @@ include '../Controlador/Nueva_Asistencia_Controlador.php';
                 document.getElementsByName("horain")[0].value = "";
                 return false;
             }
-
             // Verificar si la fecha y hora de salida son válidas (mayores que la fecha y hora de entrada)
             if (fechaSalida <= fechaIngreso) {
                 alert("La fecha y hora de salida deben ser mayores que la fecha y hora de ingreso.");
@@ -49,23 +44,19 @@ include '../Controlador/Nueva_Asistencia_Controlador.php';
                 document.getElementsByName("horasal")[0].value = "";
                 return false;
             }
-
             // Verificar si la hora de salida es anterior a la hora de entrada
             if (fechaSalida.toDateString() === fechaIngreso.toDateString() && fechaSalida <= fechaIngreso) {
                 alert("La hora de salida no puede ser anterior a la hora de ingreso si la fecha de salida es la misma que la fecha de ingreso.");
                 document.getElementsByName("horasal")[0].value = "";
                 return false;
             }
-
             // Si todas las validaciones pasan, retornar true para enviar el formulario
             return true;
         }
     </script>
-
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
     <?php include "./sidebarAdministrador.php" ?>
-
     <!--Sidebar Fin-->
     <div class="main-content">
         <!--Navbar Inicio-->
@@ -122,7 +113,6 @@ include '../Controlador/Nueva_Asistencia_Controlador.php';
                                     </div>
                                 </div>
                             </div>
-
                             <div class="btn-actualizar-user">
                                 <div class="div-div-int">
                                     <button name="regresar">
@@ -137,8 +127,6 @@ include '../Controlador/Nueva_Asistencia_Controlador.php';
                                         </span></i>Confirmar</button>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>

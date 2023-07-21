@@ -3,24 +3,24 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Licencias</title>
-    <?php include "../Modelo/scripts.php" ?>
+    <?php include_once "../Modelo/scripts.php" ?>
 </head>
 
 <body>
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
-    <?php include "./sidebarAdministrador.php" ?>
+    <?php include_once "./sidebarAdministrador.php" ?>
     <!--Sidebar Fin-->
 
     <div class="main-content">
         <!--Navbar Inicio-->
         <?php
-        include "../Modelo/HeaderUsu.php"
+        include_once "../Modelo/HeaderUsu.php"
         ?>
         <!--Navbar Fin-->
         <?php date_default_timezone_set('America/Lima');
@@ -43,7 +43,7 @@ session_start();
                     </div>
                 </div>
                 <div class="listado-tabla">
-                    <table>
+                    <table aria-describedby="mydesc">
                         <thead>
                             <tr>
                                 <th>N°</th>
@@ -170,7 +170,7 @@ session_start();
             </div>
         </section>
     </div>
-    <?php include "../Modelo/Footer.php" ?>
+    <?php include_once "../Modelo/Footer.php" ?>
 </body>
 
 </html>

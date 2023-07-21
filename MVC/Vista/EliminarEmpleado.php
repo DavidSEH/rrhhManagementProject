@@ -8,13 +8,13 @@ include "../Controlador/EliminarEmpleadoControlador.php"
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Menu Administrador</title>
-    <?php include "../Modelo/scripts.php" ?>
+    <?php include_once "../Modelo/scripts.php" ?>
 </head>
 
 <body>
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
-    <?php include "./sidebarAdministrador.php" ?>
+    <?php include_once "./sidebarAdministrador.php" ?>
     <!--Sidebar Fin-->
     <div class="main-content">
         <!--Navbar Inicio-->
@@ -87,7 +87,7 @@ include "../Controlador/EliminarEmpleadoControlador.php"
             <?php echo isset($alert) ? $alert : ''; ?>
         </div>
     </div>
-    <?php include "../Modelo/Footer.php" ?>
+    <?php include_once "../Modelo/Footer.php" ?>
 </body>
 
 </html>

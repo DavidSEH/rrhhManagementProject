@@ -1,11 +1,10 @@
-
 <?php
 session_start();
 if ($_SESSION['rol'] != 1) {
     header("location: ../Vista/Gestion_Licencias.php");
 }
-include "../Modelo/conexion.php";
 
+include_once "../Modelo/conexion.php";
 
 if (empty($_REQUEST['id'])) {
     header("location: ../Vista/Gestion_Licencias.php");
@@ -32,7 +31,6 @@ if (empty($_REQUEST['id'])) {
     }
 }
 
-
 if (!empty($_POST)) {
 
     $alert = '';
@@ -53,12 +51,3 @@ if (!empty($_POST)) {
         }
     }
 }
-
-
-
-
-
-
-
-
-?>

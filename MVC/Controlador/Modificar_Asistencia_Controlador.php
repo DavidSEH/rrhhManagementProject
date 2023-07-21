@@ -1,10 +1,9 @@
-
 <?php
 session_start();
 $alert = '';
 $msg2 = '';
 $msg3 = '';
-include "../Modelo/conexion.php";
+include_once "../Modelo/conexion.php";
 
 if (!empty($_POST)) {
 	$alert = '';
@@ -18,8 +17,8 @@ if (!empty($_POST)) {
 		$cod_asistencia = $_POST['cod_asistencia'];
 
 		$sql_update = mysqli_query($conection, "UPDATE asistencia
-				SET fecha_ingreso = '$fecha_ingreso', hora_ingreso = '$hora_ingreso', hora_salida = '$hora_salida', modificado_por = '$idusuario'
-				WHERE cod_asistencia = $cod_asistencia");
+				SET fecha_ingreso = '$fecha_ingreso', hora_ingreso = '$hora_ingreso', hora_salida = '$hora_salida',
+				 modificado_por = '$idusuario' WHERE cod_asistencia = $cod_asistencia");
 
 		if ($sql_update) {
 			$alert = '<p class="msg_save">Asistencia actualizada correctamente.</p>';

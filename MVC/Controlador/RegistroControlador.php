@@ -1,5 +1,5 @@
 <?php
-include "../Modelo/conexion.php";
+include_once "../Modelo/conexion.php";
 
 if (!empty($_POST)) {
     $alert = '';

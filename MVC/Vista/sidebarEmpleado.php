@@ -1,7 +1,7 @@
 <div class="sidebar">
     <div class="brand">
         <span class="lab la-affiliatetheme"></span>
-        <h3>TuTrabajo</h3>
+        <h3>Talenti S.A.</h3>
     </div>
     <div class="sidemenu">
         <div class="side-user">
@@ -19,12 +19,6 @@
                     <a href="LicenciasEmpleado.php">
                         <span class="las la-home"></span>
                         <span>Licencia</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="DatosPersonales_Cliente.php?id=<?php echo  $_SESSION['idCli'];?>">
-                        <span class="fas fa-user"></span>
-                        <span>Datos personales</span>
                     </a>
                 </li>
                 <li>

@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -27,8 +27,6 @@ session_start();
                 <h2><i class="fas fa-sign-out-alt"></i> Licencia <span>/Tramitar</span></h2>
                 <div class="principal-recepcion">
                     <div class="cab-recepcion">
-
-
                     </div>
                     <div class="seccion-recepcion">
                         <?php
@@ -41,12 +39,9 @@ session_start();
 
                         if ($result > 0) {
                             while ($data = mysqli_fetch_array($query)) {
-
-
                                 $title = 'princ-hab-recepcion';
                                 $title2 = 'footer-hab-recpcion';
                                 $msg = '<a href="Nueva_Licencia_Administrador.php?id=' . $data['cod_licencia'] . ' ">Tramitar <i class="fas fa-arrow-alt-circle-right"></i></a>';
-
                         ?>
                                 <div class="seccion-hab-recepcion">
                                     <div class="<?php echo $title ?>">

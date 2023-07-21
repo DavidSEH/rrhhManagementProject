@@ -1,10 +1,9 @@
-
 <?php
 session_start();
 if ($_SESSION['rol'] != 1) {
-	//header("location: ../Vista/cliente.php");
+	header("location: ../Vista/cliente.php");
 }
-include "../Modelo/conexion.php";
+include_once "../Modelo/conexion.php";
 
 // Realizar la consulta a la base de datos para obtener los motivos de cese
 $query = "SELECT cod_motivo_cese, descripcion FROM tipo_motivo_cese";
@@ -25,20 +24,19 @@ if ($result && mysqli_num_rows($result) > 0) {
 	$options = "<option value=\"\">No hay motivos de cese disponibles</option>";
 }
 
-
 if (!empty($_POST)) {
 	$alert = '';
 	if ($_POST['cod_personal'] == 1) {
-		/*header("location: ../Vista/usuarios.php");
+		header("location: ../Vista/Gestion_Empleados.php");
 		mysqli_close($conection);
-		exit;*/
+		exit;
 	}
 	$cod_personal = $_POST['cod_personal'];
 	$fecha_cese = date('Y-m-d');
 
 	$cod_motivo_cese = $_POST['cod_motivo_cese'];
-	$query_delete = mysqli_query($conection, "UPDATE personal SET estado = 0, fecha_cese = '$fecha_cese', cod_motivo_cese = '$cod_motivo_cese'
-										WHERE cod_personal = $cod_personal ");
+	$query_delete = mysqli_query($conection, "UPDATE personal SET estado = 0, fecha_cese = '$fecha_cese', 
+	cod_motivo_cese = '$cod_motivo_cese' WHERE cod_personal = $cod_personal");
 	$query_update_usuario = mysqli_query($conection, "UPDATE usuario SET estado = 0 WHERE cod_personal = $cod_personal ");
 	mysqli_close($conection);
 	if ($query_delete) {
@@ -50,14 +48,15 @@ if (!empty($_POST)) {
 }
 
 if (empty($_REQUEST['id']) || $_REQUEST['id'] == 1) {
-	//header("location: ../Vista/cliente.php");
-	//mysqli_close($conection);
+	header("location: ../Vista/Gestion_Empleados.php");
+	mysqli_close($conection);
 } else {
 
 	$cod_personal = $_REQUEST['id'];
 
-	$query = mysqli_query($conection, "SELECT nombres,fecha_ingreso,sueldo,cod_puesto
-												FROM personal
+	$query = mysqli_query($conection, "SELECT p.nombres,p.fecha_ingreso,p.sueldo,tp.descripcion as cod_puesto
+												FROM personal p
+												inner join tipo_puesto tp on p.cod_puesto = tp.cod_puesto
 												WHERE cod_personal = $cod_personal ");
 
 	mysqli_close($conection);
@@ -71,7 +70,6 @@ if (empty($_REQUEST['id']) || $_REQUEST['id'] == 1) {
 			$cod_puesto = $data['cod_puesto'];
 		}
 	} else {
-		header("location: ../Vista/usuarios.php");
+		header("location: ../Vista/Gestion_Empleados.php");
 	}
 }
-?>

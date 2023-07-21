@@ -2,7 +2,7 @@
 include "../Controlador/Modificar_Licencia_Administrador_Controlador.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Modificar Licencia</title>

@@ -1,14 +1,13 @@
 <?php
 include "../Controlador/Nueva_Licencia_Empleado_Controlador.php";
-
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Menu Empleado</title>
-    <?php include "../Modelo/scripts2.php" ?>
+    <?php include_once "../Modelo/scripts2.php" ?>
 </head>
 
 <body>
@@ -46,10 +45,9 @@ include "../Controlador/Nueva_Licencia_Empleado_Controlador.php";
             return true;
         }
     </script>
-
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
-    <?php include "./sidebarEmpleado.php" ?>
+    <?php include_once "./sidebarEmpleado.php" ?>
     <!--Sidebar Fin-->
     <div class="main-content">
         <!--Navbar Inicio-->
@@ -82,7 +80,7 @@ include "../Controlador/Nueva_Licencia_Empleado_Controlador.php";
                                 </div>
                                 <div>
                                     <p><?php echo $licencia_nombre; ?></p>
-                                    <p><?php echo $licencia_detalle;?></p>
+                                    <p><?php echo $licencia_detalle; ?></p>
                                 </div>
                             </div>
                         </div>
@@ -128,10 +126,8 @@ include "../Controlador/Nueva_Licencia_Empleado_Controlador.php";
                                 </div>
                             </div>
                         </div>
-                        <!--Datos Alojamiento-->
                         <div class="seccion-datos-aloj">
                             <p>Datos de la Licencia</p>
-
                             <div class="datos-aloj">
                                 <div class="div-tar-aloj">
                                     <label for="">Tipo:</label>
@@ -158,25 +154,18 @@ include "../Controlador/Nueva_Licencia_Empleado_Controlador.php";
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="div-ext-part">
-
                                     <div class="div-div-int">
                                         <a href="./ReservaCliente.php" class="btn1-r-cancel">
                                             <i class="fas fa-undo"></i> Regresar
                                         </a>
                                     </div>
-
                                     <div class="div-div-int">
-
                                         <button type="submit" class="btn2-r-cancel" value="Reservar">
                                             <i class="fas fa-check-circle"></i> Solicitar</button>
-
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -185,11 +174,7 @@ include "../Controlador/Nueva_Licencia_Empleado_Controlador.php";
                 </div>
             </form>
         </section>
-
-
     </div>
-
-
 </body>
 
 </html>

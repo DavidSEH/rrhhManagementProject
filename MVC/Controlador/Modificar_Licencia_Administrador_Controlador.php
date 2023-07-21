@@ -1,11 +1,7 @@
 <?php
 session_start();
-/*if($_SESSION['rol'] != 1)
-	{
-        header("location: ../Vista/Gestion_Licencias.php");
-	}*/
 
-include "../Modelo/conexion.php";
+include_once "../Modelo/conexion.php";
 //Mostrar Datos
 if (empty($_REQUEST['id'])) {
 	header("location: ../Vista/Gestion_Licencias.php");
@@ -13,7 +9,8 @@ if (empty($_REQUEST['id'])) {
 }
 $cod_licencia = $_REQUEST['id'];
 
-$sql = mysqli_query($conection, "SELECT l.cod_licencia,t.nom_licencia AS tipo, l.fecha_inicio, l.fecha_fin, l.tipo, p.nombres, t.descripcion
+$sql = mysqli_query($conection, "SELECT l.cod_licencia,t.nom_licencia AS tipo, l.fecha_inicio, 
+								l.fecha_fin, l.tipo, p.nombres, t.descripcion
                                  FROM licencia l
                                  INNER JOIN personal p ON l.cod_personal = p.cod_personal
                                  INNER JOIN tipo_licencia t ON l.tipo = t.cod_licencia

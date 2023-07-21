@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -59,7 +59,7 @@ session_start();
                     <div class="">
                         <p>Buscar empleado</p>
                         <div class="search-med">
-                            <input type="search" placeholder="Ingresar Empleado" onkeyup="buscarCliente(this.value)">
+                            <input type="search" placeholder="Ingrese nombre" onkeyup="buscarCliente(this.value)">
                             <span class="las la-search"></span>
                         </div>
                     </div>
@@ -68,7 +68,9 @@ session_start();
                     <div class="cab-user">
                         <h3>Mostrar empleados cesados</h3>
                         <div class="ckbx-style-8">
-                            <input type="checkbox" id="estado-checkbox" name="estado" onchange="document.getElementById('estado-form').submit()" <?php if (isset($_GET['estado']) && $_GET['estado'] == 'on') echo 'checked'; ?>>
+                            <input type="checkbox" id="estado-checkbox" name="estado" onchange="document.getElementById('estado-form').submit()" <?php if (isset($_GET['estado']) && $_GET['estado'] == 'on') {
+                                                                                                                                                        echo 'checked';
+                                                                                                                                                    } ?>>
                             <label for="estado-checkbox"></label>
                             <?php if (isset($_GET['estado']) && $_GET['estado'] == 'on') : ?>
                                 <input type="submit" value="Actualizar" class="btnPassword" hidden>
@@ -80,8 +82,10 @@ session_start();
                     <?php
                     include "../Modelo/conexion.php";
                     $estado = isset($_GET['estado']) && $_GET['estado'] == 'on' ? 0 : 1;
-                    $query = mysqli_query($conection, "SELECT cod_personal,dni,nombres,apellidos,telefono,fecha_ingreso,fecha_cese,cod_motivo_cese,cod_puesto,sueldo,correo
-                                                    from personal c 
+                    $query = mysqli_query($conection, "SELECT p.cod_personal,p.dni,p.nombres,p.apellidos,p.telefono,p.fecha_ingreso,p.fecha_cese,tmc.descripcion as cod_motivo_cese, pt.descripcion as cod_puesto ,p.sueldo,p.correo,p.hijos
+                                                    from personal p
+                                                    left join tipo_puesto pt on p.cod_puesto = pt.cod_puesto 
+                                                    left join tipo_motivo_cese tmc on p.cod_motivo_cese = tmc.cod_motivo_cese
                                                     WHERE estado = $estado ORDER BY cod_personal");
                     mysqli_close($conection);
                     $result = mysqli_num_rows($query);
@@ -97,40 +101,51 @@ session_start();
                                                 <?php echo $data["apellidos"]; ?>
                                             </h3>
                                             <div class="lista-datos-personal">
-                                                <li>
-                                                    <span class="fas fa-id-card"></span>
-                                                    <span>DNI: <?php echo $data["dni"]; ?></span>
-                                                </li>
-                                                <li>
-                                                    <span class="fas fa-at"></span>
-                                                    <span>Correo:<?php echo $data["correo"]; ?></span>
-                                                </li>
-                                                <?php
-                                                if ($estado == 0) {
-                                                    echo '<li>';
-                                                    echo '<span class="fas fa-calendar-alt"></span>';
-                                                    echo '<span>Fecha Cese:' . $data["fecha_cese"] . '</span>';
-                                                    echo '</li>';
-                                                    echo '<li>';
-                                                    echo '<span class="fas fa-info-circle"></span>';
-                                                    echo '<span>Motivo Cese:' . $data["cod_motivo_cese"] . '</span>';
-                                                    echo '</li>';
-                                                } else {
-                                                    echo '<li>';
-                                                    echo '<span class="fas fa-calendar-alt"></span>';
-                                                    echo '<span>Fecha Ingreso:' . $data["fecha_ingreso"] . '</span>';
-                                                    echo '</li>';
-                                                    echo '<li>';
-                                                    echo '<span class="fas fa-calendar-alt"></span>';
-                                                    echo '<span>Puesto de trabajo:' . $data["cod_puesto"] . '</span>';
-                                                    echo '</li>';
-                                                    echo '<li>';
-                                                    echo '<span class="fas fa-calendar-alt"></span>';
-                                                    echo '<span>Salario:' . $data["sueldo"] . '</span>';
-                                                    echo '</li>';
-                                                }
-                                                ?>
-
+                                                <ul>
+                                                    <li>
+                                                        <span class="fas fa-id-card"></span>
+                                                        <span>DNI: <?php echo $data["dni"]; ?></span>
+                                                    </li>
+                                                    <li>
+                                                        <span class="fas fa-at"></span>
+                                                        <span>Correo: <?php echo $data["correo"]; ?></span>
+                                                    </li>
+                                                    <?php
+                                                    if ($estado == 0) {
+                                                        echo '<li>';
+                                                        echo '<span class="fas fa-calendar-alt"></span>';
+                                                        echo '<span>Fecha Cese: ' . $data["fecha_cese"] . '</span>';
+                                                        echo '</li>';
+                                                        echo '<li>';
+                                                        echo '<span class="fas fa-info-circle"></span>';
+                                                        echo '<span>Motivo Cese: ' . $data["cod_motivo_cese"] . '</span>';
+                                                        echo '</li>';
+                                                    } else {
+                                                        echo '<li>';
+                                                        echo '<span class="fas fa-calendar-alt"></span>';
+                                                        echo '<span>Fecha de Ingreso: ' . $data["fecha_ingreso"] . '</span>';
+                                                        echo '</li>';
+                                                        echo '<li>';
+                                                        echo '<span class="fas fa-calendar-alt"></span>';
+                                                        echo '<span>Puesto de trabajo: ' . $data["cod_puesto"] . '</span>';
+                                                        echo '</li>';
+                                                        echo '<li>';
+                                                        echo '<span class="fas fa-calendar-alt"></span>';
+                                                        echo '<span>Sueldo: ' . $data["sueldo"] . '</span>';
+                                                        echo '</li>';
+                                                        echo '<li>';
+                                                        echo '<span class="fas fa-calendar-alt"></span>';
+                                                        if ($data["hijos"] == 0) {
+                                                            echo '<span>Hijos: No tiene hijos</span>';
+                                                        } elseif ($data["hijos"] == 1) {
+                                                            echo '<span>Hijos: Tiene hijos</span>';
+                                                        } else {
+                                                            echo '<span>Hijos: Valor inválido</span>';
+                                                        }
+                                                        echo '</li>';
+                                                    }
+                                                    ?>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -151,7 +166,6 @@ session_start();
                                             echo '<a href="EliminarEmpleado.php?id=' . $data["cod_personal"] . '" class="btn-delete"><span class="material-symbols-outlined">person_off</span>Cese</a>';
                                         }
                                         echo '<a href="../../Reportes/Reporte_Certificado.php?idUser=' . $data["cod_personal"] . '" class="btn-generate" target="_blank"><span class="material-symbols-outlined">task</span>Certificado</a>';
-                                        echo '<a href="../../Reportes/Reporte_Certificado.php?idUser=' . $data["cod_personal"] . '" class="btn-generate" target="_blank"><span class="material-symbols-outlined">task</span>Boleta de pagos</a>';
                                         echo '<a href="ModificarEmpleado.php?id=' . $data["cod_personal"] . '" class="btn-update"><span class="material-symbols-outlined">edit</span>Modificar</a>';
                                     }
                                     ?>

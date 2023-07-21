@@ -2,12 +2,12 @@
 include '../Controlador/Nueva_Licencia_Administrador_Controlador.php';
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Generar Licencia</title>
-    <?php include "../Modelo/scripts.php" ?>
+    <?php include_once "../Modelo/scripts.php" ?>
 </head>
 
 <body>
@@ -27,32 +27,28 @@ include '../Controlador/Nueva_Licencia_Administrador_Controlador.php';
             const fechaInicio = new Date(document.getElementsByName('fechain')[0].value);
             const fechaFinal = new Date(document.getElementsByName('fechasal')[0].value);
             const fechaActual = new Date();
-
             if (fechaInicio < fechaActual || fechaFinal < fechaActual) {
                 alert('Las fechas deben ser desde la fecha actual hacia adelante.');
                 document.getElementsByName('fechain')[0].value = '';
                 document.getElementsByName('fechasal')[0].value = '';
                 return false;
             }
-
             if (fechaInicio > fechaFinal) {
                 alert('La fecha de inicio debe ser anterior a la fecha final.');
                 document.getElementsByName('fechain')[0].value = '';
                 document.getElementsByName('fechasal')[0].value = '';
                 return false;
             }
-
             return true;
         }
     </script>
-
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
-    <?php include "./sidebarAdministrador.php" ?>
+    <?php include_once "./sidebarAdministrador.php" ?>
     <!--Sidebar Fin-->
     <div class="main-content">
         <!--Navbar Inicio-->
-        <?php include "../Modelo/HeaderUsu.php" ?>
+        <?php include_once "../Modelo/HeaderUsu.php" ?>
         <!--Navbar Fin-->
         <section>
             <div class="cab-user">
@@ -60,13 +56,11 @@ include '../Controlador/Nueva_Licencia_Administrador_Controlador.php';
                 </h3>
                 <?php echo isset($msg2) ? $msg2 : ''; ?>
             </div>
-
             <form method="post" action="" onsubmit="validarFechas();">
                 <input type="hidden" name="cod_personal" value="<?php echo isset($cod_personal_usu) ? $cod_personal_usu : ''; ?>">
                 <input type="hidden" name="idusuario" value="<?php echo $_SESSION['idUser'] ?>">
                 <div class="principal-genera-r">
                     <div class="cab-datosh">
-
                         <p class="title-datosh">Datos de la solicitud de licencia</p>
                         <p id="num-habitacion" style="display: none;">Nombre:</p>
                         <div class="sec-datosh">
@@ -128,10 +122,8 @@ include '../Controlador/Nueva_Licencia_Administrador_Controlador.php';
                                 </div>
                             </div>
                         </div>
-                        <!--Datos Alojamiento-->
                         <div class="seccion-datos-aloj">
                             <p>Detalles de la Licencia</p>
-
                             <div class="datos-aloj">
                                 <div class="div-ext-part" style="justify-content: center;align-items: center;">
                                     <div class="div-div-int">
@@ -150,7 +142,6 @@ include '../Controlador/Nueva_Licencia_Administrador_Controlador.php';
                                             <input type="date" name="fechain" value="" id="userdate" onchange="TDate()">
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="div-ext-part" style="justify-content: center;align-items: center;">
                                     <div class="div-div-int">
@@ -160,37 +151,26 @@ include '../Controlador/Nueva_Licencia_Administrador_Controlador.php';
                                             <input type="date" name="fechasal" value="" id="userdate" onchange="TDate()">
                                         </div>
                                     </div>
-
                                 </div>
-
                                 <div class="div-ext-part">
-
                                     <div class="div-div-int" style="display: flex;justify-content: center;align-items: center;">
                                         <button name="regresar">
                                             <i class="fas fa-undo"></i>Regresar</button>
                                     </div>
-
                                     <div class="div-div-int" style="display: flex;justify-content: center;align-items: center;">
                                         <button type="submit" name="btnGenerar">
                                             <i class="fas fa-check-circle"></i>Confirmar</button>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
                 <?php echo isset($alert) ? $alert : ''; ?>
-
             </form>
         </section>
-
-
     </div>
-
-    <?php include "../Modelo/Footer.php" ?>
+    <?php include_once "../Modelo/Footer.php" ?>
 </body>
 
 </html>

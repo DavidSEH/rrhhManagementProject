@@ -2,18 +2,18 @@
 session_start();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Usuarios</title>
-    <?php include "../Modelo/scripts.php" ?>
+    <?php include_once "../Modelo/scripts.php" ?>
 </head>
 
 <body>
     <input type="checkbox" id="menu-toggle">
     <!--Sidebar Inicio-->
-    <?php include "./sidebarAdministrador.php" ?>
+    <?php include_once "./sidebarAdministrador.php" ?>
     <!--Sidebar Fin-->
     <div class="main-content">
         <!--Navbar Inicio-->
@@ -49,7 +49,7 @@ session_start();
                 </div>
                 <form action="" method="GET" id="estado-form">
                     <h2 for="estado-checkbox">Mostrar usuarios deshabilitados:
-                        <input type="checkbox" id="estado-checkbox" name="estado" onchange="document.getElementById('estado-form').submit()" <?php if (isset($_GET['estado']) && $_GET['estado'] == 'on') echo 'checked'; ?>>
+                        <input type="checkbox" id="estado-checkbox" name="estado" onchange="document.getElementById('estado-form').submit()" <?php if (isset($_GET['estado']) && $_GET['estado'] == 'on') {echo 'checked';} ?>>
                         <?php if (isset($_GET['estado']) && $_GET['estado'] == 'on') : ?>
                             <input type="submit" value="Actualizar" class="btnPassword" hidden>
                         <?php endif; ?>
@@ -57,7 +57,7 @@ session_start();
                 </form>
                 <div class="lista-user">
                     <?php
-                    include "../Modelo/conexion.php";
+                    include_once "../Modelo/conexion.php";
                     $estado = isset($_GET['estado']) && $_GET['estado'] == 'on' ? 0 : 1;
                     $query = mysqli_query($conection, "SELECT u.cod_usuario, u.usuario, u.estado, r.rol, p.nombres AS nombre_usuario
                     FROM usuario u
@@ -80,16 +80,18 @@ session_start();
                                             <div class="lista-datos-p">
                                                 <h3><?php echo $data["nombre_usuario"]; ?></h3>
                                                 <div class="lista-datos-personal">
-                                                    <li>
-                                                        <span class="material-symbols-outlined">
-                                                            account_circle
-                                                        </span>
-                                                        <span>Usuario:<?php echo $data["usuario"]; ?></span>
-                                                    </li>
-                                                    <li>
-                                                        <span class="fas fa-smile-beam"></span>
-                                                        <span>rol:<?php echo $data["rol"]; ?></span>
-                                                    </li>
+                                                    <ul>
+                                                        <li>
+                                                            <span class="material-symbols-outlined">
+                                                                account_circle
+                                                            </span>
+                                                            <span>Usuario:<?php echo $data["usuario"]; ?></span>
+                                                        </li>
+                                                        <li>
+                                                            <span class="fas fa-smile-beam"></span>
+                                                            <span>rol:<?php echo $data["rol"]; ?></span>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,7 +128,7 @@ session_start();
             </div>
         </section>
     </div>
-    <?php include "../Modelo/Footer.php" ?>
+    <?php include_once "../Modelo/Footer.php" ?>
 </body>
 
 </html>
