@@ -24,9 +24,9 @@ if (!empty($_POST)) {
     if (empty($_POST['nombre']) || empty($_POST['correo']) || empty($_POST['dni'])) {
         $alert = '<p class="msg_error">Todos los campos son obligatorios.</p>';
     } else {
-
         $dni = $_POST['dni'];
         $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
         $edad = $_POST['edad'];
         $correo  = $_POST['correo'];
         $telefono = $_POST['telefono'];
@@ -34,6 +34,8 @@ if (!empty($_POST)) {
         $fecha_ingreso = $_POST['fecha_ingreso'];
         $sueldo = $_POST['sueldo'];
         $hijos = $_POST['hijos'];
+        $id_pension_tipo = $_POST['id_pension_tipo'];
+        $cuenta_bancaria = $_POST['cuenta_bancaria'];
         $cod_puesto = $_POST['cod_puesto'];
 
         // Verificar si ya existe un cliente con el mismo DNI
@@ -41,13 +43,13 @@ if (!empty($_POST)) {
         $result_dni = mysqli_fetch_array($query_dni);
 
         if ($result_dni) {
-            $alert = '<p class="msg_error">Ya está registrado un empleado con el mismo DNI.</p>';
+            $alert = '<p class="msg_error">Ya existe un empleado con el mismo DNI.</p>';
         } else {
 
             $query_insert = mysqli_query(
                 $conection,
-                "INSERT INTO personal(dni,nombres,edad,correo,telefono,direccion,fecha_ingreso, sueldo,cod_puesto,hijos, estado)
-                VALUES('$dni','$nombre','$edad','$correo','$telefono','$domicilio','$fecha_ingreso','$sueldo','$cod_puesto','$hijos',1)"
+                "INSERT INTO personal(dni,nombres,apellidos,edad,correo,telefono,direccion,fecha_ingreso,sueldo,cod_puesto,hijos,id_pension_tipo,cuenta_bancaria,estado)
+                VALUES('$dni','$nombre','$apellido','$edad','$correo','$telefono','$domicilio','$fecha_ingreso','$sueldo','$cod_puesto','$hijos','$id_pension_tipo','$cuenta_bancaria',1)"
             );
 
             if ($query_insert) {

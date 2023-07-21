@@ -84,8 +84,8 @@ session_start();
                     $estado = isset($_GET['estado']) && $_GET['estado'] == 'on' ? 0 : 1;
                     $query = mysqli_query($conection, "SELECT p.cod_personal,p.dni,p.nombres,p.apellidos,p.telefono,p.fecha_ingreso,p.fecha_cese,tmc.descripcion as cod_motivo_cese, pt.descripcion as cod_puesto ,p.sueldo,p.correo,p.hijos
                                                     from personal p
-                                                    inner join tipo_puesto pt on p.cod_puesto = pt.cod_puesto 
-                                                    inner join tipo_motivo_cese tmc on p.cod_motivo_cese = tmc.cod_motivo_cese
+                                                    left join tipo_puesto pt on p.cod_puesto = pt.cod_puesto 
+                                                    left join tipo_motivo_cese tmc on p.cod_motivo_cese = tmc.cod_motivo_cese
                                                     WHERE estado = $estado ORDER BY cod_personal");
                     mysqli_close($conection);
                     $result = mysqli_num_rows($query);

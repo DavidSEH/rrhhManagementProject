@@ -61,6 +61,7 @@
                         <?php
                         }
                         ?>
+ 			<a href="Nueva_Boleta_Pago.php"><i class="far fa-circle"></i>Pagos</a>
                     </div>
                 </div>
                 <?php

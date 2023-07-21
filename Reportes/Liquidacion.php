@@ -94,11 +94,16 @@ if (empty($_REQUEST['idUser'])) {
         // Calcular la diferencia entre las fechas
         $diferencia = $inicio->diff($fin);
         global $meses_trabajados_año;
-        // Obtener el número total de meses de diferencia
         $meses_trabajados_año = $diferencia->m;
+        
+        if ($meses_trabajados_año == 0) {
+            // Manejo de división entre 0
+            return 0;
+        }
 
         return ($sueldo * (1 / $meses_trabajados_año));
     }
+
 
     // Función para calcular la gratificación trunca
     function calcularGratificacion($sueldo, $mesesTrabajados)
@@ -178,44 +183,44 @@ if (empty($_REQUEST['idUser'])) {
             $pdf->SetTextColor(1, 1, 1);
             $pdf->Cell(50, 7, "Apellidos y nombres: ", 0, 0, "l", 1);
             $pdf->SetFont("Arial", "", 11);
-            $pdf->Cell(160, 7, $nombres, 0, 1, "D", 1);
+            $pdf->Cell(145, 7, $nombres, 0, 1, "D", 1);
 
 
             $pdf->SetFont("Arial", "B", 11);
             $pdf->SetTextColor(1, 1, 1);
             $pdf->Cell(50, 7, "DNI: ", 0, 0, "l", 1);
             $pdf->SetFont("Arial", "", 11);
-            $pdf->Cell(80, 7, "$dni ", 0, 1, "D", 1);
+            $pdf->Cell(145, 7, "$dni ", 0, 1, "D", 1);
 
             $pdf->SetFont("Arial", "B", 11);
             $pdf->SetTextColor(1, 1, 1);
             $pdf->Cell(50, 7, "Fecha de ingreso: ", 0, 0, "l", 1);
             $pdf->SetFont("Arial", "", 11);
-            $pdf->Cell(160, 7, $fecha_ingreso, 0, 1, "D", 1);
+            $pdf->Cell(145, 7, $fecha_ingreso, 0, 1, "D", 1);
 
             $pdf->SetFont("Arial", "B", 11);
             $pdf->SetTextColor(1, 1, 1);
             $pdf->Cell(50, 7, "Fecha de cese: ", 0, 0, "l", 1);
             $pdf->SetFont("Arial", "", 11);
-            $pdf->Cell(160, 7, $fecha_cese, 0, 1, "D", 1);
+            $pdf->Cell(145, 7, $fecha_cese, 0, 1, "D", 1);
 
             $pdf->SetFont("Arial", "B", 11);
             $pdf->SetTextColor(1, 1, 1);
             $pdf->Cell(50, 7, "Cargo: ", 0, 0, "l", 1);
             $pdf->SetFont("Arial", "", 11);
-            $pdf->Cell(160, 7, $dataEmpleado['descripcion'], 0, 1, "D", 1);
+            $pdf->Cell(145, 7, $dataEmpleado['descripcion'], 0, 1, "D", 1);
 
             $pdf->SetFont("Arial", "B", 11);
             $pdf->SetTextColor(1, 1, 1);
             $pdf->Cell(50, 7, utf8_decode("Periodo de liquidación: "), 0, 0, "l", 1);
             $pdf->SetFont("Arial", "", 11);
-            $pdf->Cell(160, 7, utf8_decode(calcularMesesEnTexto($fecha_ingreso, $fecha_cese)), 0, 1, "D", 1);
+            $pdf->Cell(145, 7, utf8_decode(calcularMesesEnTexto($fecha_ingreso, $fecha_cese)), 0, 1, "D", 1);
 
             $pdf->SetFont("Arial", "B", 11);
             $pdf->SetTextColor(1, 1, 1);
             $pdf->Cell(50, 7, "Motivo: ", 0, 0, "l", 1);
             $pdf->SetFont("Arial", "", 11);
-            $pdf->Cell(160, 7, $cod_motivo, 0, 1, "D", 1);
+            $pdf->Cell(145, 7, $cod_motivo, 0, 1, "D", 1);
 
             $pdf->Ln(10);
             $pdf->SetFillColor(41, 165, 161);
@@ -326,6 +331,13 @@ if (empty($_REQUEST['idUser'])) {
             $red_vaca = round($vacaciones_truncas, 3);
             $pdf->Cell(136, 7, $red_vaca, 0, 1, "D", 1);
 
+            $pdf->Ln(10);
+            $pdf->SetFont("Arial", "", 12);
+            $pdf->SetFillColor(255, 255, 255);
+            $pdf->SetDrawColor(255, 255, 255);
+            $pdf->SetTextColor(1, 1, 1);
+            $pdf->Cell(195, 4, "", 1, 1, "C", 1);
+            
             $pdf->SetFillColor(210, 245, 244);
 
             $pdf->Ln(10);
@@ -371,12 +383,13 @@ if (empty($_REQUEST['idUser'])) {
             $pdf->SetFont("Arial", "B", 13);
             $pdf->Cell(196, 10, "Liquidacion:  " . $liquidacion . " nuevos soles.", 1, 1, "R", 1);
 
-            $pdf->Ln(15);
-            $pdf->SetFont("Arial", "", 15);
+            $pdf->Ln(10);
+            $pdf->SetFont("Arial", "", 12);
             $pdf->SetFillColor(255, 255, 255);
             $pdf->SetDrawColor(255, 255, 255);
-            $pdf->Cell(195, 4, "", 0, 1, "C", 1);
-            $pdf->MultiCell(0, 7, utf8_decode("Recibo de " . $razon_social . "la cantidad de  Nuevos Soles por concepto de compensacion por tiempo de servicios, vacaciones y gratificaciones que corresponden de acuerdo a Ley, no teniendo reclamo alguno posterior que formular, por dichos conceptos lo que firmo en señal de conformidad. "), 0, "L");
+            $pdf->SetTextColor(1, 1, 1);
+            $pdf->Cell(195, 4, "", 1, 1, "C", 1);
+            $pdf->MultiCell(0, 7, utf8_decode("Recibo de " . $razon_social . " la cantidad de ".$liquidacion." Nuevos Soles por concepto de compensacion por tiempo de servicios, vacaciones y gratificaciones que corresponden de acuerdo a Ley, no teniendo reclamo alguno posterior que formular, por dichos conceptos lo que firmo en señal de conformidad. "), 0, "L");
         } else {
             $pdf->Ln(15);
             $pdf->SetFont("Arial", "", 15);
