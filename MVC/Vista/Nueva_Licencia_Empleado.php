@@ -145,7 +145,7 @@ include "../Controlador/Nueva_Licencia_Empleado_Controlador.php";
                                         </div>
                                     </div>
                                 </div>
-                                <div class="div-ext-part">
+                                <div class="btn-actualizar-user">
                                     <div class="div-div-int">
                                         <label for="">Fecha Salida:</label>
                                         <div class="div-input-aloj">
